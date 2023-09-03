@@ -1,0 +1,47 @@
+Data Warehousing:
+• A data warehouse is designed to provide strategic information for decisionmaking.
+• Characteristics include being user-driven, storing data for analysis, handling 
+complex queries, and being flexible and interactive.
+• Bill Inmon introduced four characteristics: subject-oriented, integrated, timevariant, and non-volatile.
+
+Dimensional Modeling:
+• Dimensional modeling organizes data into subject-oriented models suitable 
+for analysis.
+• Star Schema: A central fact table linked to dimension tables, suitable for 
+simple queries.
+• Snowflake Schema: Normalized dimension tables, but can lead to complexity 
+and slower queries.
+• Star Flake Schema: A hybrid schema with fact and both denormalized and 
+normalized dimension tables.
+
+OLTP vs. OLAP:
+• OLTP (Online Transaction Processing) is for day-to-day operations, whereas 
+OLAP (Online Analytical Processing) supports analysis.
+• Data in OLTP is current and normalized, while data in OLAP is historical, 
+summarized, and used for queries.
+• OLTP has quick response times, while OLAP's response time varies based on 
+complexity.
+• OLTP supports numerous users, while OLAP has fewer users.
+
+Data Mining:
+• Data mining analyzes large databases to discover patterns and rules.
+• It's used for prediction, association, classification, and clustering.
+• Association rules find relationships between items, classification predicts 
+classes, and clustering groups similar data points.
+
+Classification:
+• Classification predicts the class of new instances based on existing data.
+• Decision Tree Classifiers use a tree structure with leaves representing classes 
+and internal nodes representing attributes.
+• Support measures how often a rule applies, and confidence measures rule 
+accuracy.
+
+Association Rules:
+• Association rules find correlations between items.
+• Support measures the frequency of items' co-occurrence, while confidence 
+measures the accuracy of predictions.
+
+Clustering:
+• Clustering groups similar data points together.
+• Hierarchical clustering creates clusters in a tree structure.
+• It's used in various domains, such as biology and recommendation systems

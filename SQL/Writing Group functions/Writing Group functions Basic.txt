@@ -1,0 +1,33 @@
+Lesson Aim
+This lesson further addresses functions. It focuses on obtaining summary information, such as averages, for groups
+of rows. It discusses how to group rows in a table into smaller sets and how to specify search criteria for groups of
+rows.
+
+1.Types of Group Functions: There are several group functions available in SQL, including AVG, COUNT, MAX, MIN, STDDEV, SUM, and VARIANCE. These functions allow you to perform calculations on groups of rows, such as finding averages, counting rows, and finding minimum and maximum values.
+
+2.Guidelines for Using Group Functions:
+
+-You can use the DISTINCT keyword to consider only non-duplicate values or use ALL to consider all values, including duplicates.
+-Group functions work with various data types, including CHAR, VARCHAR2, NUMBER, and DATE.
+-Group functions ignore null values, and you can use the NVL function to handle null values.
+-The GROUP BY clause is used to group rows in a table into sets based on specific criteria.
+-You can use the HAVING clause to filter groups based on specific conditions.
+-Group functions can be nested to a depth of two.
+
+3.Examples of Group Functions:
+
+-You can use AVG, SUM, MIN, and MAX functions for numeric data types to calculate averages, sums, minimum, and maximum values.
+-The COUNT function has various formats, including COUNT(*), COUNT(expr), and COUNT(DISTINCT expr), which allow you to count rows, non-null values, and unique values, respectively.
+-You can use the NVL function to handle null values with group functions.
+-The GROUP BY clause is used to divide rows into groups based on specified columns.
+-The HAVING clause is used to filter groups based on conditions.
+-Group functions can be nested, but only to a depth of two.
+
+4.Illegal Queries Using Group Functions:
+
+-You cannot use the WHERE clause to restrict groups; instead, use the HAVING clause for such restrictions.
+-Columns or expressions in the SELECT list that are not aggregate functions must be included in the GROUP BY clause.
+
+5.Nesting Group Functions:
+
+Group functions can be nested to a depth of two. For example, you can calculate the maximum average salary by nesting the MAX and AVG functions.
