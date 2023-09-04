@@ -1,4 +1,7 @@
-1 
-2 
-3 
-4 
+Creation : 7 7 1 2 
+Insert at Head : 1 7 7 1 2 
+Insert at Tail : 1 7 7 1 2 1 
+Insert at nth position: 1 7 7 1 4 2 1 
+Delete head: 7 7 1 4 2 1 
+Delete head: 7 7 1 4 2 
+Delete at nth position: 7 7 1 2 
