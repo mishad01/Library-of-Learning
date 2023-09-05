@@ -1,0 +1,5 @@
+Prime numbers:
+Prime numbers are those numbers that have exactly two factors: 1 and itself. The first few primes are The list of prime numbers starts with 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, and continues infinitely.
+
+Composite numbers:
+A composite number is a positive integer that can be formed by multiplying two smaller positive integers. So the numbers which are not prime and not equal to 1 are composite numbers.Mainly it will have three divisor including 1

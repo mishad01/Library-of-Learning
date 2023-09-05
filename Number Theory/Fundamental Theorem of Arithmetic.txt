@@ -1,0 +1,19 @@
+If we find divisor of a number.It will always give same divisor. As an example...
+12          .      12
+4 x 3       .      6 x 2 
+2 x 2 x3    .      3 x 2 x 2
+This prime factorization is unique for the number 12. No matter how you break down 12 into prime factors, you will always get 2 * 2 * 3.
+
+Fundamental Theorem of Arithmetic: Every positive integer greater than 1 can be written as a unique product of prime numbers.
+
+In simpler terms:
+
+Any whole number greater than 1 can be broken down into a set of prime numbers multiplied together.
+For example:
+
+Let's take the number 12:
+
+12 can be expressed as the product of the prime numbers 2 and 3: 12 = 2 * 2 * 3.
+Importantly, this prime factorization is unique for the number 12. No matter how you break down 12 into prime factors, you will always get 2 * 2 * 3.
+
+The Fundamental Theorem of Arithmetic is a crucial concept in number theory because it tells us that primes are the building blocks of all positive integers greater than 1, and every positive integer has a unique prime factorization. It has various applications in mathematics and plays a fundamental role in understanding the properties of numbers.

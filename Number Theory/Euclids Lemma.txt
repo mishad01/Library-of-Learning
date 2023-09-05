@@ -1,0 +1,18 @@
+If there is something like this 15 x 10 . And if we try to divide this 15 and 10 with a prime number 3 then 3 divides 15.
+So basically if 'p' is a prime number, and it divides the product 'a * b'. According to Euclid's Lemma, 'p' must also divide 'a' or 'b' or both.
+
+Euclid's Lemma is a fundamental theorem in number theory that deals with the divisibility of integers. In the easiest way possible, here's what Euclid's Lemma states:
+
+Euclid's Lemma: If a prime number 'p' divides the product of two integers 'a' and 'b', then 'p' must divide at least one of 'a' or 'b'.
+
+In simpler terms:
+
+If a prime number can evenly divide the product of two numbers, it must be able to divide at least one of those numbers individually.
+For example:
+
+Suppose 'p' is a prime number, and it divides the product 'a * b'. According to Euclid's Lemma, 'p' must also divide 'a' or 'b' or both.
+
+Here's how it works in practice:
+
+If 7 divides 35 (because 7 * 5 = 35), then 7 must also divide either 5 or 7.
+Euclid's Lemma is often used in number theory and mathematics to understand the relationships between prime numbers and the divisibility of integers. It's a crucial concept for solving various mathematical problems, including those related to prime factorization and divisibility.
