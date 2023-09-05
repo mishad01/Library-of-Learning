@@ -8,9 +8,11 @@ Facts:
 NOTE:
 1.How to find which numbers have 3 divisors
 =>Only prime square have 3 divisor
+
 2.How to find which number have 4 divisors
 =>p x q = (1+1) x (1+1) = 4
 =>^3 = (3+1) =4
+
 3.How to find maximum divisor from 1.......10^9  (1 to 10^9)?
 => For 100 
 1 x 100
@@ -21,3 +23,5 @@ NOTE:
 So total divisor can be 2√n) but we take 3√n
 
 =>so for 10^9 we will take divisor 10^3 (Because 3√10^9 = 10^3(1000) )
+
+4.
