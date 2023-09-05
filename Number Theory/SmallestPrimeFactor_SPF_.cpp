@@ -1,4 +1,7 @@
-//Except 1 and n we can't get any other divisor for prime
+//12 lcm = 2 * 2 * 3 (The least minimum value that we can do)
+// From 2 x 2 x 3 we will take 2 because its the smallest
+//Smallest Prime Factor(SPF)
+//The Skeleton view
 #include<bits/stdc++.h>
 using namespace std;
 bool is_prime(int n){
