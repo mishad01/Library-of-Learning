@@ -1,0 +1,5 @@
+There is a equation by using that we will always get a prime number between 0 and 39.
+n^2+n+41
+
+Euler discovered a polynomial n^2+n+41 that produces prime numbers for values of n that lie in between 0 and 39 inclusive!!!. It can generate 
+40 prime numbers for 0≤n≤39. 

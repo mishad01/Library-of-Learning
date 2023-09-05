@@ -1,0 +1,23 @@
+If we want to count total divisor of a number we cant count it using this method.
+288 = 2^5 x 3^2 here total divisor is (5+1)*(2+1)= 18 (We are adding 1 with power because we can form this for 5 in total 6 way and for 2 total 3 way)
+
+Facts:
+-A number which has exactly 3 divisors is always a square of a prime! Why?
+-A number which has exactly 4 divisors is either of the form p^3 or p∗q where p and q are prime.
+
+NOTE:
+1.How to find which numbers have 3 divisors
+=>Only prime square have 3 divisor
+2.How to find which number have 4 divisors
+=>p x q = (1+1) x (1+1) = 4
+=>^3 = (3+1) =4
+3.How to find maximum divisor from 1.......10^9  (1 to 10^9)?
+=> For 100 
+1 x 100
+2 x 50
+4 x 35
+5 x 20
+10x 10
+So total divisor can be 2√n) but we take 3√n
+
+=>so for 10^9 we will take divisor 10^3 (Because 3√10^9 = 10^3(1000) )
