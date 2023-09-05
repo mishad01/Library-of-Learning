@@ -1,0 +1,11 @@
+12 lcm = 2 * 2 * 3 (The least minimum value that we can do)
+From 2 x 2 x 3 we will take 2 because its the smallest
+Smallest Prime Factor(SPF)
+
+The Smallest Prime Factor (SPF) of a positive integer 'n' is the smallest prime number that divides 'n' evenly without leaving a remainder. In other words, it is the smallest prime factor of 'n' that is greater than 1.
+
+For example, let's consider the number 15:
+
+The prime factors of 15 are 3 and 5.
+The Smallest Prime Factor (SPF) of 15 is 3 because it is the smallest prime number that divides 15 without a remainder.
+SPF is a concept often used in number theory and algorithms to efficiently factorize integers or solve various mathematical problems related to prime numbers. It can be particularly useful in applications like finding the prime factorization of a number or identifying if a number is prime or composite.
