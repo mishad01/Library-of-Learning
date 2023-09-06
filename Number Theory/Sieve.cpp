@@ -19,7 +19,7 @@ int main(){
 		cout<<x<<" ";
 	}
 }
-
+//Time complexity nlog(n)
 //Here for(int j = i+i;j<n;j=j+i) this condition mainly going for 2 to 4 then 4 to 6 , 6 to 8..It's mainly make false the divisor of 2
  //1 2 3 4
  //5 6 7 8
