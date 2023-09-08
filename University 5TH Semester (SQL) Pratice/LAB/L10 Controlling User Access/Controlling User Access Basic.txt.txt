@@ -1,0 +1,48 @@
+Objectives:
+•Create users.
+•Create roles to facilitate security management.
+•Use the GRANT and REVOKE statements to assign and revoke object privileges.
+Lesson Aim: In Lab 10, you will learn how to manage user access to a database by creating users, roles, and granting specific privileges. This helps in controlling who can access what within the database.
+Controlling User Access: In a multi-user database environment, controlling database access and ensuring security is crucial.
+
+ Oracle provides mechanisms to:
+•Control database access.
+•Grant access to specific database objects.
+•Confirm privileges granted or revoked using the Oracle data dictionary.
+•Create synonyms for database objects.
+
+Privileges:
+•Privileges in Oracle can be categorized into system privileges and object privileges.
+•System privileges grant access to the database system itself (e.g., creating users, removing tables).
+•Object privileges allow users to manipulate the content of specific database objects (e.g., SELECT, INSERT, UPDATE on tables).
+•Schemas are collections of database objects (e.g., tables, views) associated with a user.
+
+Creating Users and Granting System Privileges:
+•Users are created using the CREATE USER statement.
+•System privileges (e.g., CREATE SESSION, CREATE TABLE) can be granted to users using the GRANT statement.
+
+Roles:
+•Roles are named groups of related privileges.
+•They simplify privilege management and make it easier to revoke and maintain privileges.
+•Users can be assigned one or more roles.
+•Roles are typically created for specific database applications.
+
+Creating and Granting Privileges to a Role:
+•Roles are created using the CREATE ROLE statement.
+•Privileges can be granted to roles using the GRANT statement.
+•Users are granted roles using the GRANT role TO user statement.
+
+Granting Object Privileges:
+•Object privileges (e.g., SELECT, INSERT, UPDATE) can be granted to users and roles on specific database objects.
+•The GRANT statement is used to assign object privileges.
+
+Revoking Object Privileges:
+•Object privileges can be revoked from users and roles using the REVOKE statement.
+
+Changing User Passwords:
+•Users can change their passwords using the ALTER USER statement.
+
+Dropping Users:
+•The DROP USER statement is used to remove a database user.
+•It can also remove the user's objects.
+•Caution should be exercised when dropping users, especially SYS and SYSTEM users, as doing so can corrupt the database.

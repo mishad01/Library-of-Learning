@@ -1,0 +1,40 @@
+Objectives
+After completing this lesson, you should be able to do the following:
+ Describe various types of functions available in SQL
+ Use character, number, and date functions in SELECT statements
+ Describe the use of conversion functions
+
+Lesson Aim
+Functions make the basic query block more powerful and are used to manipulate data values. This is the
+first of two lessons that explore functions. It focuses on single-row character, number, and date functions,
+as well as those functions that convert data from one type to another: for example, character data to
+numeric.
+
+Single-Row Functions
+These functions operate on single rows only and return one result per row. There are different types of
+single-row functions. This lesson covers the following ones: • Character • Number • Date • Conversion
+
+Features of single-row functions include:
+• Acting on each row returned in the query
+• Returning one result per row
+• Possibly returning a data value of a different type than that referenced
+• Possibly expecting one or more arguments
+• Can be used in SELECT, WHERE, and ORDER BY clauses; can be nested
+This lesson covers the following single-row functions:
+• Character functions: Accept character input and can return both character and number values
+• Number functions: Accept numeric input and return numeric values
+• Date functions: Operate on values of the DATE data type (All date functions return a value of DATE
+data type except the MONTHS_BETWEEN function, which returns a number.)
+                                                           
+Case Manipulation Functions:
+Character Manipulation Functions
+CONCAT, SUBSTR, LENGTH, INSTR, LPAD, RPAD, and TRIM are the character manipulation functions
+covered in this lesson.
+• CONCATJoins values together (you are limited to using two parameters with CONCAT)
+• SUBSTRExtracts a string of determined length
+• LENGTHShows the length of a string as a numeric value
+• INSTRFinds numeric position of a named character
+• LPADPads the character value right-justified
+• RPAD: Pads the character value left-justified
+• TRIM: Trims heading or trailing characters (or both) from a character string (If trim_character
+or trim_source is a character literal, you must enclose it in single quotes.)

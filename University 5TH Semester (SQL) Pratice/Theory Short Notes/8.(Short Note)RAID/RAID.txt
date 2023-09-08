@@ -1,0 +1,39 @@
+RAID
+RAID Overview:
+• RAID is a technology used to enhance the performance and reliability of data storage 
+systems.
+• It involves grouping two or more drives to work in parallel to improve read/write 
+performance.
+• Different RAID levels offer various combinations of performance, redundancy, and fault 
+tolerance.
+RAID Levels:
+RAID 0 - Striping:
+• Data is split into blocks and written across all drives for improved I/O 
+performance.
+• Offers excellent performance for non-critical data.
+• No fault tolerance; if one drive fails, all data is lost.
+RAID 1 - Mirroring:
+• Data is stored twice by writing to both data and mirror drives.
+• Offers excellent read speed and comparable write speed.
+• Provides data redundancy; if one drive fails, data can still be accessed.
+RAID 5 - Striping with Parity:
+• Data blocks are striped across drives, and parity data is distributed.
+• Offers good read performance and decent write performance.
+• Can withstand a single drive failure without data loss.
+RAID 6 - Striping with Double Parity:
+• Similar to RAID 5 but with double parity, providing more fault tolerance.
+• Can survive two simultaneous drive failures.
+• Slower write performance due to additional parity calculations.
+RAID 10 - Mirroring and Striping:
+• Combines RAID 1 and RAID 0.
+• Provides security through mirroring and speed through striping.
+• Fast rebuild time after drive failure.
+RAID Levels 2, 3, 4, and 7:
+• These levels exist but are less common.
+• RAID 2 uses memory-style error-correcting code (ECC).
+• RAID 3 and 4 use bit or block-interleaved parity.
+RAID Considerations:
+• RAID is not a substitute for backup; it provides fault tolerance, not data protection from 
+all scenarios.
+• Backing up data is crucial for safeguarding against multiple types of data loss, including 
+hardware failures, accidents, theft, and user errors

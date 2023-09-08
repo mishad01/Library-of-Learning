@@ -1,0 +1,32 @@
+1. Write a query that displays the employee’s names with the first letter capitalized and all
+other letters lowercase and the length of the names.
+
+2. Write a query to display the current date. Label the column Date
+
+3. For each employee, display the employee ID number, last_name, salary, and salary increased by
+15% and expressed as a whole number. Label the column New Salary. Place your SQL
+statement in a text file named . Run your query in the file.
+
+4. Modify your query lab3_2.sql to add a column that subtracts the old salary from the new
+salary. Label the column Increase. Save the contents of the file as sql. Run the
+revised query.
+
+5. Write a query that displays the employee’s last names with the first letter capitalized and all other
+letters lowercase and the length of the names, for all employees whose name starts with J, A,or M.
+Give each column an appropriate label. Sort the results by the employees’ last names.
+
+6. For each employee, display the employee’s last name, and calculate the number of
+months between today and the date the employee was hired. Label the column
+MONTHS_WORKED. Order your results by the number of months employed. Round
+the number of months up to the closest whole number. (Note: Result may differ)
+
+
+7. Display each employee’s last name, hire date, and salary review date, which is the first Monday
+after six months of service. Label the column REVIEW. Format the dates to appear similar to
+“Monday, the Thirty-First of July, 2000.”
+
+8. Display the last name, hire date, and day of the week on which the employee started. Label the
+column DAY. Order the results by the day of the week starting with Monday.
+
+9. Create a query that displays the employees’ last names and commission amounts. If an employee
+does not earn commission, put “No Commission.” Label the column COMM.

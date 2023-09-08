@@ -1,0 +1,25 @@
+1. Create a query to display the last name and salary of employees earning more than $12,000.
+Place your SQL statement in a text file named lab2_1.sql. Run your query.
+
+
+2. Create a query to display the employee last name and department number for employee no= 176.
+
+3. Modify lab2_1.sql to display the last name and salary for all employees whose salary is not in
+the range of $5,000 and $12,000. Place your SQL statement in a text file named lab2_3.sql.
+
+4. Display the employee last name, job ID, and start date of employees hired between February 20,
+1998, and May 1, 1998. Order the query in ascending order by start date.
+
+5. Display the last name and department number of all employees in departments 20 and 50 in
+alphabetical order by name.
+
+6. Modify lab2_3.sql to list the last name and salary of employees who earn between $5,000 and
+$12,000, and are in department 20 or 50. Label the columns Employee and Monthly Salary, respectively.
+Resave lab2_3.sql as lab2_6.sql. Run the statement in lab2_6.sql.
+
+7. Display the last name and hire date of every employee who was hired in 1994.
+
+8. Display the last name and job title of all employees who do not have a manager.
+
+9. Display the last name, salary, and commission for all employees who earn commissions. Sort
+data in descending order of salary and commissions.

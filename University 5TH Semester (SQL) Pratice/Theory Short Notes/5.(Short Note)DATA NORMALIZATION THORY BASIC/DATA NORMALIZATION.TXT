@@ -1,0 +1,56 @@
+DATA NORMALIZATION
+
+FUNCTIONAL DEPENDENCY:
+•	Functional dependency (FD) defines constraints between attributes in a relation.
+•	If two tuples share the same values for attributes A1, A2, ..., An, they must also have the same values for attributes B1, B2, ..., Bn.
+•	Represented as X→Y, where X functionally determines Y.
+•	Transitivity rule applies: If A → B and B → C, then A → C.
+•	Functional dependencies help define associations and dependencies between attributes in a relational schema.
+
+
+NORMALIZATION:
+•	Normalization is a process to organize attributes into tables to eliminate redundancy and anomalies in a database.
+•	Normalization aims to achieve data integrity and structure in a relational database.
+•	Different normal forms (1NF, 2NF, 3NF, BCNF) address specific issues related to redundancy and dependencies.
+•	Primary keys, candidate keys, and determinant attributes play a crucial role in normalization.
+•	The process eliminates anomalies such as update, deletion, and insertion anomalies.
+•	Normalization results in a well-structured relational database with improved data integrity and performance.
+•	BCNF (Boyce-Codd Normal Form) is a stronger form of normalization that addresses certain issues not fully covered by 3NF.
+
+
+EXAMPLE 1 STUDENT DATABASE
+0NF: Un normalized data with multivalued attributes.
+1NF:
+Remove multivalued attributes
+Student database (Student_ID, Student_Name, Batch, Advisor, Department_Name,
+Department_Head, Course_No, Course_Title)
+2NF:
+Remove partial functional dependencies. data is dependent on part of the primary key.
+Student (Student _ID, Student_Name, Batch, Advisor, Department_Name, Department_Head)
+Student_Course (Student_ID,Course_No, Course_Title)
+3NF:
+Remove transitive dependencies
+Student (Student _ID, Student_Name, Batch, Department_Name)
+Advisor ( Batch, Advisor)
+Department (Department_Name, Department_Head)
+Student_Course ( Student_ID, Course_ID) Course (Course_ID, Course_Title)
+EXAMPLE 2 EMPLOYEE DATABASE
+1NF
+Employee Database ( Empoyee_ID, Employee_Name, Mobile, Department_Name,
+Department_Location, Project_ID, Project_Name )
+2NF
+Employee (Empoyee_ID, Employee_Name, Mobile, Department_Name, Department_Location)
+Project (Project_ID, Project_Name, Employee_ID)
+3NF
+Employee (Empoyee_ID, Employee_Name, Mobile,Department_ID)
+Department (Department_ID, Department_Name, Department_Location)
+Project (Project_ID, Project_Name, Employee_ID)
+
+
+BENEFITS OF NORMALIZATION:
+•	Improved data integrity: Ensures data consistency and accuracy.
+•	Elimination of anomalies: Prevents problems like update, deletion, and insertion anomalies.
+•	Reduced storage requirements: Reduces data redundancy, saving storage space.
+•	Faster search performance: Smaller tables lead to quicker search operations.
+•	Structured and organized database: Tables are well-defined and follow a logical structure.
+ 

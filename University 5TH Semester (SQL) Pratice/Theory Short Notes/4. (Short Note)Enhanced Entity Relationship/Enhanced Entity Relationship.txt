@@ -1,0 +1,21 @@
+Weak Entity Set and Strong Entity Set:
+* A weak entity set is an entity set that does not have sufficient attributes to form a primary key on its own.
+* A strong entity set, on the other hand, has a primary key and can exist independently.
+Binary vs. n-ary Relationship Sets:
+* Most relationship sets in an EERD are binary, involving two entities.
+* However, there are situations where non-binary (n-ary) relationships are more convenient to represent complex relationships.
+Specialization:
+* Specialization is a top-down design process in which sub-groupings within an entity set are designated as lower-level entity sets with distinct attributes or relationships.
+* It is depicted in the EERD using a triangle component labeled "ISA" (e.g., instructor "is a" person).
+* Specialization involves attribute inheritance, where lower-level entity sets inherit attributes and relationship participation from higher-level entity sets.
+* It can be classified as overlapping (entities can belong to multiple lower-level sets) or disjoint (entities can belong to only one lower-level set).
+* Specialization can be total (entities must belong to one of the lower-level sets) or partial (entities may not belong to any lower-level sets).
+Generalization:
+* Generalization is a bottom-up design process in which multiple entity sets with shared features are combined into a higher-level entity set.
+* It is essentially the reverse process of specialization and is often represented similarly in EERDs.
+Aggregation:
+* Aggregation is used to eliminate redundancy in relationships.
+* It treats a relationship as an abstract entity and allows relationships between relationships.
+* It is represented by creating schemas containing primary keys of the aggregated relationships, associated entity sets, and descriptive attributes.
+These concepts are essential for designing complex database schemas using EERDs, which provide a more comprehensive and flexible way to model data relationships than basic ERDs.
+

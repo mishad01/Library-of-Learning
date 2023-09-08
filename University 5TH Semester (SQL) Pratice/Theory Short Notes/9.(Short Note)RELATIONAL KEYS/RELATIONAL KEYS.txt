@@ -1,0 +1,29 @@
+RELATIONAL KEYS
+There are six keys those play important role in relational database
+• Super key
+• candidate key (THESE 3 ARE USED IN DESIGNING PHASE)
+• Surrogate key
+• Primary key
+• Composite key (THESE 3 ARE IMPLEMENTATION CONCEPT)
+• Foreign key
+Supper Key => Set of columns that can uniquely identify the occurrences of each entity.
+Example: supper key is (Doctor ID, Patient ID, Appointment Date, Time, and room).
+Candidate Key => set of a supper key that has minimum number of attributes necessary for unique 
+identification of each entity occurrences.
+The candidate depends on business rules of an organization.
+Example:
+Business Rule 1: Patient can see doctor more than one in a day
+Candidate Key (Doctor ID, Patient ID, Appointment Date, Time, and room). 
+Business Rule 2: Patient can see doctor more than once in any day but in different room. 
+Candidate Key (Doctor ID, Patient ID, Appointment Date, and Time).
+Surrogate key => used to uniquely identify of each entity occurrences when a candidate key is 
+very long.
+Example: The surrogate key for the appointment table is appointment ID.
+Primary key => An attribute that uniquely identifies each row in a table. A PRIMARY KEY 
+constraint creates a primary key for the table. Only one primary key can be created for an each 
+table.:
+Composite key => A composite key is made by the combination of two or more columns in a 
+table that can be used to uniquely identify each row in the table when the columns are combined 
+uniqueness of a row is guaranteed
+Foreign key => Foreign keys are used to represent One-to-Many relationship, is an attributes of 
+one table that serves as a primary key of another table in the same database

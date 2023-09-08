@@ -1,0 +1,52 @@
+Objectives:
+•Describe the types of problems that subqueries can solve.
+•Define subqueries.
+•List the types of subqueries.
+•Write single-row and multiple-row subqueries.
+Lesson Aim: Lab 9 focuses on understanding subqueries and their various applications in SQL queries, including single-row and multiple-row subqueries.
+
+Using a Subquery to Solve a Problem:
+•Subqueries are used to obtain values based on conditional criteria.
+•They are helpful for solving complex queries where one query depends on the results of another query.
+•Subqueries can be placed within the WHERE, HAVING, or FROM clauses of SQL statements.
+
+Subquery Syntax:
+sqlCopy code
+SELECT select_list FROM table WHERE expr operator (SELECT select_list FROM table); 
+
+Types of Subqueries:
+•Single-row subqueries: Return only one row from the inner SELECT statement.
+•Multiple-row subqueries: Return more than one row from the inner SELECT statement.
+•Multiple-column subqueries: Return more than one column from the inner SELECT statement (not covered in this lesson).
+
+Single-Row Subqueries:
+•Single-row subqueries return one row and use single-row operators (e.g., =, >, <).
+•They can be used in various SQL clauses, such as WHERE, HAVING, and FROM.
+•Example: Find employees with a job ID equal to that of employee 141.
+
+Guidelines for Using Subqueries:
+•Subqueries must be enclosed in parentheses.
+•Place the subquery on the right side of the comparison condition for readability.
+•Comparison conditions can be single-row operators (e.g., =) or multiple-row operators (e.g., IN, ANY, ALL).
+
+Using Group Functions in a Subquery:
+•Subqueries can use aggregate functions (e.g., MIN, AVG) to return a single result.
+•Example: Find employees with the minimum salary and display their details.
+
+The HAVING Clause with Subqueries:
+•The HAVING clause can be used with subqueries to filter grouped results.
+•Example: Find the job with the lowest average salary.
+
+Errors with Subqueries:
+•Common errors with subqueries include multiple rows returned for a single-row subquery.
+•Using the = operator in a subquery that returns multiple rows can lead to errors.
+•Correct such errors by using multiple-row operators like IN, ANY, or ALL.
+
+Multiple-Row Subqueries:
+•Multiple-row subqueries return more than one row from the inner SELECT statement.
+•They use multiple-row operators like IN, ANY, or ALL.
+•Example: Find employees with salaries less than any IT programmer.
+Using the ANY and ALL Operators in Multiple-Row Subqueries:
+•The ANY operator compares a value to any value returned by a subquery.
+•The ALL operator compares a value to all values returned by a subquery.
+•Examples: Finding employees with salaries less than any IT programmer or less than all IT programmers.

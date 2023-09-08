@@ -1,0 +1,43 @@
+Relational algebra is a formal query language used to perform operations on relational databases. It provides a set of operations that manipulate relations (tables) to retrieve and manipulate data. Here's an explanation of the key relational algebra operations and their use in the context of your provided examples:
+1. Select Operation (?):
+* The select operation is a unary operation that retrieves rows from a relation that satisfy a specified condition (predicate).
+* Syntax: ?<condition>(Relation)
+* Example: To select loans with amounts greater than $1200 from the "loan" relation:
+scssCopy code
+?amount > 1200 (loan) 
+2. Project Operation (?):
+* The project operation is a unary operation that retrieves specific columns (attributes) from a relation.
+* Syntax: ?<attribute list>(Relation)
+* Example: To retrieve loan numbers and amounts from the "loan" relation:
+scssCopy code
+?loan-number, amount (loan) 
+3. Union Operation (?):
+* The union operation is a binary operation that combines rows from two relations while eliminating duplicates.
+* Syntax: Relation1 ? Relation2
+* Example: To find customers who have either an account or a loan or both:
+scssCopy code
+customer-name(depositor) ? customer-name(borrower) 
+4. Set Difference Operation (-):
+* The set difference operation is a binary operation that retrieves rows from one relation that are not present in another.
+* Syntax: Relation1 - Relation2
+* Example: To find customers with accounts but not loans:
+scssCopy code
+customer-name(depositor) - customer-name(borrower) 
+5. Set Intersection Operation (?):
+* The set intersection operation is not a fundamental operation but is useful. It retrieves rows that are common to both relations.
+* Syntax: Relation1 ? Relation2
+* Example: To find customers who have both accounts and loans:
+scssCopy code
+customer-name(depositor) ? customer-name(borrower) 
+6. Cartesian Product Operation (×):
+* The Cartesian product operation is a binary operation that combines every row from the first relation with every row from the second relation, resulting in a large, cross-joined relation.
+* Syntax: Relation1 × Relation2
+* Use with caution, as it can produce a large result, especially when applied to large relations.
+7. Rename Operation (?):
+* The rename operation allows you to assign an alias or new name to a relation or attributes.
+* Syntax: ?<NewName/AttributeName>(Relation)
+* Example: To rename a relation as "RenamedRelation":
+scssCopy code
+?RenamedRelation(Relation) 
+These relational algebra operations are essential for querying and manipulating data in relational databases. They provide a foundation for building complex queries and retrieving specific information from the database tables.
+

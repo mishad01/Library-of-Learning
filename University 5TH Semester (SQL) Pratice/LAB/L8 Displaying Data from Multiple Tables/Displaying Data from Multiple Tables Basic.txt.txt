@@ -1,0 +1,40 @@
+Objectives:
+•Write SELECT statements to access data from more than one table using equality and non-equality joins.
+•View data that generally does not meet a join condition by using outer joins.
+•Join a table to itself using a self join.
+Obtaining Data from Multiple Tables:
+•Sometimes, data is needed from more than one table, and you need to establish links between them to retrieve relevant information.
+
+Generating Cartesian Products:
+•A Cartesian product is generated when a join condition is omitted.
+•It results in all possible combinations of rows from the involved tables.
+•Caution should be exercised to avoid unintended large result sets.
+
+Defining Joins:
+•SQL provides various ways to define joins, including CROSS JOIN, NATURAL JOIN, JOIN USING, and JOIN ON.
+
+Creating Cross Joins:
+•CROSS JOIN returns a Cartesian product of two tables.
+
+Creating Natural Joins:
+•NATURAL JOIN automatically joins tables based on columns with the same name and data type.
+•Requires columns with identical names in both tables.
+
+Creating Joins with the USING Clause:
+•USING specifies a join condition based on a shared column name.
+•Simplifies the join process when columns have the same name in both tables.
+
+Creating Joins with the ON Clause:
+•ON allows for specifying join conditions explicitly, even when column names differ.
+•Useful for complex join conditions and when columns have different names.
+
+Self Join:
+•A self join is a join operation where a table is joined with itself.
+•Commonly used when dealing with hierarchical data structures, such as organizational hierarchies.
+
+Outer Joins:
+•Outer joins retrieve data that might not meet the join condition.
+•Three types of outer joins: LEFT OUTER JOIN, RIGHT OUTER JOIN, and FULL OUTER JOIN.
+•LEFT OUTER JOIN retrieves all rows from the left table and matching rows from the right table.
+•RIGHT OUTER JOIN retrieves all rows from the right table and matching rows from the left table.
+•FULL OUTER JOIN retrieves all rows from both tables, including unmatched rows.
