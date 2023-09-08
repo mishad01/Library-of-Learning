@@ -1,0 +1,15 @@
+1. Write a query to display the last name, department number, and department name for all employees.
+
+2. Create a unique listing of all jobs that are in department 30. Include the location of department 90 in the output.
+
+3. Write a query to display the employee last name, department name, location ID, and city of all employees who earn a commission.
+
+4. Display the employee last name and department name for all employees who have an a (lowercase) in their last names. Place your SQL statement in a text file named lab4_4.sql.
+
+5. Write a query to display the last name, job, department number, and department name for all employees who work in Toronto.
+
+
+6. Display the employee last name and employee number along with their manager’s last name and manager number. Label the columns Employee, Emp#, Manager, and Mgr#, respectively. Place your SQL statement in a text file named 
+
+7. Modify  display all employees including King, who has no manager. Order the
+results by the employee number.

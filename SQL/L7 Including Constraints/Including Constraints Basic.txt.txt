@@ -1,0 +1,49 @@
+Objectives:
+•Describe constraints.
+•Create and maintain constraints.
+
+Constraints Overview:
+•Constraints are rules enforced at the table level to maintain data integrity.
+•Constraints prevent the deletion of a table if there are dependencies.
+•Valid constraint types include NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, and CHECK.
+
+Constraint Types and Descriptions:
+•NOT NULL: Specifies that a column cannot contain a null value.
+•UNIQUE: Requires that values in a column or set of columns be unique across all rows in the table.
+•PRIMARY KEY: Uniquely identifies each row in the table and enforces uniqueness.
+•FOREIGN KEY: Establishes a relationship between a column in the current table and a column in a referenced table.
+•CHECK: Specifies a condition that must be true for each row.
+
+UNIQUE Constraint:
+•Ensures that values in a specified column or set of columns are unique.
+•Allows the input of nulls for the columns, as nulls are considered distinct.
+•Example: ALTER TABLE Persons ADD CONSTRAINT uc_PersonID UNIQUE (P_Id, LastName).
+
+PRIMARY KEY Constraint:
+•Creates a primary key for the table, uniquely identifying each row.
+•Enforces uniqueness and disallows null values in the primary key column(s).
+•Example: ALTER TABLE Persons ADD CONSTRAINT pk_PersonID PRIMARY KEY (P_Id).
+
+FOREIGN KEY Constraint:
+•Establishes a relationship between a column in the current table and a column in a referenced table.
+•Values in the foreign key column must match values in the referenced table's primary key.
+•Example: ALTER TABLE Orders ADD CONSTRAINT fk_PerOrders FOREIGN KEY (P_Id) REFERENCES Persons(P_Id).
+
+CHECK Constraint:
+•Defines a condition that each row must satisfy.
+•Can be applied to a single column or multiple columns.
+•Multiple CHECK constraints can be defined on a single column.
+•Example: ALTER TABLE Persons ADD CONSTRAINT chk_Person CHECK (P_Id>0 AND City='Sandnes').
+
+Adding and Dropping Constraints:
+•Use ALTER TABLE to add or drop constraints.
+•You can add constraints like NOT NULL using the MODIFY clause.
+•Example: ALTER TABLE my_status MODIFY (person_id NOT NULL).
+•Example: ALTER TABLE employees DROP CONSTRAINT emp_manager_fk.
+
+Querying Constraint Information:
+•You can query the USER_CONSTRAINTS table to view constraint definitions and names.
+•Example: SELECT constraint_name, constraint_type, search_condition FROM user_constraints WHERE table_name = 'EMPLOYEES'.
+Viewing Primary Key Information:
+•You can query system tables to retrieve primary key information.
+•Example: SELECT table_name, column_name, position, status, owner FROM all_constraints WHERE constraint_type = 'P'.

@@ -1,0 +1,15 @@
+1. Create the EMPLOYEE table based on the following table instance chart.
+
+2. Insert the following data
+
+3. Modify the EMP table to allow for longer employee last names. Confirm your modification.
+
+4. Confirm that EMPLOYEE tables are stored in the data dictionary.
+5. Change the last name of employee 3 to Drexler.
+6. Change the salary to 1000 for all employees with a salary less than 900.
+7. Delete Betty Dancs from the MY_EMPLOYEE table.
+8. Rename the EMPLOYEES table as EMP80
+9. Drop the FIRST_NAME column from the EMPLOYEE table. Confirm your modification by
+checking the description of the table.
+10. Create the EMPLOYEE2 table based on the structure of the EMPLOYEE table. Include only the
+EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY.

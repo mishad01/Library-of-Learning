@@ -1,0 +1,25 @@
+What Is a Trigger? A trigger is a PL/SQL block structure that is automatically executed when certain DML (Data Manipulation Language) statements like INSERT, DELETE, or UPDATE are performed on a database table. Triggers are used to automate actions or enforce data integrity rules in response to these events.
+
+Syntax of Triggers:
+ The syntax for creating a trigger in Oracle includes various clauses:
+•	CREATE [OR REPLACE] TRIGGER trigger_name: Creates a trigger with the specified name, optionally replacing an existing one.
+•	{BEFORE | AFTER | INSTEAD OF}: Specifies when the trigger should be executed (before, after, or instead of the event).
+•	{INSERT [OR] | UPDATE [OR] | DELETE} [OF col_name]: Determines the triggering event (insert, update, or delete), optionally limited to a specific column.
+•	ON table_name: Specifies the table associated with the trigger.
+•	REFERENCING OLD AS o NEW AS n: Allows referencing old and new values of data being changed.
+•	FOR EACH ROW: Specifies that the trigger is row-level (executed for each affected row).
+•	WHEN (condition): Condition for row-level triggers (the trigger is fired only for rows that satisfy the condition).
+•	BEGIN...END;: Contains the PL/SQL code to be executed when the trigger fires.
+
+Types of PL/SQL Triggers:
+1.	Row Level Trigger: Fires for each row affected by the triggering event.
+2.	Statement Level Trigger: Fires once for an entire SQL statement.
+
+PL/SQL Trigger Execution Hierarchy: Triggers are executed in a specific order:
+1.	BEFORE statement trigger (if defined)
+2.	BEFORE row-level triggers (for each row affected)
+3.	AFTER row-level triggers (for each row affected)
+4.	AFTER statement trigger (if defined)
+
+Using SYSDATE in Row Level Triggers: Row-level triggers can utilize the SYSDATE function to record the date and time of an event in the trigger code. This can be useful for tracking changes over time.
+Cyclic Cascading in Triggers: Care must be taken when defining triggers to prevent cyclic cascading, where triggers fire each other in an infinite loop, potentially causing database crashes.

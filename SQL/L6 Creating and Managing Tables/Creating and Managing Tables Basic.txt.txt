@@ -1,0 +1,41 @@
+Objectives:
+•Create tables and describe data types.
+•Alter table definitions (add, modify, drop columns).
+•Drop, rename, and truncate tables.
+•Add new rows to a table.
+•Update rows in a table.
+•Remove existing rows from a table.
+
+Naming Rules:
+•Table and column names must begin with a letter and be 1–30 characters long.
+•Names can only contain the characters A–Z, a–z, 0–9, _, $, and #.
+
+Data Types:
+•CHAR: Fixed-length character data type where values are padded with spaces.
+•VARCHAR2: Variable-length character data type.
+•NUMBER(p, s): Numeric data type with precision and scale.
+•DATE: Stores date and time values.
+•Other character data types include NCHAR, NVARCHAR2, LONG, RAW, LONG RAW.
+
+ALTER TABLE Statement:
+•Used to modify the structure of an existing table.
+•Examples include adding columns, modifying column data types, and dropping columns.
+
+Renaming Objects:
+•You can change the name of a table using the RENAME statement.
+
+Adding Rows:
+•INSERT INTO statement is used to add new rows to a table.
+•You specify the columns and values to be inserted.
+
+Updating Rows:
+•UPDATE statement is used to modify existing rows in a table based on specified conditions.
+
+Removing Rows:
+•DELETE statement is used to remove rows from a table based on specified conditions.
+
+Truncating a Table:
+•TRUNCATE TABLE statement removes all rows from a table and releases storage space.
+•Cannot be rolled back.
+Creating a Table with a Subquery:
+•You can create a new table by using a SELECT statement as a subquery to populate the new table with data from existing tables.

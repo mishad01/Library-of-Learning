@@ -1,0 +1,36 @@
+Types of Group Functions:
+1.AVG: Calculates the average value of a numeric column, ignoring null values.
+2.COUNT: Counts the number of rows that meet specified criteria, including DISTINCT and non-null options.
+3.MAX: Retrieves the maximum value of a column, ignoring null values.
+4.MIN: Retrieves the minimum value of a column, ignoring null values.
+5.STDDEV: Calculates the standard deviation of a numeric column, ignoring null values.
+6.SUM: Adds up the values in a numeric column, ignoring null values.
+7.VARIANCE: Computes the variance of a numeric column, ignoring null values.
+
+Guidelines for Using Group Functions:
+•You can use DISTINCT to consider only non-duplicate values or use ALL to consider all values (default is ALL).
+•Group functions work with data types like CHAR, VARCHAR2, NUMBER, or DATE.
+•Null values are ignored by group functions, but you can substitute them using the NVL function.
+•GROUP BY clause divides rows into groups for summarization.
+•Results can be sorted in ascending order by default or overridden with DESC in ORDER BY clause.
+•Some functions only work with numeric data types (AVG, SUM, VARIANCE, STDDEV).
+
+Using Group Functions:
+•You can use AVG, SUM, MIN, and MAX functions for numeric columns.
+•COUNT function can be used to count rows with various options.
+•NVL function can be used to include null values in group functions.
+
+GROUP BY Clause:
+•GROUP BY clause is used to group rows in a table into sets based on specific columns.
+•Columns used in SELECT must also be listed in GROUP BY, or they must be used with an aggregate function.
+•WHERE clause can be used to filter rows before grouping.
+•You can sort grouped results with ORDER BY.
+
+HAVING Clause:
+•HAVING clause is used to filter groups based on aggregate conditions.
+•It is used after GROUP BY to filter grouped results.
+•You cannot use group functions directly in the WHERE clause; use HAVING instead.
+
+Nesting Group Functions:
+•You can nest group functions to a depth of two to perform more complex calculations.
+

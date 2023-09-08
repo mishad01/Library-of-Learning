@@ -1,0 +1,13 @@
+1. Write a query to display the last name and hire date of any employee in the same department as Zlotkey. Exclude Zlotkey.
+
+2. Create a query to display the employee numbers and last names of all employees who earn more than the average salary. Sort the results in ascending order of salary.
+
+3. Write a query that displays the employee numbers and last names of all employees who work in a department with any employee whose last name contains a u. Place your SQL statement in a text file named lab6_3.sql. Run your query.
+
+
+4. Display the last name, department number, and job ID of all employees whose department location ID is 1700.
+
+5. Display the last name and salary of every employee who reports to King.
+
+6. Display the department number, last name, and job ID for every employee in the Executive
+department.
