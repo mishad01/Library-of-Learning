@@ -1,0 +1,64 @@
+DISTRIBUTED DATABASE SYSTEM
+Distributed Database System Combines database system and computer network technologies. . 
+One of the motives for using database systems is integrate operational data without centralization.
+There are four types of Distributed Database System---
+1. Distributed
+2. Replicated
+3. Multi-database
+4. Federated.
+Distributed Database System:
+• Unified data collection across processing sites.
+• Single logical schema for all users.
+• Global operations due to integration.
+• Advantages: Consistent data, but complex schema integration.
+• Disadvantages: Complexity, impact on performance.
+Replicated Database System:
+• Contains multiple copies of data across sites.
+• Provides faster access by storing data closer to sites.
+• Challenges: Consistency maintenance, propagation complexity.
+Multi-Database System:
+• Combines global and local schemas.
+• Supports data access and management.
+• Integrates strategies with global algorithms.
+• Complex due to local and global management.
+Federated Database System:
+• Sites cooperate with common data access protocols.
+• Independent data and processing management.
+• Optimized for specific purposes.
+• Challenges in usability for unskilled users.
+Ideal Distributed Database System:
+• Local autonomy
+• No central reliance
+• Continuous operation
+• Location, fragmentation, replication independence
+• Distributed query and transaction processing
+• Hardware, OS, network, and database independence.
+Database Integration:
+• Aims for a conceptually integrated database.
+• Involves schema translation and integration.
+• Addresses naming, key, and representational conflicts.
+•
+Object-Oriented Database Management System (OODBMS):
+• Represents data as objects.
+• OODBMS vs. relational databases.
+• Concepts: Abstract Data Types, Encapsulation, Inheritance, Polymorphism.
+• Abstract Data Types: (Class definition, provides extension to complex attribute 
+types).
+• Encapsulation :(Implementation of operations and object structure hidden).
+• Inheritance: (Sharing of data within hierarchy scope, supports code reusability).
+• Polymorphism: (Operator overloading).
+• Structured Types and Inheritance in SQL.
+Type Inheritance:
+• Hierarchical data organization.
+• Subtypes (Student, Teacher) inherit attributes of supertype (Person).
+• Advantages: High performance, object-oriented features.
+• Disadvantages: Complexity, potential inefficiency, less stable standards.
+Potential advantages:
+1. High performance 
+2. Faster as no joins required
+3. complex data type
+4. support for atomicity 
+5. support for nested relationships
+6. Easier navigation.
+7. Data model is based on the real world.
+8. Less code required when applications are object orie
