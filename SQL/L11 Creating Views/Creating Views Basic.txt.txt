@@ -1,0 +1,61 @@
+Objectives:
+•	Describe what a view is.
+•	Create, alter, and drop views.
+•	Retrieve data through views.
+•	Perform data manipulation language (DML) operations on views.
+•	Create and use inline views.
+•	Perform top-n analysis using inline views.
+
+Lesson Aim: In Lab 11, you will learn about views in a database. Views are virtual tables that can simplify data retrieval, restrict access, and provide a convenient way to present data.
+What Is a View?
+•	A view is a logical table based on one or more tables or other views.
+•	It does not store data but provides a window through which data can be viewed or changed.
+•	Views are stored as SELECT statements in the data dictionary.
+
+Advantages of Views:
+•	Restrict database access.
+•	Simplify complex queries.
+•	Provide data independence.
+•	Present multiple views of the same data.
+•	Can be removed without affecting the underlying data.
+
+Creating a View:
+•	Views are created using the CREATE VIEW statement.
+•	You can use the OR REPLACE clause to re-create a view if it already exists.
+•	Views can have aliases for column names.
+•	The WITH CHECK OPTION clause restricts data modification through the view.
+•	The WITH READ ONLY clause ensures the view is read-only.
+
+Retrieving Data from a View:
+•	Data can be retrieved from a view using a SELECT statement, just like from a table.
+
+Modifying a View:
+•	Views can be modified using the CREATE OR REPLACE VIEW statement.
+•	You can add aliases to column names during modification.
+
+Creating a Complex View:
+•	Complex views can contain group functions and data from multiple tables.
+
+Performing DML Operations on a View:
+•	DML operations (INSERT, UPDATE, DELETE) can be performed on views if certain conditions are met.
+•	Rules exist for modifying data through a view.
+•	The WITH CHECK OPTION clause restricts insertions and updates.
+
+Denying DML Operations:
+•	Views can be made read-only using the WITH READ ONLY clause.
+
+Removing a View:
+•	Views can be removed using the DROP VIEW statement.
+
+Inline Views:
+•	An inline view is a subquery with an alias that can be used within a SQL statement.
+•	It is not a schema object and does not require separate storage.
+
+Top-n Analysis:
+•	Top-n queries retrieve the n largest or smallest values of a column.
+•	They are useful for identifying the top or bottom records based on a specific condition.
+
+Performing Top-n Analysis:
+•	Top-n queries involve using subqueries with sorting to identify the top-n records.
+•	The ROWNUM pseudocolumn is used to limit the results.
+•	Top-n analysis is valuable for various scenarios like identifying top earners or recent hires.
