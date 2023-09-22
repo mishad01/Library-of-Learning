@@ -1,0 +1,77 @@
+//Java Program for Bank Account Deposit Withdraw
+//with getter setter method
+
+class bankAccount{
+    private int accountnumber;
+    private double balance;
+    private String name;
+    private String email;
+    private String phonenumber;
+
+    public int getAccountnumber() {
+        return accountnumber;
+    }
+
+    public void setAccountnumber(int accountnumber) {
+        this.accountnumber = accountnumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+    public void deposit(double depammount){
+        balance += depammount;
+        System.out.println("Deposite of $ "+ depammount + "& New ammont " + balance);
+    }
+    public void withdraw(int num){
+        if(balance-num<0){
+            System.out.println("Can't withdraw, Wrong input or No money");
+        }
+        else{
+            balance -= num;
+            System.out.println("New balance "+balance);
+        }
+    }
+}
+public class PositiveNegativeZero {
+    public static void main(String[] args) {
+        bankAccount ob = new bankAccount();
+        ob.withdraw(100);
+        ob.deposit(1000);
+        ob.withdraw(50);
+
+
+    }
+
+}
+
+
+}
