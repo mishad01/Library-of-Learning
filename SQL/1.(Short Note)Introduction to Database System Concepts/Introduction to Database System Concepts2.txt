@@ -39,3 +39,4 @@ History of Database Systems:
 * Emergence of XML and XQuery, open-source databases, specialized databases, and Big Data in the 2000s and beyond.
 * Recent trends include the Internet of Things (IoT), Big Data, and machine learning in the 2010s.
 
+.........
