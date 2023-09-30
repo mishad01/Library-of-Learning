@@ -13,6 +13,7 @@ class startScreen extends StatelessWidget {
           Image.asset(
             'assets/images/test.png',
             width: 110,
+            //opacity: fade,
           ),
           const SizedBox(
             height: 20,
