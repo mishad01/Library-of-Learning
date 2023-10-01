@@ -1,4 +1,4 @@
-If there is something like this 15 x 10 . And if we try to divide this 15 and 10 with a prime number 3 then 3 divides 15.
+If there is something like this 15 x 10 . And if we try to divide this 15x10 with a prime number 3. Then 3 willbe divide by either 15 or 10 and As we can see It divids 15.That means from two numbers a * b it will must divide 1 number either a or b
 So basically if 'p' is a prime number, and it divides the product 'a * b'. According to Euclid's Lemma, 'p' must also divide 'a' or 'b' or both.
 
 Euclid's Lemma is a fundamental theorem in number theory that deals with the divisibility of integers. In the easiest way possible, here's what Euclid's Lemma states:
