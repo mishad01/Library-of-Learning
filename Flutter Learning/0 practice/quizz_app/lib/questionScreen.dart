@@ -26,29 +26,32 @@ class _quizzQuestion extends State<questionScreen> {
   @override
   Widget build(BuildContext context) {
     final currentQuestion = Question[currentQuestionIndex];
-    return Container(
-      margin: EdgeInsets.all(40),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            currentQuestion.qestionsQuizz,
-            style: TextStyle(color: Colors.white),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ...currentQuestion.answerOption.map((e) {
-            return answerButton(
-              text: e,
-              onTap: () {
-                nextQuestion(e);
-              },
-            );
-          })
-        ],
+    return SizedBox(
+      width: double.infinity,
+      child: Container(
+        margin: EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestion.qestionsQuizz,
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ...currentQuestion.getshuffledAnswer().map((e) {
+              return answerButton(
+                text: e,
+                onTap: () {
+                  nextQuestion(e);
+                },
+              );
+            })
+          ],
+        ),
       ),
     );
   }
