@@ -5,7 +5,7 @@ class resultScreen extends StatelessWidget {
   resultScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final totalquestion = Question.length
+    final totalquestion = Question.length;
     return SizedBox(
       width: double.infinity,
       child: Container(
