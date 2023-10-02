@@ -34,7 +34,7 @@ class resultScreen extends StatelessWidget {
               'From $totalquestion Question Total Right Answer $correctAnswer',
               style: TextStyle(color: Colors.white),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             TextButton(
