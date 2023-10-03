@@ -8,12 +8,12 @@ class questionScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _quizzQuestion();
+    return _questionScreen();
   }
 }
 
-class _quizzQuestion extends State<questionScreen> {
-  List<String> selectedAnswer = [];
+class _questionScreen extends State<questionScreen> {
+  //List<String> selectedAnswer = [];
   var currentQuestionIndex = 0;
 
   void nextQuestion(String text) {
@@ -39,7 +39,7 @@ class _quizzQuestion extends State<questionScreen> {
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ...currentQuestion.getshuffledAnswer().map((e) {

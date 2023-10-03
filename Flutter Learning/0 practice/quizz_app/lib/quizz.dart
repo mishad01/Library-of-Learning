@@ -7,7 +7,6 @@ import 'package:quizz_app/startScreen.dart';
 class quizz extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _quizz();
   }
 }
@@ -17,7 +16,7 @@ class _quizz extends State<quizz> {
   var activeScreen = 'start-screen';
   void switchScreen() {
     setState(() {
-      clickedAnswer = [];
+      //clickedAnswer = [];
       activeScreen = 'question-screen';
     });
   }
@@ -46,7 +45,7 @@ class _quizz extends State<quizz> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 const Color.fromARGB(255, 100, 26, 228),

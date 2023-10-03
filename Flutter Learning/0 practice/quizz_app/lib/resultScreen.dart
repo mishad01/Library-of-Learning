@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app/data/questionSumarry.dart';
 import 'package:quizz_app/data/questions.dart';
 
 class resultScreen extends StatelessWidget {
   resultScreen({super.key, required this.choosenAnswer});
   final List<String> choosenAnswer;
 
-  List<Map<String, Object>> getSumarryData() {
-    final List<Map<String, Object>> sumarry = [];
+  List<Map<String, Object>> getSummaryData() {
+    List<Map<String, Object>> summary = [];
 
     for (int i = 0; i < choosenAnswer.length; i++) {
-      sumarry.add({
+      summary.add({
         'question-index': i,
-        'question': Question[i].qestionsQuizz,
-        'choosenanswer': Question[i].answerOption[0],
-        'correct-answer': Question[i].answerOption[0],
+        'questions': Question[i].qestionsQuizz,
+        'choosed-answer': choosenAnswer[i],
+        'right-answer': Question[i].answerOption[0],
       });
     }
-    return sumarry;
+    return summary;
   }
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
     final totalquestion = Question.length;
-    final correctAnswer = choosenAnswer.length;
+    final correctAnswer = summaryData.where((e) {
+      return e['choosed-answer'] == e['right-answer'];
+    }).length;
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -35,11 +37,8 @@ class resultScreen extends StatelessWidget {
               'From $totalquestion Question Total Right Answer $correctAnswer',
               style: TextStyle(color: Colors.white),
             ),
-            const SizedBox(
+            SizedBox(
               height: 30,
-            ),
-            questionsSummary(
-              getSumarryData(),
             ),
             TextButton(
               onPressed: () {},
