@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/data/questionSumarry.dart';
 import 'package:quizz_app/data/questions.dart';
 
 class resultScreen extends StatelessWidget {
@@ -29,7 +30,7 @@ class resultScreen extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        margin: EdgeInsets.all(40),
+        margin: const EdgeInsets.all(40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -37,9 +38,10 @@ class resultScreen extends StatelessWidget {
               'From $totalquestion Question Total Right Answer $correctAnswer',
               style: TextStyle(color: Colors.white),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
+            questionsSummary(summaryData),
             TextButton(
               onPressed: () {},
               child: Text('Start Quizz'),
