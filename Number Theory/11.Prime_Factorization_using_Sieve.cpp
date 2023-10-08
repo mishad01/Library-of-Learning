@@ -26,7 +26,7 @@ int main(){
 		vector<int>v;
 		while(n>1){
 			v.push_back(spf[n]);
-			n=n/v[n];
+			n=n/spf[n];
 		}
 		for(auto x : v){
 			cout<<x<<endl;
