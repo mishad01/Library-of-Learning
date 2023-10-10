@@ -1,4 +1,4 @@
-//Except 1 and n we can't get any other divisor for prime
+//Except 1 and n we can't get any other divisor for prime.
 //It's mainly for finding the prime number.
 //Time complexity for this is O(√n).
 #include<bits/stdc++.h>
