@@ -10,5 +10,5 @@ void main() {
   const cehck2 = "Hello"; //
 
   final ar = ["hello", "world", "wassup"];
-  ar = ["asef", "saf", "dsfa"]; //Here we can assign new value as we gave final
+  //ar = ["asef", "saf", "dsfa"]; //Here we can assign new value as we gave final
 }
