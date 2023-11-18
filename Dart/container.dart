@@ -4,11 +4,16 @@ void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
-        body: Container(
-          width: 100,
-          height: 100,
-          color: Colors.blueGrey,
-          child: Text("Hello World"),
+        appBar: AppBar(
+          title: Text("Flutter App"),
+        ),
+        body: Center(
+          child: Container(
+            width: 100,
+            height: 100,
+            color: Colors.blueGrey,
+            child: Text("Hello World"),
+          ),
         ),
       ),
     ),
