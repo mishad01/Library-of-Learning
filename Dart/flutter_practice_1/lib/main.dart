@@ -8,11 +8,12 @@ void main() {
           title: Text("Flutter App"),
         ),
         body: Center(
-          child: Container(
-            width: 100,
-            height: 100,
-            color: Colors.blueGrey,
-            child: Text("Hello World"),
+          child: Text(
+            "Hello World I am Mishad",
+            style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),
