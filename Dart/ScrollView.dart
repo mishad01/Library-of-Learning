@@ -25,6 +25,61 @@ class _appp extends State<appp> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(right: 11),
+                        width: 200,
+                        height: 100,
+                        color: Colors.lightGreen,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 11),
+                        width: 200,
+                        height: 00,
+                        color: const Color.fromARGB(255, 74, 195, 195),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 11),
+                        width: 200,
+                        height: 100,
+                        color: Colors.green,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 11),
+                        width: 200,
+                        height: 100,
+                        color: Colors.orange,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 11),
+                        width: 200,
+                        height: 100,
+                        color: Colors.lightGreen,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 11),
+                        width: 200,
+                        height: 100,
+                        color: const Color.fromARGB(255, 74, 195, 195),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 11),
+                        width: 200,
+                        height: 100,
+                        color: Colors.green,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 11),
+                        width: 200,
+                        height: 100,
+                        color: Colors.orange,
+                      ),
+                    ],
+                  ),
+                ),
                 Container(
                   margin: EdgeInsets.only(bottom: 11),
                   width: 200,
