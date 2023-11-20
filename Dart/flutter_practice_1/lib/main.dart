@@ -18,16 +18,23 @@ class _appp extends State<appp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: AppBar(
-            title: Text("Flutter App"),
-          ),
-          body: ListView.builder(
-            itemBuilder: (context, index) {
-              return Text(arrnames[index],
-                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500));
-            },
-            itemCount: 5,
-          )),
+        appBar: AppBar(
+          title: Text("Flutter App"),
+        ),
+        // body: ListView.builder(
+        //   itemBuilder: (context, index) {
+        //     return Text(arrnames[index],
+        //         style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500));
+        //   },
+        //   itemCount: 5,
+        // )),
+        body: ListView.builder(
+          itemBuilder: (context, index) {
+            return Text(arrnames[index]);
+          },
+          itemCount: 5,
+        ),
+      ),
     );
   }
 }
