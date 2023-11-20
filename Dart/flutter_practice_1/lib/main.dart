@@ -21,11 +21,31 @@ class _appp extends State<appp> {
           title: Text("Flutter App"),
         ),
         body: ListView(children: [
-          Text("Text 1"),
-          Text("Text 2"),
-          Text("Text 3"),
-          Text("Text 4"),
-          Text("Text 5"),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Text 1",
+                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Text 2",
+                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Text 3",
+                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Text 4",
+                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Text 5",
+                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500)),
+          ),
         ]),
       ),
     );
