@@ -21,32 +21,30 @@ class _appp extends State<appp> {
           appBar: AppBar(
             title: Text("Flutter App"),
           ),
-          body: Row(
-            children: [
-              Container(
+          body: Row(children: [
+            Container(
+              width: 50,
+              height: 100,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 50,
+              height: 100,
+              color: Colors.grey,
+            ),
+            Container(
+              width: 50,
+              height: 100,
+              color: Colors.yellow,
+            ),
+            Expanded(
+              child: Container(
                 width: 50,
                 height: 100,
-                color: Colors.blue,
+                color: Colors.black54,
               ),
-              Container(
-                width: 50,
-                height: 100,
-                color: Colors.grey,
-              ),
-              Container(
-                width: 50,
-                height: 100,
-                color: Colors.yellow,
-              ),
-              Expanded(
-                child: Container(
-                  width: 50,
-                  height: 100,
-                  color: Colors.black54,
-                ),
-              )
-            ],
-          )),
+            )
+          ], '')),
     );
   }
 }
