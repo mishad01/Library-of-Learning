@@ -20,7 +20,13 @@ class _appp extends State<appp> {
         appBar: AppBar(
           title: Text("Flutter App"),
         ),
-        body: 
+        body: ListView(children: [
+          Text("Text 1"),
+          Text("Text 2"),
+          Text("Text 3"),
+          Text("Text 4"),
+          Text("Text 5"),
+        ]),
       ),
     );
   }
