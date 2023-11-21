@@ -25,8 +25,15 @@ class _appp extends State<appp> {
           body: Container(
             child: ListView(
                 children: arrnames.map((value) {
-              return Container(
-                child: Text(value),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(21),
+                    color: const Color.fromARGB(255, 112, 152, 221),
+                  ),
+                  child: Center(child: Text(value)),
+                ),
               );
             }).toList()),
           )),
