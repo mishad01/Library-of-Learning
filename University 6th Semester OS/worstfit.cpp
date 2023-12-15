@@ -37,7 +37,7 @@ void implementWorstFit(int blockSize[], int blocks, int processSize[], int proce
         }
 
         // If we were successfully able to find a block for the process
-        if (indexPlaced != -1)
+        if (indexPlaced != 1)
         {
             // Allocate this block j to process p[i]
             allocation[i] = indexPlaced;
