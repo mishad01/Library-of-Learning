@@ -3,11 +3,24 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="C:/src/flutter/packages/flutter_tools/gradle" name="gradle">
+                <projects>
+                  <project path="C:/src/flutter/packages/flutter_tools/gradle" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$/Dart/flutter_practice_1/android" />
         <option name="gradleJvm" value="corretto-18" />
         <option name="modules">
           <set>
+            <option value="C:/src/flutter/packages/flutter_tools/gradle" />
             <option value="$PROJECT_DIR$/Dart/flutter_practice_1/android" />
+            <option value="$PROJECT_DIR$/Dart/flutter_practice_1/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -17,6 +30,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/0 practice/quizz_app/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/0 practice/quizz_app/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -26,6 +40,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/1 _basic_combination_of_widgets/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/1 _basic_combination_of_widgets/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -35,6 +50,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/2 basic_styling/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/2 basic_styling/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -44,6 +60,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/3 basic_styling_part2_background_and_text/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/3 basic_styling_part2_background_and_text/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -53,6 +70,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/4 building_custom_widgets/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/4 building_custom_widgets/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -62,6 +80,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/5 basic_custom_widget_user_variable/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/5 basic_custom_widget_user_variable/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -71,6 +90,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/6 user_defined_variable/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/6 user_defined_variable/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -80,6 +100,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/7 adding_images/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/7 adding_images/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -89,6 +110,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Flutter Learning/testt/android" />
+            <option value="$PROJECT_DIR$/Flutter Learning/testt/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -98,6 +120,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Practice/testt/android" />
+            <option value="$PROJECT_DIR$/Practice/testt/android/app" />
           </set>
         </option>
       </GradleProjectSettings>
