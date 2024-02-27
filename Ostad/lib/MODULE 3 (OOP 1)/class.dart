@@ -6,7 +6,7 @@
 // Class is also a blueprint, Blueprint is basically kind of a design.
 class Student{
   // IF we don't assign value for variable name then it shows error. To resolve that we use "late"
-  //Late is like null safety. Late is a feature is of late
+  //Late is like null safety. Late is a feature is of null safe
   /*late: In Dart, late is a keyword that's used to declare variables which are initialized after their declaration, but before they're used for the first time.
    It allows you to defer the initialization of variables until they're needed.*/
   //All these data types known as "Properties/Attributes"
