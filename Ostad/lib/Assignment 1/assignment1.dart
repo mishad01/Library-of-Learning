@@ -1,9 +1,11 @@
+//Base class 'Media'
 class Media{
   void play(){
     print('Playing Media...');
   }
 }
 
+//Derived class 'Song' inheriting from 'Media'
 class Song extends Media{
   Song(this.artist);
   String artist;
@@ -15,9 +17,11 @@ class Song extends Media{
 }
 
 void main(){
+  //Instance of Media
   Media media = Media();
   media.play();
 
+  //Instance of Song
   Song song = Song('Pritom Hasan');
   song.play();
 }
