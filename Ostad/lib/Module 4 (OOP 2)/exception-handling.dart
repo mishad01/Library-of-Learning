@@ -22,21 +22,21 @@ void printer(){
     printHeadline();
   }
   // Catch specific exceptions and handle them accordingly.
-  on CustomException{
-    print('Custom Error');
-  }on MachineException {
-    print('Machine error');
-  }
-  // catch(e){
-  //   // if(e is CustomException){
-  //   //   print('CustomException " flskhfkds');
-  //   // }
-  //   // else if(e is MachineException){
-  //   //   print('Machine Exception');
-  //   // }
-  //   // else
-  //   print('Something went wrong: ${e.toString()}');
+  // on CustomException{
+  //   print('Custom Error');
+  // }on MachineException {
+  //   print('Machine error');
   // }
+  catch(e){
+    // if(e is CustomException){
+    //   print('CustomException " flskhfkds');
+    // }
+    // else if(e is MachineException){
+    //   print('Machine Exception');
+    // }
+    // else
+    print('Something went wrong: ${e.toString()}');
+  }
   //FINALLY IS WHERE it dosen't matter if we execute try or catch but final will be executed.
   // finally{
   //   print('Code from finally');
