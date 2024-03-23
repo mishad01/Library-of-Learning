@@ -1,3 +1,6 @@
+/* 1. Material App | Scaffold | Text | Center | Image | Icon
+   2. Scaffold | Column | Row | Dialog | Bottom Sheet
+ */
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,7 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ImagePrac(),
+      debugShowCheckedModeBanner: false,
+      home: ColumnPrac(),
     );
   }
 }
@@ -55,6 +59,93 @@ class ImagePrac extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Image.asset('images/boy.jpg'),
+      ),
+    );
+  }
+}
+
+//Column = Vertical
+
+class ColumnPrac extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text(
+            'Home Screen',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          leading: Icon(Icons.home_filled),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   SnackBar(
+                  //     content: Text('Money Has been transfered'),
+                  //     backgroundColor: Colors.green,
+                  //     duration: Duration(seconds: 1),
+                  //   ),
+                  // );
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Hello World'),
+                        content: Text('I hope all good'),
+                      );
+                    },
+                  );
+                },
+                icon: Icon(Icons.add))
+          ],
+        ),
+        backgroundColor: Colors.orange.withOpacity(0.9),
+        body: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Hello World',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Text(
+                'Hello World.........',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Text(
+                'Hello World',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    'Grettting from ',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Text(
+                    'Ovi',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Text(' - ',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  Text('12-12-12',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
