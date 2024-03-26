@@ -1,125 +1,196 @@
+//Button(Elevated Button, Text Button, Icon Button, Gesture Detector,InkWell)
+//Text Field ||Container ||Rich Text
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: Home(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        backgroundColor: Colors.green,
+        title: const Text(
+          'Home Screen',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        leading: Icon(Icons.home_filled),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            /*ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepPurple,
+                  //To change the color of text we use foreground color
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: BorderSide(width: 1.5, color: Colors.green),
+                  ),
+                  textStyle: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  //padding: EdgeInsets.all(24),
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                ),
+                onPressed: () {},
+                child: Text('Press Here')),
+            TextButton(
+                style: TextButton.styleFrom(
+                    foregroundColor: Colors.green,
+                    textStyle: TextStyle(fontSize: 24)),
+                onPressed: () {},
+                child: Text('Text Button')),
+            IconButton(
+                onPressed: () {
+                  print('Tapped Icon Button');
+                },
+                icon: Icon(
+                  Icons.add_circle,
+                  color: Colors.deepOrangeAccent,
+                )),
+            /*    GestureDetector(
+              onTap: () {
+                print('Object');
+              },
+              onDoubleTap: () {
+                print('On Double Tap detected');
+              },
+              onLongPress: () {
+                print('On Long press');
+              },
+              child: Column(
+                children: [
+                  Text('Hello World'),
+                  Icon(Icons.add_circle),
+                  Row(
+                    children: [
+                      Text('This is a row'),
+                    ],
+                  )
+                ],
+              ),
+            ),*/
+            InkWell(
+              splashColor: Colors.orange,
+              radius: 16,
+              onTap: () {
+                print('Object');
+              },
+              onDoubleTap: () {
+                print('On Double Tap detected');
+              },
+              onLongPress: () {
+                print('On Long press');
+              },
+              child: Column(
+                children: [
+                  Text('Hello World'),
+                  Icon(Icons.add_circle),
+                  Row(
+                    children: [
+                      Text('This is a row'),
+                    ],
+                  )
+                ],
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                //enabled: true,
+                //controller: TextEditingController,
+                style: TextStyle(fontSize: 20, color: Colors.green),
+                maxLength: 10,
+                decoration: InputDecoration(
+                  hintText: 'Enter your mail',
+                  hintStyle: TextStyle(fontSize: 24),
+                  label: Text('Email'),
+                  //labelStyle:
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(width: 4),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 4, color: Colors.orange),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 4, color: Colors.orange),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  disabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 4, color: Colors.orange),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  fillColor: Colors.white,
+                  filled: true,
+                  //If wanna see something at start of textfield
+                  prefixIcon: Icon(Icons.add),
+                  //If wanna see something at the end of textfield
+                  suffixIcon: Icon(Icons.remove_red_eye),
+
+                  prefix: Column(
+                    children: [
+                      Text('+'),
+                      Text('+'),
+                    ],
+                  ),
+                ),
+              ),
+            ),*/
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.black, width: 2),
+                // border: Border(
+                //   top: BorderSide(width: 3, color: Colors.black),
+                //   bottom: BorderSide(width: 3, color: Colors.black),
+                // ),
+                image: DecorationImage(
+                  image: AssetImage("assetName"),
+                  fit: BoxFit.cover,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.pink.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  )
+                ],
+              ),
+              alignment: Alignment.center,
+              child: Text("data"),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
