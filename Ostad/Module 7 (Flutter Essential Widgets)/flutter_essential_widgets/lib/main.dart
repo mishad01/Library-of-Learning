@@ -1,5 +1,6 @@
 //Button(Elevated Button, Text Button, Icon Button, Gesture Detector,InkWell)
 //Text Field ||Container ||Rich Text
+// Gridview | Inkwell | GestureDetector
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,6 +18,14 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
+  List<String> StudentList = [
+    'Sakif',
+    'Rahman',
+    'Mishad',
+    'Sazin',
+    'Rahman',
+    'Mahi',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +42,7 @@ class Home extends StatelessWidget {
         leading: Icon(Icons.home_filled),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
       ),
-      body: Center(
+      /*body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -187,6 +196,230 @@ class Home extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: Text("data"),
+            ),
+          ],
+        ),*/
+
+      //Single Child Scroll View
+      /*body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text("1rrrrr"),
+            Text('2'),
+            Text('3rrrrrrr'),
+            Text("1"),
+            Text('2'),
+            Text('3rrrrrr'),
+            Text("1"),
+            Text('2'),
+            Text('3'),
+            Text("rrrrrrrr1"),
+            Text('2'),
+            Text('3'),
+            Text("1"),
+            Text('2'),
+            Text('3'),
+            Text("1"),
+            Text('2rrrrrrr'),
+            Text('3'),
+            Text("1"),
+            Text('2'),
+            Text('3'),
+            Text("1rrrrrrrr"),
+            Text('2'),
+            Text('3'),
+            Text("1"),
+            Text('2'),
+            Text('3'),
+            Text("1"),
+            Text('2'),
+            Text('3'),
+            Text("1"),
+            Text('2'),
+            Text('3rrrrr'),
+            Text('3'),
+            Text('3'),
+            Text('rrrrrrr3'),
+            Text('3'),
+            Text('3'),
+            Text('3rrrrr'),
+            Text('3'),
+            Text('3'),
+            Text('rrrrrrr3'),
+            Text('3'),
+            Text('3'),
+          ],
+        ),
+      ),*/
+
+      //ListView
+      /*body: ListView(
+        //scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
+        children: [
+          Text("1rrrrr"),
+          Text('2'),
+          Text('3rrrrrrr'),
+          Text("1"),
+          Text('2'),
+          Text('3rrrrrr'),
+          Text("1"),
+          Text('2'),
+          Text('3'),
+          Text("rrrrrrrr1"),
+          Text('2'),
+          Text('3'),
+          Text("1"),
+          Text('2'),
+          Text('3'),
+          Text("1"),
+          Text('2rrrrrrr'),
+          Text('3'),
+          Text("1"),
+          Text('2'),
+          Text('3'),
+          Text("1rrrrrrrr"),
+          Text('2'),
+          Text('3'),
+          Text("1"),
+          Text('2'),
+          Text('3'),
+          Text("1"),
+          Text('2'),
+          Text('3'),
+          Text("1"),
+          Text('2'),
+          Text('3rrrrr'),
+          Text('3'),
+          Text('3'),
+          Text('rrrrrrr3'),
+          Text('3'),
+          Text('3'),
+          Text('3rrrrr'),
+          Text('3'),
+          Text('3'),
+          Text('rrrrrrr3'),
+          Text('3'),
+          Text('3'),
+          Text('3'),
+        ],
+      ),*/
+
+      /*body: ListView.builder(
+        itemCount: 100,
+        itemBuilder: (context, index) {
+          return Text(
+            '${index + 1}',
+            style: TextStyle(fontSize: 30),
+          );
+        },
+      ),
+       */
+      // body: ListView.builder(
+      //   itemCount: StudentList.length,
+      //   itemBuilder: (context, index) {
+      //     return Padding(
+      //       padding: const EdgeInsets.all(8.0),
+      //       child: Column(
+      //         children: [
+      //           Text(StudentList[index]),
+      //           Divider(),
+      //         ],
+      //       ),
+      //     );
+      //   },
+      // ),
+
+      //ListView.separated
+      /*body: ListView.separated(
+        itemCount: StudentList.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  StudentList[index],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
+                Text(
+                  StudentList[index],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
+            //Divider(),
+          );
+        },
+        separatorBuilder: (context, index) {
+          //return Text('Test');
+          return Divider(
+            height: 6,
+            thickness: 2,
+            endIndent: 10, //For spacing at last
+            indent: 32, //For spacing at begining
+            color: Colors.black,
+          );
+        },
+      ),*/
+
+      //Grid View
+      /*body: GridView(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        children: [
+          Text('1', style: TextStyle(fontSize: 20)),
+          Text('1', style: TextStyle(fontSize: 20)),
+          Text('1', style: TextStyle(fontSize: 20)),
+          Text('1', style: TextStyle(fontSize: 20)),
+          Text('1', style: TextStyle(fontSize: 20)),
+          Text('1', style: TextStyle(fontSize: 20)),
+          Text('1', style: TextStyle(fontSize: 20)),
+          Text('1', style: TextStyle(fontSize: 20)),
+          Text('1', style: TextStyle(fontSize: 20))
+        ],
+      ),*/
+
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              primary: false, //Scrolling capability will be lost
+              itemCount: StudentList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(StudentList[index]),
+                      Divider(),
+                    ],
+                  ),
+                );
+              },
+            ),
+            GridView.builder(
+              shrinkWrap: true,
+              primary: false,
+              itemCount: 100,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 2,
+                mainAxisSpacing: 10, // space between upto down
+                crossAxisSpacing: 10, // space between sidewise
+              ),
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Text('Roll -${index + 1}'),
+                    //Text(StudentList[index]),
+                  ],
+                );
+              },
             ),
           ],
         ),
