@@ -39,9 +39,9 @@ class PhotoGallery extends StatelessWidget {
       body: GridView(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 2 / 2,
+          childAspectRatio: 4 / 2, // Adjusted aspect ratio
           crossAxisSpacing: 20,
-          mainAxisExtent: 20,
+          mainAxisSpacing: 20, // Added mainAxisSpacing
         ),
         children: [
           for (final category in availableCategories)
