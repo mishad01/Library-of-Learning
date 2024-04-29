@@ -11,8 +11,8 @@ class PhotoGallery extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 12, 178, 17),
-        title: Center(
-          child: const Text(
+        title: const Center(
+          child: Text(
             'Photo Gallery',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -26,7 +26,7 @@ class PhotoGallery extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.more_vert,
               color: Colors.white,
             ),
@@ -37,12 +37,12 @@ class PhotoGallery extends StatelessWidget {
         ],
       ),
       body: GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 4 / 2, // Adjusted aspect ratio
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20, // Added mainAxisSpacing
-        ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 2.3 / 2, // Adjusted aspect ratio
+            crossAxisSpacing: 1,
+            mainAxisSpacing: 3 // Added mainAxisSpacing
+            ),
         children: [
           for (final category in availableCategories)
             CategoryGridItem(category: category)
