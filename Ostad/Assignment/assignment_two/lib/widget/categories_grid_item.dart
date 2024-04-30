@@ -1,4 +1,5 @@
 import 'package:assignment_two/model/categories.dart';
+import 'package:assignment_two/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryGridItem extends StatelessWidget {
@@ -11,7 +12,13 @@ class CategoryGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(),
+            ));
+      },
       splashColor: Colors.amber,
       borderRadius: BorderRadius.circular(16),
       child: Padding(

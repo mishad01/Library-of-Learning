@@ -1,4 +1,4 @@
-import 'package:assignment_two/data/dummy_data.dart';
+import 'package:assignment_two/data/gallery_data.dart';
 import 'package:assignment_two/widget/categories_grid_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class PhotoGallery extends StatelessWidget {
             ),
         children: [
           for (final category in availableCategories)
-            CategoryGridItem(category: category)
+            CategoryGridItem(category: category),
         ],
       ),
     );
