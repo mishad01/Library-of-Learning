@@ -15,6 +15,8 @@ class PhotoGallery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 12, 178, 17),
@@ -45,172 +47,309 @@ class PhotoGallery extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MoodScreen(),
-                            ));
-                      },
-                      child: FrontGrid(
-                        title: 'Mood',
-                        image: 'mood_1.jpeg',
+            padding: EdgeInsets.all(8.0),
+            child: width < 600
+                ? Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MoodScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Mood',
+                                image: 'mood_1.jpeg',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AstheticScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Asthetic',
+                                image: 'asthetic_2.jpeg',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AstheticScreen(),
-                            ));
-                      },
-                      child: FrontGrid(
-                        title: 'Asthetic',
-                        image: 'asthetic_2.jpeg',
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AnimalScreen(),
-                            ));
-                      },
-                      child: FrontGrid(
-                        title: 'Animals',
-                        image: 'animals_3.jpeg',
+                      Row(
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AnimalScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Animals',
+                                image: 'animals_3.jpeg',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CityScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'City',
+                                image: 'city_4.jpeg',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CityScreen(),
-                            ));
-                      },
-                      child: FrontGrid(
-                        title: 'City',
-                        image: 'city_4.jpeg',
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => TravelScreen(),
-                            ));
-                      },
-                      child: FrontGrid(
-                        title: 'Travel',
-                        image: 'travel_5.jpeg',
+                      Row(
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TravelScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Travel',
+                                image: 'travel_5.jpeg',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SkyScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Sky',
+                                image: 'sky_6.jpeg',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SkyScreen(),
-                            ));
-                      },
-                      child: FrontGrid(
-                        title: 'Sky',
-                        image: 'sky_6.jpeg',
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RoadScreen(),
-                            ));
-                      },
-                      child: FrontGrid(
-                        title: 'Road',
-                        image: 'road_7.jpeg',
+                      Row(
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => RoadScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Road',
+                                image: 'road_7.jpeg',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FlowerScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Flowers',
+                                image: 'flowers_7.jpg',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+                    ],
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MoodScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Mood',
+                                image: 'mood_1.jpeg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 40,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AstheticScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Asthetic',
+                                image: 'asthetic_2.jpeg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 40,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AnimalScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Animals',
+                                image: 'animals_3.jpeg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 40,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CityScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'City',
+                                image: 'city_4.jpeg',
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TravelScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Travel',
+                                image: 'travel_5.jpeg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 40,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SkyScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Sky',
+                                image: 'sky_6.jpeg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 40,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => RoadScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Road',
+                                image: 'road_7.jpeg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 40,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FlowerScreen(),
+                                    ));
+                              },
+                              child: FrontGrid(
+                                title: 'Flowers',
+                                image: 'flowers_7.jpg',
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FlowerScreen(),
-                            ));
-                      },
-                      child: FrontGrid(
-                        title: 'Flowers',
-                        image: 'flowers_7.jpg',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-            ],
-          ),
-        ),
+                  )),
       ),
     );
   }
