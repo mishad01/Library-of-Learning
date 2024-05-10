@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:module11_assignment/data/dummy_data.dart';
 import 'package:module11_assignment/widgets/add_sub.dart';
 import 'package:module11_assignment/widgets/bagcard.dart';
 
@@ -11,6 +12,7 @@ class MyBag extends StatefulWidget {
 }
 
 class _MyBagState extends State<MyBag> {
+  final current = availableCategories[0];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +42,14 @@ class _MyBagState extends State<MyBag> {
                       letterSpacing: 2),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              BagCard(),
+              const SizedBox(
+                height: 10,
+              ),
+              BagCard(),
               const SizedBox(
                 height: 10,
               ),

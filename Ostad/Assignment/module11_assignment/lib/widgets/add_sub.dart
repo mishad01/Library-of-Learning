@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:module11_assignment/data/dummy_data.dart';
 
 class AddSub extends StatefulWidget {
   const AddSub({super.key});
@@ -10,6 +11,7 @@ class AddSub extends StatefulWidget {
 class _AddSubState extends State<AddSub> {
   @override
   Widget build(BuildContext context) {
+    final current = availableCategories[0];
     int sum = 0;
     return Padding(
       padding: const EdgeInsets.all(2.0),
@@ -32,7 +34,7 @@ class _AddSubState extends State<AddSub> {
           const SizedBox(
             width: 15,
           ),
-          Text('1'),
+          Text(current.total.toString()),
           const SizedBox(
             width: 15,
           ),
@@ -53,7 +55,9 @@ class _AddSubState extends State<AddSub> {
           SizedBox(
             width: 100,
           ),
-          Text('51\$'),
+          Text(
+            current.price.toString(),
+          ),
         ],
       ),
     );

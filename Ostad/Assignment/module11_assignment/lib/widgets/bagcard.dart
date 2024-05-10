@@ -4,7 +4,22 @@ import 'package:module11_assignment/widgets/add_sub.dart';
 import 'package:module11_assignment/widgets/colorandsize.dart';
 
 class BagCard extends StatefulWidget {
-  const BagCard({super.key});
+  const BagCard({
+    super.key,
+    required this.image,
+    required this.type,
+    required this.color,
+    required this.size,
+    required this.total,
+    required this.price,
+  });
+
+  final String image;
+  final String type;
+  final String color;
+  final String size;
+  final int total;
+  final int price;
 
   @override
   State<BagCard> createState() => _BagCardState();
@@ -39,7 +54,7 @@ class _BagCardState extends State<BagCard> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  ColorSize(),
+                  ColorSize(color: ,),
                 ],
               ),
             ),

@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:module11_assignment/data/dummy_data.dart';
 import 'package:module11_assignment/widgets/add_sub.dart';
 
 class ColorSize extends StatelessWidget {
-  const ColorSize({super.key});
+  const ColorSize({
+    super.key,
+    required this.type,
+    required this.color,
+    required this.size,
+  });
+  final String type;
+  final String color;
+  final String size;
 
   @override
   Widget build(BuildContext context) {
+    final current = availableCategories[0];
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -14,7 +24,7 @@ class ColorSize extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Pullover',
+              type,
               style: GoogleFonts.montserrat(
                 textStyle: const TextStyle(
                   fontSize: 16,
@@ -45,7 +55,7 @@ class ColorSize extends StatelessWidget {
               ),
             ),
             Text(
-              'Black',
+              color,
               style: GoogleFonts.montserrat(
                 textStyle: const TextStyle(
                   fontSize: 11,
@@ -66,7 +76,7 @@ class ColorSize extends StatelessWidget {
               ),
             ),
             Text(
-              'L',
+              size,
               style: GoogleFonts.montserrat(
                 textStyle: const TextStyle(
                   fontSize: 11,
