@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:module11_assignment/widgets/add_sub.dart';
+import 'package:module11_assignment/widgets/bagcard.dart';
 
 class MyBag extends StatefulWidget {
   const MyBag({super.key});
@@ -11,7 +14,9 @@ class _MyBagState extends State<MyBag> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 246, 244, 244),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 246, 244, 244),
         actions: const [
           Padding(
             padding: EdgeInsets.all(10.0),
@@ -23,10 +28,24 @@ class _MyBagState extends State<MyBag> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'My Bag',
-                style: TextStyle(fontSize: 34),
+                style: GoogleFonts.montserrat(
+                  textStyle: const TextStyle(
+                      fontSize: 34,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              BagCard(),
+              const SizedBox(
+                height: 10,
               ),
             ],
           ),
