@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:module11_assignment/data/dummy_data.dart';
 import 'package:module11_assignment/widgets/add_sub.dart';
 
 class ColorSize extends StatelessWidget {
-  const ColorSize({
+  ColorSize({
     super.key,
     required this.type,
     required this.color,
     required this.size,
+    required this.total,
+    required this.price,
   });
   final String type;
   final String color;
   final String size;
+  final int total;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
-    final current = availableCategories[0];
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               type,
@@ -32,13 +35,10 @@ class ColorSize extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              width: 150,
-            ),
-            Icon(
-              Icons.more_vert,
-              color: const Color.fromARGB(255, 178, 177, 177),
-            ),
+            // Icon(
+            //   Icons.more_vert,
+            //   color: const Color.fromARGB(255, 178, 177, 177),
+            // ),
           ],
         ),
         Row(
@@ -89,7 +89,7 @@ class ColorSize extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        AddSub(),
+        AddSub(total: total, price: price)
       ],
     );
   }

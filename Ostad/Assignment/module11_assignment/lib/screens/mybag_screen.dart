@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:module11_assignment/data/dummy_data.dart';
+import 'package:module11_assignment/model/bag.dart';
 import 'package:module11_assignment/widgets/add_sub.dart';
 import 'package:module11_assignment/widgets/bagcard.dart';
 
 class MyBag extends StatefulWidget {
-  const MyBag({super.key});
+  MyBag({super.key});
 
   @override
   State<MyBag> createState() => _MyBagState();
@@ -45,19 +46,91 @@ class _MyBagState extends State<MyBag> {
               const SizedBox(
                 height: 10,
               ),
-              BagCard(),
+              BagCard(
+                image: "1.png",
+                type: "Pullover",
+                color: "Black",
+                size: "L",
+                total: 1,
+                price: 51,
+              ),
               const SizedBox(
                 height: 10,
               ),
-              BagCard(),
+              BagCard(
+                image: "2.png",
+                type: 'T-Shirt',
+                color: "Gray",
+                size: "L",
+                total: 1,
+                price: 30,
+              ),
               const SizedBox(
                 height: 10,
               ),
-              BagCard(),
-              const SizedBox(
-                height: 10,
+              BagCard(
+                image: "3.png",
+                type: 'Dress',
+                color: 'Black',
+                size: 'L',
+                total: 1,
+                price: 43,
               ),
+              SizedBox(
+                height: 130,
+              ),
+              Row(
+                children: [
+                  Text('Total amount: '),
+                  SizedBox(
+                    width: 250,
+                  ),
+                  Text(' \$'),
+                ],
+              )
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(20),
+        child: ElevatedButton(
+          onPressed: () {
+            // Show dialog when checkout button is pressed
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Center(child: Text("Congratulations!")),
+                  content: Text("You have added items on your bag"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        // Add your checkout logic here
+                        // For example, you can navigate to a new screen for checkout
+                        Navigator.of(context).pop();
+                      },
+                      child:
+                          ElevatedButton(onPressed: () {}, child: Text('Okay')),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("No"),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          style: ButtonStyle(
+            minimumSize: MaterialStateProperty.all(Size(200, 50)),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+          ),
+          child: const Text(
+            "CHECK OUT",
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),

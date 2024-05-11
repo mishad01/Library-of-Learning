@@ -2,61 +2,102 @@ import 'package:flutter/material.dart';
 import 'package:module11_assignment/data/dummy_data.dart';
 
 class AddSub extends StatefulWidget {
-  const AddSub({super.key});
+  AddSub({
+    super.key,
+    required this.total,
+    required this.price,
+  });
+
+  final int total;
+  final int price;
 
   @override
   State<AddSub> createState() => _AddSubState();
 }
 
 class _AddSubState extends State<AddSub> {
+  int value = 0;
+
+  void _increment() {
+    setState(() {
+      value++;
+    });
+  }
+
+  void _decrement() {
+    setState(() {
+      if (value > 0) {
+        value--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final current = availableCategories[0];
-    int sum = 0;
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Row(
         children: [
           GestureDetector(
-            onTap: () {},
+            onTap: _decrement,
             child: Container(
               padding: const EdgeInsets.all(8.0),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 0,
+                    blurRadius: 1,
+                    offset: Offset(0, 1), 
+                  ),
+                ],
               ),
               child: const Icon(
                 Icons.remove,
-                color: Color.fromARGB(255, 0, 0, 0),
+                color: Colors.black,
               ),
             ),
           ),
-          const SizedBox(
-            width: 15,
-          ),
-          Text(current.total.toString()),
-          const SizedBox(
-            width: 15,
-          ),
+          const SizedBox(width: 15),
+          Text(value.toString()), // Display the updated value
+          const SizedBox(width: 15),
           GestureDetector(
-            onTap: () {},
+            onTap: _increment,
             child: Container(
               padding: const EdgeInsets.all(6.0),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 0,
+                    blurRadius: 1,
+                    offset: Offset(0, 1),
+                  ),
+                ],
               ),
               child: const Icon(
                 Icons.add,
-                color: Color.fromARGB(255, 0, 0, 0),
+                color: Colors.black,
               ),
             ),
           ),
-          SizedBox(
-            width: 100,
+
+          const SizedBox(
+            width: 90,
           ),
-          Text(
-            current.price.toString(),
+          Row(
+            children: [
+              Text(
+                (widget.price * value).toString(), // Display the total price
+              ),
+              const Text(
+                '\$',
+              ),
+            ],
           ),
         ],
       ),

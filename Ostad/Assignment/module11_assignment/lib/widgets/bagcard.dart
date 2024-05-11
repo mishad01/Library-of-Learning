@@ -4,7 +4,7 @@ import 'package:module11_assignment/widgets/add_sub.dart';
 import 'package:module11_assignment/widgets/colorandsize.dart';
 
 class BagCard extends StatefulWidget {
-  const BagCard({
+  BagCard({
     super.key,
     required this.image,
     required this.type,
@@ -13,7 +13,6 @@ class BagCard extends StatefulWidget {
     required this.total,
     required this.price,
   });
-
   final String image;
   final String type;
   final String color;
@@ -46,15 +45,21 @@ class _BagCardState extends State<BagCard> {
               height: 120,
               width: 115,
               child: Image.asset(
-                'assets/images/naruto.jpeg',
+                'assets/images/${widget.image}',
                 fit: BoxFit.cover,
               ),
             ),
-            const Padding(
+            Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  ColorSize(color: ,),
+                  ColorSize(
+                    type: widget.type,
+                    color: widget.color,
+                    size: widget.size,
+                    total: widget.total,
+                    price: widget.price,
+                  )
                 ],
               ),
             ),
