@@ -10,12 +10,15 @@ class ColorSize extends StatelessWidget {
     required this.size,
     required this.total,
     required this.price,
+    required this.onQuantityChanged, // Add this line
   });
+
   final String type;
   final String color;
   final String size;
   final int total;
   final int price;
+  final Function(int) onQuantityChanged; // Add this line
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +92,11 @@ class ColorSize extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        AddSub(total: total, price: price)
+        AddSub(
+          total: total,
+          price: price,
+          onQuantityChanged: onQuantityChanged, // Pass callback
+        ),
       ],
     );
   }

@@ -12,13 +12,16 @@ class BagCard extends StatefulWidget {
     required this.size,
     required this.total,
     required this.price,
+    required this.onQuantityChanged, // Add this line
   });
+
   final String image;
   final String type;
   final String color;
   final String size;
   final int total;
   final int price;
+  final Function(int) onQuantityChanged; // Add this line
 
   @override
   State<BagCard> createState() => _BagCardState();
@@ -37,7 +40,6 @@ class _BagCardState extends State<BagCard> {
         ),
       ),
       child: ClipRRect(
-        // ClipRRect to clip the inner container with border radius
         borderRadius: BorderRadius.circular(10),
         child: Row(
           children: [
@@ -59,7 +61,9 @@ class _BagCardState extends State<BagCard> {
                     size: widget.size,
                     total: widget.total,
                     price: widget.price,
-                  )
+                    onQuantityChanged:
+                        widget.onQuantityChanged, // Pass callback
+                  ),
                 ],
               ),
             ),

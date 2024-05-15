@@ -6,10 +6,12 @@ class AddSub extends StatefulWidget {
     super.key,
     required this.total,
     required this.price,
+    required this.onQuantityChanged, // Add this line
   });
 
   final int total;
   final int price;
+  final Function(int) onQuantityChanged; // Add this line
 
   @override
   State<AddSub> createState() => _AddSubState();
@@ -21,6 +23,7 @@ class _AddSubState extends State<AddSub> {
   void _increment() {
     setState(() {
       value++;
+      widget.onQuantityChanged(value * widget.price); // Update total
     });
   }
 
@@ -28,6 +31,7 @@ class _AddSubState extends State<AddSub> {
     setState(() {
       if (value > 0) {
         value--;
+        widget.onQuantityChanged(value * widget.price); // Update total
       }
     });
   }
@@ -50,7 +54,7 @@ class _AddSubState extends State<AddSub> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 0,
                     blurRadius: 1,
-                    offset: Offset(0, 1), 
+                    offset: Offset(0, 1),
                   ),
                 ],
               ),
@@ -85,7 +89,6 @@ class _AddSubState extends State<AddSub> {
               ),
             ),
           ),
-
           const SizedBox(
             width: 90,
           ),

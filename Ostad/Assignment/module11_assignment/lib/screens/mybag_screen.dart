@@ -13,7 +13,14 @@ class MyBag extends StatefulWidget {
 }
 
 class _MyBagState extends State<MyBag> {
-  final current = availableCategories[0];
+  int _totalValue = 0;
+
+  void _updateTotalValue(int value) {
+    setState(() {
+      _totalValue += value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +60,8 @@ class _MyBagState extends State<MyBag> {
                 size: "L",
                 total: 1,
                 price: 51,
+                onQuantityChanged: (value) =>
+                    _updateTotalValue(value), // Pass callback
               ),
               const SizedBox(
                 height: 10,
@@ -64,6 +73,8 @@ class _MyBagState extends State<MyBag> {
                 size: "L",
                 total: 1,
                 price: 30,
+                onQuantityChanged: (value) =>
+                    _updateTotalValue(value), // Pass callback
               ),
               const SizedBox(
                 height: 10,
@@ -75,6 +86,8 @@ class _MyBagState extends State<MyBag> {
                 size: 'L',
                 total: 1,
                 price: 43,
+                onQuantityChanged: (value) =>
+                    _updateTotalValue(value), // Pass callback
               ),
               SizedBox(
                 height: 130,
@@ -85,7 +98,7 @@ class _MyBagState extends State<MyBag> {
                   SizedBox(
                     width: 250,
                   ),
-                  Text(' \$'),
+                  Text('\$$_totalValue'), // Display total value
                 ],
               )
             ],
@@ -96,29 +109,37 @@ class _MyBagState extends State<MyBag> {
         padding: EdgeInsets.all(20),
         child: ElevatedButton(
           onPressed: () {
-            // Show dialog when checkout button is pressed
             showDialog(
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: Center(child: Text("Congratulations!")),
-                  content: Text("You have added items on your bag"),
+                  content: Text("You have added \$$_totalValue on your bag"),
                   actions: [
                     TextButton(
-                      onPressed: () {
-                        // Add your checkout logic here
-                        // For example, you can navigate to a new screen for checkout
-                        Navigator.of(context).pop();
-                      },
-                      child:
-                          ElevatedButton(onPressed: () {}, child: Text('Okay')),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text("No"),
-                    ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.red),
+                          ),
+                          child: Center(
+                              child: Text(
+                            'Okay',
+                            style: TextStyle(color: Colors.white),
+                          )),
+                        )),
+                    // TextButton(
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    //   child: Text("No"),
+                    // ),
                   ],
                 );
               },
