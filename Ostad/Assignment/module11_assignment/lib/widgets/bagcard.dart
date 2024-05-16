@@ -12,7 +12,7 @@ class BagCard extends StatefulWidget {
     required this.size,
     required this.total,
     required this.price,
-    required this.onQuantityChanged, // Add this line
+    required this.onQuantityChanged, 
   });
 
   final String image;
@@ -21,7 +21,7 @@ class BagCard extends StatefulWidget {
   final String size;
   final int total;
   final int price;
-  final Function(int) onQuantityChanged; // Add this line
+  final Function(int) onQuantityChanged; 
 
   @override
   State<BagCard> createState() => _BagCardState();

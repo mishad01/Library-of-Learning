@@ -6,12 +6,12 @@ class AddSub extends StatefulWidget {
     super.key,
     required this.total,
     required this.price,
-    required this.onQuantityChanged, // Add this line
+    required this.onQuantityChanged, 
   });
 
   final int total;
   final int price;
-  final Function(int) onQuantityChanged; // Add this line
+  final Function(int) onQuantityChanged; 
 
   @override
   State<AddSub> createState() => _AddSubState();
@@ -23,7 +23,7 @@ class _AddSubState extends State<AddSub> {
   void _increment() {
     setState(() {
       value++;
-      widget.onQuantityChanged(value * widget.price); // Update total
+      widget.onQuantityChanged(value * widget.price); 
     });
   }
 
@@ -31,7 +31,7 @@ class _AddSubState extends State<AddSub> {
     setState(() {
       if (value > 0) {
         value--;
-        widget.onQuantityChanged(value * widget.price); // Update total
+        widget.onQuantityChanged(value * widget.price); 
       }
     });
   }
@@ -65,7 +65,7 @@ class _AddSubState extends State<AddSub> {
             ),
           ),
           const SizedBox(width: 15),
-          Text(value.toString()), // Display the updated value
+          Text(value.toString()), 
           const SizedBox(width: 15),
           GestureDetector(
             onTap: _increment,
@@ -95,7 +95,7 @@ class _AddSubState extends State<AddSub> {
           Row(
             children: [
               Text(
-                (widget.price * value).toString(), // Display the total price
+                (widget.price * value).toString(), 
               ),
               const Text(
                 '\$',

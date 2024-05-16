@@ -10,7 +10,7 @@ class ColorSize extends StatelessWidget {
     required this.size,
     required this.total,
     required this.price,
-    required this.onQuantityChanged, // Add this line
+    required this.onQuantityChanged, 
   });
 
   final String type;
@@ -18,7 +18,7 @@ class ColorSize extends StatelessWidget {
   final String size;
   final int total;
   final int price;
-  final Function(int) onQuantityChanged; // Add this line
+  final Function(int) onQuantityChanged; 
 
   @override
   Widget build(BuildContext context) {
