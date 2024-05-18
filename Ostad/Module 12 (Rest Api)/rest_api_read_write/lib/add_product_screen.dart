@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
@@ -102,7 +105,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
               SizedBox(height: 16),
               ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      _addProduct();
+                    }
                   },
                   child: Text('Add')),
             ],
@@ -110,6 +115,28 @@ class _AddProductScreenState extends State<AddProductScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _addProduct() async {
+    const String addNewProductUrl =
+        'https://crud.teamrabbil.com/api/v1/CreateProduct';
+
+    Map<String, dynamic> inputData = {
+      "Img": "xxxxxxxx",
+      "ProductCode": "yhjgjk",
+      "ProductName": "test",
+      "Qty": "2",
+      "TotalPrice": "vvvvvvvvvvv",
+      "UnitPrice": "2789"
+    };
+
+    Uri uri = Uri.parse(addNewProductUrl);
+    Response response = await post(uri,
+        body: jsonEncode(inputData),
+        headers: {'content-type': 'application/json'});
+    print(response.statusCode);
+    print(response.body);
+    print(response.headers);
   }
 
   @override
