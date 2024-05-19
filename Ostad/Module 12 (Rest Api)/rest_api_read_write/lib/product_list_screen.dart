@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:rest_api_read_write/add_product_screen.dart';
 import 'package:rest_api_read_write/update_product_screen.dart';
 
@@ -10,6 +14,16 @@ class ProductListScreen extends StatefulWidget {
 }
 
 class _ProductListScreenState extends State<ProductListScreen> {
+  bool _getProductListInProgress = false;
+  List<Product> productList = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getProductList();
+  }
+
   void _showDeleteConfirmationDialouge() {
     showDialog(
       context: context,
@@ -34,14 +48,20 @@ class _ProductListScreenState extends State<ProductListScreen> {
           'Product List',
         ),
       ),
-      body: ListView.separated(
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return _buildProductItem();
-        },
+      body: Visibility(
+        visible: _getProductListInProgress == false,
+        replacement: Center(
+          child: CircularProgressIndicator(),
+        ),
+        child: ListView.separated(
+          separatorBuilder: (context, index) {
+            return Divider();
+          },
+          itemCount: productList.length,
+          itemBuilder: (context, index) {
+            return _buildProductItem(productList[index]);
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -53,17 +73,56 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  Widget _buildProductItem() {
+  Future<void> _getProductList() async {
+    _getProductListInProgress = true;
+    setState(() {});
+    productList.clear();
+    const String productListUrl =
+        'https://crud.teamrabbil.com/api/v1/ReadProduct';
+
+    Uri uri = Uri.parse(productListUrl);
+    Response response = await get(uri);
+
+    print(response.statusCode);
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      //data decode
+      final decodeData = jsonDecode(response.body);
+      //get the list
+      final jsonproductList = decodeData['data'];
+      //Loop over the list
+      for (Map<String, dynamic> p in jsonproductList) {
+        Product product = Product(
+          id: p['_id'] ?? '',
+          productName: p['ProductName'] ?? '',
+          productCode: p['ProductCode'] ?? '',
+          image: p['Img'] ?? '',
+          unitPrice: p['UnitPrice'] ?? '',
+          quantity: p['Qty'] ?? '',
+          totalPrice: p['TotalPrice'] ?? '',
+        );
+        productList.add(product);
+      }
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Get Product  Failed')));
+    }
+    _getProductListInProgress = false;
+    setState(() {});
+  }
+
+  Widget _buildProductItem(Product product) {
     return ListTile(
       leading: Image.network(
           'https://upload.wikimedia.org/wikipedia/commons/7/7a/Shoes_sport-right.png'),
-      title: Text('Product name'),
+      title: Text(product.productName),
       subtitle: Wrap(
         spacing: 16,
         children: [
-          Text('Unit Price 100'),
-          Text('Quantity  100'),
-          Text('Total Price 100'),
+          Text('Unit Price b: ${product.unitPrice}'),
+          Text('Quantity : ${product.quantity}'),
+          Text('Total Price : ${product.totalPrice}'),
         ],
       ),
       trailing: Wrap(
@@ -86,4 +145,24 @@ class _ProductListScreenState extends State<ProductListScreen> {
       ),
     );
   }
+}
+
+class Product {
+  final String id;
+  final String productName;
+  final String productCode;
+  final String image;
+  final String unitPrice;
+  final String quantity;
+  final String totalPrice;
+
+  Product({
+    required this.id,
+    required this.productName,
+    required this.productCode,
+    required this.image,
+    required this.unitPrice,
+    required this.quantity,
+    required this.totalPrice,
+  });
 }
