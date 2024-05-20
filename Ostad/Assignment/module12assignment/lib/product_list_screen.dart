@@ -39,8 +39,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   Widget _buildListTile(Product product) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 6.0), // Adjust as needed
-      //padding: EdgeInsets.symmetric(horizontal: 16.0), // Adjust as needed
+      margin: EdgeInsets.symmetric(vertical: 6.0),
       child: ListTile(
         // Adjust as needed
         leading: Image.network(product.thumbnailUrl),
