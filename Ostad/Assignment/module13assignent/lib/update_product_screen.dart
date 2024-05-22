@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:module13assignent/product_list_screen.dart';
 
 class UpdateProductScreen extends StatefulWidget {
-  const UpdateProductScreen({super.key});
+  UpdateProductScreen({super.key, required this.product});
+  Product product;
 
   @override
   State<UpdateProductScreen> createState() => _UpdateProductScreenState();
@@ -17,6 +22,18 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
   final TextEditingController _productCodeTEContoller = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool updateProductProgress = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _nameTEController.text = widget.product.productName;
+    _unitPriceTEController.text = widget.product.unitPrice.toString();
+    _quantityTEContoller.text = widget.product.quantity.toString();
+    _totalpriceTEContoller.text = widget.product.totalPrice.toString();
+    _imageTEContoller.text = widget.product.image.toString();
+    _productCodeTEContoller.text = widget.product.productCode.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,11 +154,47 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
         ),
         ElevatedButton(
             onPressed: () {
-              if (_formKey.currentState!.validate()) {}
+              if (_formKey.currentState!.validate()) {
+                _updateProduct();
+              }
             },
             child: Text('UPDATE'))
       ],
     );
+  }
+
+  Future<void> _updateProduct() async {
+    updateProductProgress = true;
+    setState(() {});
+    Map<String, dynamic> inputData = {
+      "Img": _imageTEContoller.text.trim(),
+      "ProductCode": _productCodeTEContoller.text,
+      "ProductName": _nameTEController.text,
+      "Qty": _quantityTEContoller.text,
+      "TotalPrice": _totalpriceTEContoller.text,
+      "UnitPrice": _unitPriceTEController.text
+    };
+    String _updateProductUrl =
+        'https://crud.teamrabbil.com/api/v1/UpdateProduct/${widget.product.id}';
+    Uri uri = Uri.parse(_updateProductUrl);
+
+    Response response = await post(
+      uri,
+      body: jsonEncode(inputData),
+      headers: {'content-type': 'application/json'},
+    );
+
+    print(response.body);
+    print(response.statusCode);
+
+    if (response.statusCode == 200) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Product Updated')));
+      Navigator.pop(context, true);
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Product Update Failed')));
+    }
   }
 
   @override

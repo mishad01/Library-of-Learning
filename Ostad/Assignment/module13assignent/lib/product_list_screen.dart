@@ -28,15 +28,20 @@ class _ProductListScreenState extends State<ProductListScreen> {
       appBar: AppBar(
         title: Text('Product List'),
       ),
-      body: Visibility(
-        visible: _getProductListInProgress == false,
-        replacement: Center(child: CircularProgressIndicator()),
-        child: ListView.separated(
-          separatorBuilder: (context, index) => Divider(),
-          itemCount: productList.length,
-          itemBuilder: (context, index) {
-            return _buildProductItem(productList[index]);
-          },
+      body: RefreshIndicator(
+        onRefresh: () async {
+          return _getProductList();
+        },
+        child: Visibility(
+          visible: _getProductListInProgress == false,
+          replacement: Center(child: CircularProgressIndicator()),
+          child: ListView.separated(
+            separatorBuilder: (context, index) => Divider(),
+            itemCount: productList.length,
+            itemBuilder: (context, index) {
+              return _buildProductItem(productList[index]);
+            },
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -68,21 +73,55 @@ class _ProductListScreenState extends State<ProductListScreen> {
       trailing: Wrap(
         children: [
           IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UpdateProductScreen(),
-                  ));
+            onPressed: () async {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UpdateProductScreen(
+                    product: product,
+                  ),
+                ),
+              );
+              if (result == true) {
+                _getProductList();
+              }
             },
             icon: Icon(Icons.edit),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _showDeleteConfirmationDialog(product.id);
+            },
             icon: Icon(Icons.delete),
           ),
         ],
       ),
+    );
+  }
+
+  void _showDeleteConfirmationDialog(String productId) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Delete'),
+          content:
+              const Text('Are you sure that you wanna delete this product?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+                onPressed: () {
+                  _deleteProduct(productId);
+                },
+                child: Text('Yes, delete')),
+          ],
+        );
+      },
     );
   }
 
@@ -121,6 +160,32 @@ class _ProductListScreenState extends State<ProductListScreen> {
     }
     _getProductListInProgress = false;
     setState(() {});
+  }
+
+  Future<void> _deleteProduct(String productId) async {
+    _getProductListInProgress = true;
+    setState(() {});
+
+    String deleteProductUrl =
+        'https://crud.teamrabbil.com/api/v1/DeleteProduct/$productId';
+
+    Uri uri = Uri.parse(deleteProductUrl);
+    Response response = await get(uri);
+
+    print(response.statusCode);
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      _getProductList();
+    } else {
+      _getProductListInProgress = false;
+      setState(() {});
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Delete Product  Failed'),
+        ),
+      );
+    }
   }
 }
 
