@@ -106,7 +106,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
         return AlertDialog(
           title: const Text('Delete'),
           content:
-              const Text('Are you sure that you wanna delete this product?'),
+              const Text('Are you sure that you wanna delete this productt?'),
           actions: [
             TextButton(
               onPressed: () {
