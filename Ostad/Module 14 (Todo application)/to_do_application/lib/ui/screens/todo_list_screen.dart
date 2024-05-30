@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_application/entities/todo.dart';
+import 'package:to_do_application/ui/screens/add_screen.dart';
 import 'package:to_do_application/ui/widgets/todo_item.dart';
 
 class TodoListScreen extends StatefulWidget {
@@ -24,6 +25,18 @@ class _TodoListScreenState extends State<TodoListScreen> {
               todo: Todo('Title', 'description', DateTime.now()),
               onIconButtonPressed: () {});
         },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddNewTodo(),
+              ));
+        },
+        tooltip: 'Add New Todo',
+        label: const Text('Add'),
+        icon: const Icon(Icons.add),
       ),
     );
   }
