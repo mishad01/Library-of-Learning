@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_application/entities/todo.dart';
+import 'package:to_do_application/ui/widgets/todo_item.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -8,37 +10,21 @@ class TodoListScreen extends StatefulWidget {
 }
 
 class _TodoListScreenState extends State<TodoListScreen> {
+  List<Todo> todoList = [];
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(title: const Text('Todo List'),),
-      body: ListView.builder(itemCount: 5,itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            title: Text('Titile',style: TextStyle(decoration: _getTextDecoration(true)),),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Description'),
-                Text('time'),
-              ],
-            ),
-            trailing:_buildCircularIconButton(),
-          ),
-        );
-      },),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Todo List'),
+      ),
+      body: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return TodoItem(
+              todo: Todo('Title', 'description', DateTime.now()),
+              onIconButtonPressed: () {});
+        },
+      ),
     );
   }
-  Widget _buildCircularIconButton(){
-    return CircleAvatar(child: Icon(_getIcon(true),),);
-  }
-
-  IconData _getIcon(bool isDone){
-    return isDone ? Icons.check : Icons.clear;
-  }
-
-  TextDecoration? _getTextDecoration (bool isDone){
-    return isDone? TextDecoration.lineThrough : null;
-  }
 }
-
