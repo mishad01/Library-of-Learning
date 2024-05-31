@@ -11,6 +11,8 @@ class _AddNewTodoState extends State<AddNewTodo> {
   final TextEditingController _titleTEController = TextEditingController();
   final TextEditingController _descriptionTEController =
       TextEditingController();
+  final GlobalKey<FormState> _fromkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,27 +21,61 @@ class _AddNewTodoState extends State<AddNewTodo> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
+        child: Form(
+          key: _fromkey,
+          child: Column(
+            children: [
+              TextFormField(
                 controller: _titleTEController,
-                decoration:
-                    InputDecoration(labelText: 'Title', hintText: 'Title')),
-            SizedBox(
-              height: 10,
-            ),
-            TextField(
-              controller: _descriptionTEController,
-              decoration: InputDecoration(
-                  labelText: 'Description', hintText: 'Description'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(onPressed: () {}, child: Text('Add'))
-          ],
+                decoration: const InputDecoration(
+                    labelText: 'Title', hintText: 'Title'),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (String? value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Enter your title';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                controller: _descriptionTEController,
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                  hintText: 'Description',
+                ),
+                maxLength: 200,
+                validator: (String? value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Enter your Description';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    if (_fromkey.currentState!.validate()) {
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: Text('Add'))
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _descriptionTEController.dispose();
+    _titleTEController.dispose();
   }
 }

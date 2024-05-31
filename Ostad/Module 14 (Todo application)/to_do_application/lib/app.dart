@@ -6,6 +6,20 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: TodoListScreen(),);
+    return MaterialApp(
+      theme: _lightTheme(),
+      home: TodoListScreen(),
+    );
+  }
+
+  ThemeData _lightTheme() {
+    return ThemeData(
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          fixedSize: const Size.fromWidth(double.maxFinite),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+        ),
+      ),
+    );
   }
 }
