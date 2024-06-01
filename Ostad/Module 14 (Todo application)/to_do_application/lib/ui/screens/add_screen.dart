@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_application/entities/todo.dart';
 
 class AddNewTodo extends StatefulWidget {
-  const AddNewTodo({super.key});
-
+  const AddNewTodo({
+    super.key,
+    required this.onAddTodo,
+  });
+  final Function(Todo) onAddTodo;
   @override
   State<AddNewTodo> createState() => _AddNewTodoState();
 }
@@ -60,6 +64,9 @@ class _AddNewTodoState extends State<AddNewTodo> {
               ElevatedButton(
                   onPressed: () {
                     if (_fromkey.currentState!.validate()) {
+                      Todo todo = Todo(_titleTEController.text.trim(),
+                          _descriptionTEController.text.trim(), DateTime.now());
+                      widget.onAddTodo(todo);
                       Navigator.pop(context);
                     }
                   },

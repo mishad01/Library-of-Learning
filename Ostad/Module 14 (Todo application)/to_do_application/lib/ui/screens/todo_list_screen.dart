@@ -14,7 +14,7 @@ class TodoListScreen extends StatefulWidget {
 
 class _TodoListScreenState extends State<TodoListScreen>
     with SingleTickerProviderStateMixin {
-  List<Todo> todoList = [];
+  List<Todo> _todoList = [];
   //late TabController _tabController;
   @override
   // void initState() {
@@ -33,25 +33,47 @@ class _TodoListScreenState extends State<TodoListScreen>
         body: TabBarView(
           // controller: _tabController,
           children: [
-            AllTodoListTab(),
+            AllTodoListTab(
+                onDelete: (int d) {
+                  _deleteTodo(d);
+                },
+                onStatusChange: (int ind) {
+                  _toggleTodoStatus(ind);
+                },
+                todoList: _todoList),
             DoneTodoListTab(),
             UndoneTodoListTab(),
           ],
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddNewTodo(),
-                ));
-          },
-          tooltip: 'Add New Todo',
-          label: const Text('Add'),
-          icon: const Icon(Icons.add),
-        ),
+        floatingActionButton: buildAddTodoFAB(context),
       ),
     );
+  }
+
+  FloatingActionButton buildAddTodoFAB(BuildContext context) {
+    return FloatingActionButton.extended(
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddNewTodo(
+                onAddTodo: (p0) {
+                  _addNewTodo(p0);
+                },
+              ),
+            ));
+      },
+      tooltip: 'Add New Todo',
+      label: const Text('Add'),
+      icon: const Icon(Icons.add),
+    );
+  }
+
+  void _addNewTodo(Todo todo) {
+    _todoList.add(todo);
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   TabBar _buildTabBar() {
@@ -63,5 +85,19 @@ class _TodoListScreenState extends State<TodoListScreen>
         Tab(text: 'Undone'),
       ],
     );
+  }
+
+  void _deleteTodo(int index) {
+    _todoList.remove(index);
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  void _toggleTodoStatus(int index) {
+    _todoList[index].isDone = !_todoList[index].isDone;
+    if (mounted) {
+      setState(() {});
+    }
   }
 }
