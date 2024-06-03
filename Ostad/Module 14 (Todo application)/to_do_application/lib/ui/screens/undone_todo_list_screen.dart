@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:to_do_application/entities/todo.dart';
+import 'package:to_do_application/ui/widgets/empty_list_widget.dart';
 import 'package:to_do_application/ui/widgets/todo_item.dart';
 
 class UndoneTodoListTab extends StatelessWidget {
@@ -14,6 +15,9 @@ class UndoneTodoListTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (todoList.isEmpty) {
+      return EmptyListWidget();
+    }
     return ListView.builder(
       itemCount: todoList.length,
       itemBuilder: (context, index) {
