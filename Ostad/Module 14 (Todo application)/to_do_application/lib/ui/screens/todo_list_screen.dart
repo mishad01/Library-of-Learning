@@ -34,15 +34,40 @@ class _TodoListScreenState extends State<TodoListScreen>
           // controller: _tabController,
           children: [
             AllTodoListTab(
-                onDelete: (int d) {
-                  _deleteTodo(d);
-                },
-                onStatusChange: (int ind) {
-                  _toggleTodoStatus(ind);
-                },
-                todoList: _todoList),
-            DoneTodoListTab(),
-            UndoneTodoListTab(),
+              onDelete: (int d) {
+                _deleteTodo(d);
+              },
+              onStatusChange: (int ind) {
+                _toggleTodoStatus(ind);
+              },
+              todoList: _todoList,
+            ),
+            DoneTodoListTab(
+              onDelete: (int d) {
+                _deleteTodo(d);
+              },
+              onStatusChange: (int ind) {
+                _toggleTodoStatus(ind);
+              },
+              todoList: _todoList
+                  .where(
+                    (element) => element.isDone == true,
+                  )
+                  .toList(),
+            ),
+            UndoneTodoListTab(
+              onDelete: (int d) {
+                _deleteTodo(d);
+              },
+              onStatusChange: (int ind) {
+                _toggleTodoStatus(ind);
+              },
+              todoList: _todoList
+                  .where(
+                    (element) => element.isDone == false,
+                  )
+                  .toList(),
+            ),
           ],
         ),
         floatingActionButton: buildAddTodoFAB(context),
