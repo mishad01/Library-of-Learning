@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:module14_assignment/contact_list_module.dart';
 import 'package:module14_assignment/widgets/add.dart';
 
 class ContactListScreen extends StatefulWidget {
@@ -9,6 +10,45 @@ class ContactListScreen extends StatefulWidget {
 }
 
 class _ContactListScreenState extends State<ContactListScreen> {
+  List<Contact> contactList = [];
+
+  void _addContact(String name, String number) {
+    contactList.add(Contact(name: name, number: number));
+    setState(() {});
+  }
+
+  void _deleteContact(Contact contact) {
+    contactList.remove(contact);
+    setState(() {});
+  }
+
+  void _showDeleteConfirmationDialog(Contact contact) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete Contact'),
+          content: Text('Are you sure you want to delete this contact?'),
+          actions: [
+            TextButton(
+              child: Icon(Icons.undo),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+            TextButton(
+              child: Icon(Icons.delete),
+              onPressed: () {
+                _deleteContact(contact);
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +64,27 @@ class _ContactListScreenState extends State<ContactListScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            AddNameNumber(),
+            AddNameNumber(
+              onAdd: _addContact,
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: ListView.separated(
                 separatorBuilder: (context, index) => Divider(),
-                itemCount: 10,
+                itemCount: contactList.length,
                 primary: false,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return Container(
-                      color: Colors.grey.shade200, child: _ListTile());
+                  return GestureDetector(
+                    onLongPress: () {
+                      _showDeleteConfirmationDialog(contactList[index]);
+                    },
+                    child: Container(
+                        color: Colors.grey.shade200,
+                        child: _ListTile(contactList[index])),
+                  );
                 },
               ),
             ),
@@ -43,14 +94,14 @@ class _ContactListScreenState extends State<ContactListScreen> {
     );
   }
 
-  ListTile _ListTile() {
+  ListTile _ListTile(Contact contact) {
     return ListTile(
       title: Text(
-        "Name",
+        contact.name,
         style: TextStyle(color: Colors.red),
       ),
       leading: Icon(Icons.person),
-      subtitle: Text("348758394"),
+      subtitle: Text(contact.number),
       trailing: Icon(Icons.call),
     );
   }
