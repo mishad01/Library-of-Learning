@@ -15,12 +15,43 @@ class _ContactListScreenState extends State<ContactListScreen> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Contact List',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
-      body: AddNameNumber(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            AddNameNumber(),
+            Expanded(
+              child: ListView.separated(
+                separatorBuilder: (context, index) => Divider(),
+                itemCount: 10,
+                primary: false,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Container(
+                      color: Colors.grey.shade200, child: _ListTile());
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  ListTile _ListTile() {
+    return ListTile(
+      title: Text(
+        "Name",
+        style: TextStyle(color: Colors.red),
+      ),
+      leading: Icon(Icons.person),
+      subtitle: Text("348758394"),
+      trailing: Icon(Icons.call),
     );
   }
 }

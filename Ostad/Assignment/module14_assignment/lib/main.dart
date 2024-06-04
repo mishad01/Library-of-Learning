@@ -13,12 +13,31 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: ContactListScreen(),
       theme: ThemeData(
-        inputDecorationTheme: InputDecorationTheme(
-            enabledBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-            focusedBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
+        inputDecorationTheme: _inputDecorationTheme(),
+        elevatedButtonTheme: _elevatedButtonThemeData(),
       ),
+    );
+  }
+
+  ElevatedButtonThemeData _elevatedButtonThemeData() {
+    return ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blueGrey,
+        foregroundColor: Colors.white,
+        fixedSize: const Size.fromWidth(double.maxFinite),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(3),
+        ),
+      ),
+    );
+  }
+
+  InputDecorationTheme _inputDecorationTheme() {
+    return const InputDecorationTheme(
+      enabledBorder:
+          OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+      focusedBorder:
+          OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
     );
   }
 }
