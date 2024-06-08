@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screen/auth/email_verification_screen.dart';
+import 'package:task_manager/ui/screen/auth/sign_up_screen.dart';
 import 'package:task_manager/ui/utility/app_color.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
 
@@ -13,6 +15,7 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,12 +23,12 @@ class _SignInScreenState extends State<SignInScreen> {
           child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 100,
                 ),
                 Text(
                   'Get Started With',
@@ -48,15 +51,26 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 10,
                 ),
+
                 ElevatedButton(
                   onPressed: () {},
                   child: Icon(Icons.arrow_circle_right_outlined),
+                ),
+                const SizedBox(
+                  height: 50,
                 ),
                 Center(
                   child: Column(
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EmailVerificationScreen(),
+                            ),
+                          );
+                        },
                         child: const Text(
                           'Forgot Password',
                         ),
@@ -67,13 +81,16 @@ class _SignInScreenState extends State<SignInScreen> {
                               color: Colors.black.withOpacity(0.8),
                               fontWeight: FontWeight.w600,
                               letterSpacing: 0.4),
-                          text: "Don't have an account?",
+                          text: "Don't have an account? ",
                           children: [
                             TextSpan(
-                                text: 'Sign Up',
-                                style: TextStyle(color: AppColor.themeColor),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {}),
+                              text: 'Sign Up',
+                              style: TextStyle(color: AppColor.themeColor),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  _onTapSignUpButton();
+                                },
+                            ),
                           ],
                         ),
                       )
@@ -86,6 +103,15 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ),
       )),
+    );
+  }
+
+  void _onTapSignUpButton() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SignUpScreen(),
+      ),
     );
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screen/splash_screen.dart';
+import 'package:task_manager/ui/screen/auth/splash_screen.dart';
 import 'package:task_manager/ui/utility/app_color.dart';
 
 class TaskManager extends StatelessWidget {
@@ -24,6 +24,11 @@ class TaskManager extends StatelessWidget {
       textTheme: TextTheme(
         titleLarge: TextStyle(
             fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+        titleSmall: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: Colors.grey,
+            letterSpacing: 0.4),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -32,6 +37,12 @@ class TaskManager extends StatelessWidget {
           foregroundColor: AppColor.white,
           fixedSize: Size.fromWidth(double.maxFinite),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.grey,
+          textStyle: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
     );
