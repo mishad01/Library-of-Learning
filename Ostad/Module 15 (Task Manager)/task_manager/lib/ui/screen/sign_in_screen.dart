@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/utility/app_color.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
@@ -51,28 +52,35 @@ class _SignInScreenState extends State<SignInScreen> {
                   onPressed: () {},
                   child: Icon(Icons.arrow_circle_right_outlined),
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Forgot Password',
-                  ),
-                ),
-                //This RichText widget in Flutter is used to display a piece of text with multiple styles in a single text block.
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                        color: Colors.black.withOpacity(0.8),
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.4),
-                    text: "Don't have an account?",
+                Center(
+                  child: Column(
                     children: [
-                      TextSpan(
-                        text: 'Sign Up',
-                        style: TextStyle(color: AppColor.themeColor),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'Forgot Password',
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                              color: Colors.black.withOpacity(0.8),
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.4),
+                          text: "Don't have an account?",
+                          children: [
+                            TextSpan(
+                                text: 'Sign Up',
+                                style: TextStyle(color: AppColor.themeColor),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {}),
+                          ],
+                        ),
                       )
                     ],
                   ),
-                )
+                ),
+                //This RichText widget in Flutter is used to display a piece of text with multiple styles in a single text block.
               ],
             ),
           ),
