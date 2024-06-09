@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screen/auth/email_verification_screen.dart';
 import 'package:task_manager/ui/screen/auth/sign_up_screen.dart';
+import 'package:task_manager/ui/screen/main_bottom_nav_screen.dart';
 import 'package:task_manager/ui/utility/app_color.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
 
@@ -53,7 +54,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
 
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    onTapNextButton();
+                  },
                   child: Icon(Icons.arrow_circle_right_outlined),
                 ),
                 const SizedBox(
@@ -104,6 +107,14 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       )),
     );
+  }
+
+  void onTapNextButton() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MainBottomNavScreen(),
+        ));
   }
 
   void _onTapSignUpButton() {
