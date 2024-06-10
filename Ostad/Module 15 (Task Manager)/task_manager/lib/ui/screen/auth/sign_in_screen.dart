@@ -29,7 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 100,
+                  height: 160,
                 ),
                 Text(
                   'Get Started With',

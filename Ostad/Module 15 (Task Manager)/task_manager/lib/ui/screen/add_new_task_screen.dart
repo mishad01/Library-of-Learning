@@ -10,7 +10,7 @@ class AddNewTaskScreen extends StatelessWidget {
     final TextEditingController _subjectTEController = TextEditingController();
     final TextEditingController _describeTEController = TextEditingController();
     return Scaffold(
-      appBar: profileAppBar(),
+      appBar: profileAppBar(context),
       body: BackgroundWidget(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
