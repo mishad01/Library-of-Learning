@@ -31,6 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 160,
                 ),
+                //Image.asset(AssetPaths.appLogoSvg),
                 Text(
                   'Get Started With',
                   style: Theme.of(context).textTheme.titleLarge,
