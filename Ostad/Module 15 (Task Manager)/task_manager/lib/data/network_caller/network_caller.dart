@@ -30,8 +30,8 @@ class NetworkCaller {
     }
   }
 
-  static Future<NetworkResponse> postRequest(
-      String url, Map<String, dynamic>? body) async {
+  static Future<NetworkResponse> postRequest(String url,
+      {Map<String, dynamic>? body}) async {
     try {
       Response response = await post(
         Uri.parse(url),

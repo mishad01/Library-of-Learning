@@ -1,9 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/models/network_response.dart';
+import 'package:task_manager/data/network_caller/network_caller.dart';
+import 'package:task_manager/data/utilities/urls.dart';
 import 'package:task_manager/ui/screen/auth/sign_in_screen.dart';
 import 'package:task_manager/ui/utility/app_color.dart';
 import 'package:task_manager/ui/utility/app_constants.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
+import 'package:task_manager/ui/widgets/snack_bar_message.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -19,6 +23,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _mobileTEController = TextEditingController();
   GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  bool _showPassword = false;
+  bool _registrationInProgress = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +54,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(hintText: 'Email'),
                     controller: _emailTEController,
                     keyboardType: TextInputType.emailAddress,
-                    //autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if (value?.trim().isEmpty ?? true) {
                         return 'Enter your email';
@@ -95,15 +101,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (value?.trim().isEmpty ?? true) {
                         return 'Enter your Mobile Number';
                       }
+                      if (AppConstants.mobileRegex.hasMatch(value!) == false) {
+                        return 'Enter a valid phone number';
+                      }
                     },
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    obscureText: true,
+                    obscureText: _showPassword == false,
                     controller: _passwordTEController,
-                    decoration: InputDecoration(hintText: 'Password'),
+                    decoration: InputDecoration(
+                        hintText: 'Password',
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              _showPassword = !_showPassword;
+                              if (mounted) {
+                                setState(() {});
+                              }
+                            },
+                            icon: Icon(_showPassword
+                                ? Icons.remove_red_eye
+                                : Icons.visibility_off))),
                     validator: (value) {
                       if (value?.trim().isEmpty ?? true) {
                         return 'Enter your password';
@@ -117,7 +137,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   ElevatedButton(
                     onPressed: () {
-                      if (_formkey.currentState!.validate()) {}
+                      if (_formkey.currentState!.validate()) {
+                        _registerUser();
+                      }
                     },
                     child: Icon(Icons.arrow_circle_right_outlined),
                   ),
@@ -163,6 +185,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       )),
     );
+  }
+
+  void _registerUser() async {
+    _registrationInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    Map<String, dynamic> requestInput = {
+      "email": _emailTEController.text.trim(),
+      "firstName": _firstNameTEController.text.trim(),
+      "lastName": _lastNameTEController.text.trim(),
+      "mobile": _mobileTEController.text.trim(),
+      "password": _passwordTEController.text,
+      "photo": ""
+    };
+
+    NetworkResponse response = await NetworkCaller.postRequest(
+        Urls.registrationUrl,
+        body: requestInput);
+    if (response.isSuccess) {
+      _clearTextField();
+      if (mounted) {
+        showSnackBarMessahe(context, 'Registration Success');
+      }
+    } else {
+      if (mounted) {
+        showSnackBarMessahe(
+            context, response.errorMessage ?? 'Registration failed, try again');
+      }
+    }
+  }
+
+  void _clearTextField() {
+    _emailTEController.clear();
+    _passwordTEController.clear();
+    _firstNameTEController.clear();
+    _lastNameTEController.clear();
+    _mobileTEController.clear();
   }
 
   void _onTapSignInButton() {
