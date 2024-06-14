@@ -41,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 100,
+                    height: 20,
                   ),
                   Text(
                     'Join With Us',
@@ -135,13 +135,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 10,
                   ),
 
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formkey.currentState!.validate()) {
-                        _registerUser();
-                      }
-                    },
-                    child: Icon(Icons.arrow_circle_right_outlined),
+                  Visibility(
+                    visible: _registrationInProgress == false,
+                    replacement: Center(child: CircularProgressIndicator()),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formkey.currentState!.validate()) {
+                          _registerUser();
+                        }
+                      },
+                      child: Icon(Icons.arrow_circle_right_outlined),
+                    ),
                   ),
                   const SizedBox(
                     height: 50,
@@ -204,6 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     NetworkResponse response = await NetworkCaller.postRequest(
         Urls.registrationUrl,
         body: requestInput);
+    _registrationInProgress = false;
     if (response.isSuccess) {
       _clearTextField();
       if (mounted) {
