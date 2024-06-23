@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/controller/auth_controller.dart';
+import 'package:task_manager/ui/screen/auth/sign_in_screen.dart';
 import 'package:task_manager/ui/screen/update_profile_screen.dart';
 import 'package:task_manager/ui/utility/app_color.dart';
 
@@ -26,11 +28,11 @@ AppBar profileAppBar(context, [bool fromUpdateprofile = false]) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Rabbil Hasan',
+            AuthController.userData?.fullName ?? ' ',
             style: TextStyle(fontSize: 16, color: Colors.white),
           ),
           Text(
-            'xyz@gmail.com',
+            AuthController.userData?.email ?? ' ',
             style: TextStyle(fontSize: 12, color: Colors.white),
           ),
         ],
@@ -38,7 +40,16 @@ AppBar profileAppBar(context, [bool fromUpdateprofile = false]) {
     ),
     actions: [
       IconButton(
-        onPressed: () {},
+        onPressed: () async {
+          await AuthController.clearAllData();
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SignInScreen(),
+            ),
+            (route) => false,
+          );
+        },
         icon: Icon(Icons.logout),
       )
     ],
