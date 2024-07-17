@@ -1,1 +1,0 @@
- D:\\Github\ Repository\\Library-of-Learning\\Ostad\\Module\ 19\ (State\ Management\ with\ getx)\\getxmainmodule\\.dart_tool\\flutter_build\\c5278ebe8f2021ffe8ddcf027b2c36d0\\native_assets.yaml: 
