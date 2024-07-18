@@ -7,7 +7,7 @@ class CounterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CounterStateController C = Get.put(CounterStateController());
+    final CounterStateController C = Get.find<CounterStateController>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -16,7 +16,10 @@ class CounterApp extends StatelessWidget {
         ),
         backgroundColor: Colors.indigoAccent,
       ),
-      body: Center(child: Obx(() => Text("Click: ${C.count}"))),
+      body: Center(
+          child: GetBuilder<CounterStateController>(
+        builder: (controller) => Text("Click: ${C.count}"),
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           C.increment();

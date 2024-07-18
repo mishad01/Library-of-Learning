@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test/controller_state.dart';
 import 'package:test/counter_app.dart';
 
 void main() {
-  runApp(MyApp());
   runApp(MyApp());
 }
 
@@ -18,6 +18,13 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => CounterApp()),
       ],
+      initialBinding: ControllerBinding(),
     );
+  }
+}
+
+class ControllerBinding extends Bindings {
+  void dependencies() {
+    Get.put(CounterStateController());
   }
 }
