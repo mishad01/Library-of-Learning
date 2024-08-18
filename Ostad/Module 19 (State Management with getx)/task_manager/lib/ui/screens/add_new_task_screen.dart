@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/data/model/network_response.dart';
-import 'package:task_manager/data/network_caller/network_caller.dart';
-import 'package:task_manager/data/utilites/urls.dart';
+import 'package:get/get.dart';
+import 'package:task_manager/ui/controller/add_new_task_controller.dart';
 import 'package:task_manager/ui/widgets/background_widgets.dart';
 import 'package:task_manager/ui/widgets/centered_progress_indicetor.dart';
 import 'package:task_manager/ui/widgets/profile_app_bar.dart';
-import 'package:task_manager/ui/widgets/snack_bar_message.dart';
 
 class AddNewTaskScreen extends StatefulWidget {
   const AddNewTaskScreen({super.key});
@@ -19,7 +17,6 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
   final TextEditingController _descriptionTEController =
       TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
-  bool _addNewTaskInProgress = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,19 +60,24 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                     },
                   ),
                   const SizedBox(height: 10),
-                  Visibility(
-                    visible: _addNewTaskInProgress == false,
-                    replacement: const CenteredProgressIndicetor(),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formState.currentState!.validate()) {
-                          _addNewTask();
-                        }
-                      },
-                      child: const Icon(
-                        Icons.arrow_forward_ios_outlined,
-                      ),
-                    ),
+                  GetBuilder<AddNewTaskController>(
+                    init: AddNewTaskController(),
+                    builder: (controller) {
+                      return Visibility(
+                        visible: !controller.isLoading,
+                        replacement: const CenteredProgressIndicetor(),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formState.currentState!.validate()) {
+                              _addNewTask(controller);
+                            }
+                          },
+                          child: const Icon(
+                            Icons.arrow_forward_ios_outlined,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -86,35 +88,27 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
     );
   }
 
-  Future<void> _addNewTask() async {
-    _addNewTaskInProgress = true;
-    if (mounted) {
-      setState(() {});
-    }
+  void _addNewTask(AddNewTaskController controller) async {
+    controller.isLoading = true;
 
     Map<String, dynamic> requestData = {
       "title": _subjectTEController.text.trim(),
       "description": _descriptionTEController.text.trim(),
       "status": "New"
     };
-    NetworkResponse response = await NetworkCaller.postRequest(
-      Urls.createTask,
-      body: requestData,
+
+    bool isSuccess = await controller.addNewTask(
+      requestData["title"],
+      requestData["description"],
     );
-    _addNewTaskInProgress = false;
-    if (mounted) {
-      setState(() {});
-    }
-    if (response.isSuccess) {
+
+    controller.isLoading = false;
+
+    if (isSuccess) {
       _clearTextFields();
-      if (mounted) {
-        showSnackBarMessage(context, 'New Task Added');
-      } else {
-        // This 'else' should be for the 'if (response.isSuccess)' condition
-        if (mounted) {
-          showSnackBarMessage(context, 'New Task add failed !', true);
-        }
-      }
+      showSnackBarMessage(context, 'New Task Added');
+    } else {
+      showSnackBarMessage(context, controller.errorMessage, true);
     }
   }
 
@@ -129,4 +123,13 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
     _descriptionTEController.dispose();
     super.dispose();
   }
+}
+
+void showSnackBarMessage(BuildContext context, String message,
+    [bool isError = false]) {
+  final snackBar = SnackBar(
+    content: Text(message),
+    backgroundColor: isError ? Colors.red : Colors.green,
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

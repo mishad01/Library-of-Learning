@@ -9,7 +9,6 @@ import 'package:task_manager/ui/controller/new_task_controller.dart';
 import 'package:task_manager/ui/screens/add_new_task_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/centered_progress_indicetor.dart';
-import 'package:task_manager/ui/widgets/snack_bar_message.dart';
 import 'package:task_manager/ui/widgets/task_item.dart';
 import 'package:task_manager/ui/widgets/task_summary_card.dart';
 
@@ -170,8 +169,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
           taskCountByStatusWrapperModel.taskCountByStatusList ?? [];
     } else {
       if (mounted) {
-        showSnackBarMessage(context,
-            response.errorMessage ?? 'Get new task count by failed! Try again');
+        /*showSnackBarMessage(context,
+            response.errorMessage ?? 'Get new task count by failed! Try again');*/
       }
     }
     _getTaskCountInProgress = false;
