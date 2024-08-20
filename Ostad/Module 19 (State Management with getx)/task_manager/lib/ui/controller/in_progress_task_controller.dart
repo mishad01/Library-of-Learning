@@ -25,10 +25,9 @@ class InProgressTaskController extends GetxController {
       TaskListWrapper taskListWrapper =
           TaskListWrapper.fromJson(response.responseData);
       _taskList = taskListWrapper.taskList ?? [];
-      _errorMessage = ''; // Clear any previous error messages
+      _errorMessage = '';
     } else {
       _errorMessage = response.errorMessage ?? 'Get new task failed! Try again';
-      // Optionally, you can use GetX's snackbar or other error handling mechanisms here
       Get.snackbar('Error', _errorMessage);
     }
 
