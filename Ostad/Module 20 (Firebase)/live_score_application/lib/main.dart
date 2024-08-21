@@ -9,5 +9,5 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(LiveScoreApp());
+  runApp(const LiveScoreApp());
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:live_score_application/entities/football.dart';
 
 class FootballScoreCard extends StatelessWidget {
   const FootballScoreCard({
     super.key,
+    required this.football,
   });
+  final Football football;
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +20,21 @@ class FootballScoreCard extends StatelessWidget {
           children: [
             Column(
               children: [
-                Text('0',
+                Text(football.team1Score.toString(),
                     style:
                         TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-                Text('Text Name',
+                Text(football.team1Name.toString(),
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))
               ],
             ),
-            Text('VS'),
+            Text('VS',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
             Column(
               children: [
-                Text('0',
+                Text(football.team2Score.toString(),
                     style:
                         TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-                Text('Text Name',
+                Text(football.team2Name.toString(),
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))
               ],
             )
