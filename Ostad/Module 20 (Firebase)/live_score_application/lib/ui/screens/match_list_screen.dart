@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:live_score_application/entities/football.dart';
+import 'package:live_score_application/ui/flutter_local_notification_service.dart';
 import 'package:live_score_application/ui/widgets/football_score_card.dart';
 
 class MatchListScreen extends StatefulWidget {
@@ -71,13 +72,35 @@ class _MatchListScreenState extends State<MatchListScreen> {
                     team2Score: doc.get('team2')),
               );
             }
-            return ListView.builder(
-              itemCount: matchList.length,
-              itemBuilder: (context, index) {
-                return FootballScoreCard(
-                  football: matchList[index],
-                );
-              },
+            return Column(
+              children: [
+                //Image.asset('assets/images/test_icon.png'),
+                ElevatedButton(
+                  onPressed: () {
+                    FlutterLocalNotificationService.scheduleNotification(
+                        'Notification Test', 'My App Notification', 5);
+                  },
+                  child: const Text('Set Notification'),
+                ),
+                //SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    FlutterLocalNotificationService.cancelAllNotification();
+                  },
+                  child: const Text('Remove Notification'),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: matchList.length,
+                    itemBuilder: (context, index) {
+                      return FootballScoreCard(
+                        football: matchList[index],
+                      );
+                    },
+                  ),
+                ),
+                //SizedBox(height: 10),
+              ],
             );
           }),
     );
