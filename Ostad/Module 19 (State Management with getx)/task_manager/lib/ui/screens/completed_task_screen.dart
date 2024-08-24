@@ -53,6 +53,8 @@ class _CompletedTaskScreenState extends State<CompletedTaskScreen> {
                           completedTaskController.completedTaskList.length,
                       itemBuilder: (context, index) {
                         return TaskItem(
+                          color: Colors.lightGreen[700] ?? Colors.lightGreen,
+                          state: 'Completed Task',
                           onUpdateTask: () {
                             Get.find<CompletedTaskController>()
                                 .getCompletedTasks();

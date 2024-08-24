@@ -49,8 +49,11 @@ class AuthController {
   static Future<void> clearAllData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.clear();
+    accessToken = ''; // Reset the accessToken
+    userData = null; // Reset the userData to null
   }
-  /*Future<void> saveUserAccount(String token) async {
+
+/*Future<void> saveUserAccount(String token) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString(_accessTokenKey, token);
     accessToken = token;

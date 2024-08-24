@@ -32,6 +32,8 @@ class _CancelledTaskScreenState extends State<CancelledTaskScreen> {
               itemCount: controller.canceledTaskList.length,
               itemBuilder: (context, index) {
                 return TaskItem(
+                  color: Colors.red,
+                  state: 'Cancelled Task',
                   taskModel: controller.canceledTaskList[index],
                   onUpdateTask: () {
                     // Refresh tasks if needed

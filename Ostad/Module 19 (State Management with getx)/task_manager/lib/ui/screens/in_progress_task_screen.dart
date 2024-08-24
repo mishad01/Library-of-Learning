@@ -32,6 +32,8 @@ class _InProgressTaskScreenState extends State<InProgressTaskScreen> {
               itemCount: controller.taskList.length,
               itemBuilder: (context, index) {
                 return TaskItem(
+                  color: Colors.purpleAccent[700] ?? Colors.purpleAccent,
+                  state: 'In Progress',
                   onUpdateTask: () {
                     // Refresh tasks if needed
                     controller.fetchInProgressTasks();

@@ -7,14 +7,17 @@ import 'package:task_manager/ui/widgets/centered_progress_indicetor.dart';
 import 'package:task_manager/ui/widgets/snack_bar_message.dart';
 
 class TaskItem extends StatefulWidget {
-  const TaskItem({
-    super.key,
-    required this.taskModel,
-    required this.onUpdateTask,
-  });
+  const TaskItem(
+      {super.key,
+      required this.taskModel,
+      required this.onUpdateTask,
+      required this.state,
+      this.color = Colors.blue});
 
   final TaskModel taskModel;
   final VoidCallback onUpdateTask;
+  final String state;
+  final Color color;
 
   @override
   State<TaskItem> createState() => _TaskItemState();
@@ -40,13 +43,32 @@ class _TaskItemState extends State<TaskItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
+      elevation: 4,
       child: ListTile(
-        title: Text(widget.taskModel.title ?? ' '),
+        title: Text(
+          widget.taskModel.title ?? ' ',
+          style: const TextStyle(
+            fontWeight: FontWeight.w700, // Bold font weight
+            fontSize: 18.0, // Font size
+            color: Colors.black87, // Font color
+            letterSpacing: 1.2, // Spacing between letters
+            fontFamily: 'Arial Rounded MT Bold',
+          ),
+        ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.taskModel.description ?? ' '),
+            Text(
+              widget.taskModel.description ?? ' ',
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 14.0, // Font size
+                color: Colors.black87, // Font color
+                letterSpacing: 1.2, // Spacing between letters
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            SizedBox(height: 10),
             Text(
               'Date : ${widget.taskModel.createdDate}',
               style:
@@ -56,11 +78,16 @@ class _TaskItemState extends State<TaskItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Chip(
-                  label: Text('New'),
+                  label: Text(
+                    widget.state,
+                    style: TextStyle(color: Colors.white),
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
+                    side: BorderSide(color: Colors.transparent),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  backgroundColor: widget.color,
                 ),
                 ButtonBar(
                   children: [
@@ -71,7 +98,10 @@ class _TaskItemState extends State<TaskItem> {
                           onPressed: () {
                             _deleteTask();
                           },
-                          icon: Icon(Icons.delete)),
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          )),
                     ),
                     Visibility(
                       visible: _editInProgress == false,
@@ -90,7 +120,10 @@ class _TaskItemState extends State<TaskItem> {
 
   Widget _buildEditButton() {
     return PopupMenuButton<String>(
-        icon: const Icon(Icons.edit),
+        icon: const Icon(
+          Icons.edit,
+          color: Colors.green,
+        ),
         onSelected: (String selectedValue) {
           dropDownValue = selectedValue;
           _updateTask(dropDownValue);

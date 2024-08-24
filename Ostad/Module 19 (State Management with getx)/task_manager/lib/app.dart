@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/controller_binder.dart';
+import 'package:task_manager/ui/screens/auth/email_verification_screen.dart';
+import 'package:task_manager/ui/screens/auth/sign_in_screen.dart';
+import 'package:task_manager/ui/screens/auth/sign_up_screen.dart';
 import 'package:task_manager/ui/screens/auth/splash_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 
@@ -17,9 +20,18 @@ class _TaskManagerState extends State<TaskManager> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      //home: const SplashScreen(),
       theme: _lightThemeData(),
       initialBinding: ControllerBinder(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => SplashScreen()),
+        GetPage(name: '/signIn', page: () => SignInScreen()),
+        GetPage(name: '/signUp', page: () => SignUpScreen()),
+        GetPage(name: '/ForgotPassword', page: () => EmailVerificationScreen()),
+        GetPage(name: '/Logout', page: () => SignInScreen()),
+      ],
     );
   }
 

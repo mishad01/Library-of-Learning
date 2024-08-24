@@ -1,7 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:task_manager/ui/controller/sign_in_controller.dart';
+import 'package:task_manager/data/model/login_model.dart';
+import 'package:task_manager/data/model/network_response.dart';
+import 'package:task_manager/data/network_caller/network_caller.dart';
+import 'package:task_manager/data/utilites/urls.dart';
+import 'package:task_manager/ui/controller/auth_controller.dart';
 import 'package:task_manager/ui/screens/auth/email_verification_screen.dart';
 import 'package:task_manager/ui/screens/auth/sign_up_screen.dart';
 import 'package:task_manager/ui/screens/main_bottom_nav_screen.dart';
@@ -20,7 +23,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formState = GlobalKey<FormState>();
-  //bool _signInApiProgress = false;
+  bool _signInApiProgress = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,22 +66,22 @@ class _SignInScreenState extends State<SignInScreen> {
                     },
                   ),
                   const SizedBox(height: 10),
-                  GetBuilder<SignInController>(builder: (signInController) {
-                    return Visibility(
-                      visible: signInController.signInApiInprogress == false,
-                      replacement: const Center(
-                        child: CircularProgressIndicator(),
+                  Visibility(
+                    visible: _signInApiProgress == false,
+                    replacement: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formState.currentState!.validate()) {
+                          _signUp();
+                        }
+                      },
+                      child: const Icon(
+                        Icons.arrow_forward_ios_outlined,
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _onTapNextButton();
-                        },
-                        child: const Icon(
-                          Icons.arrow_forward_ios_outlined,
-                        ),
-                      ),
-                    );
-                  }),
+                    ),
+                  ),
                   const SizedBox(height: 10),
                   Center(
                     child: TextButton(
@@ -124,7 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  /*Future<void> _signUp() async {
+  Future<void> _signUp() async {
     _signInApiProgress = true;
     if (mounted) {
       setState(() {});
@@ -155,22 +158,6 @@ class _SignInScreenState extends State<SignInScreen> {
         networkResponse.errorMessage ??
             'Email or Password is not correct. Try Again',
       );
-    }
-  }*/
-  Future<void> _onTapNextButton() async {
-    if (_formState.currentState!.validate()) {
-      final SignInController signInController = Get.find<SignInController>();
-      final bool result = await signInController.signIn(
-        _emailTEController.text.trim(),
-        _passwordTEController.text,
-      );
-      if (result) {
-        Get.offAll(() => const MainBottomNavScreen());
-      } else {
-        if (mounted) {
-          showSnackBarMessage(context, signInController.errorMessage);
-        }
-      }
     }
   }
 

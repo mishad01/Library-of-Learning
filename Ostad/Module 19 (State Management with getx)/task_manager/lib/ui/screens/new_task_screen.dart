@@ -63,6 +63,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                       itemCount: newTaskController.newTaskList.length,
                       itemBuilder: (context, index) {
                         return TaskItem(
+                          color: Colors.lightBlue[700] ?? Colors.lightBlue,
+                          state: 'New',
                           onUpdateTask: () {
                             Get.find<NewTaskController>().getNewTasks();
                             _getTaskCountByStatus();
