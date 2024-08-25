@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
-          target: LatLng(22.355231750700757, 91.82074772831926),
+          target: LatLng(22.35542888372639, 91.82072960419521),
           zoom: 20.4546,
         ),
       ),
