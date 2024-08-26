@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() {
-  runApp(const GoogleMapsApp());
+  runApp(const HomeScreen());
 }
 
 class GoogleMapsApp extends StatelessWidget {
@@ -116,5 +117,177 @@ class GoogleMapsApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  Position? _currentPosition;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Geo Location'),
+        ),
+        body: Center(child: Text('Current Location : ${_currentPosition}')),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _locationPermissionHandler(() {
+              Geolocator.getCurrentPosition();
+            });
+
+            _locationPermissionHandler(() {
+              Geolocator.getPositionStream().listen(
+                (event) {
+                  debugPrint(event.toString());
+                },
+              );
+            });
+            _getCurrentLocation();
+            _listenCurrentLocation();
+          },
+          child: Icon(Icons.location_history),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _getCurrentLocation() async {
+    /*
+    TODO: TOTAL 3 STEPS
+    TODO : Check Permission -> Check Permission
+    TODO :Check GPS Service -> Ask to on
+    TODO :Get current Location
+     */
+
+    //TODO : Check Permission -> Check Permission
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      //permission granted
+
+      //TODO :Check GPS Service -> Ask to on
+      final bool isEnable = await Geolocator.isLocationServiceEnabled();
+      if (isEnable) {
+        //get location
+        //TODO :Get current Location
+        _currentPosition = await Geolocator.getCurrentPosition(
+          locationSettings: LocationSettings(
+            accuracy: LocationAccuracy.best,
+            distanceFilter: 10,
+            timeLimit: Duration(seconds: 10),
+          ),
+        );
+        if (mounted) {
+          setState(() {});
+        }
+      } else {
+        //On gps service
+        Geolocator.openLocationSettings();
+      }
+    } else {
+      //denied
+      if (permission == LocationPermission.deniedForever) {
+        Geolocator.openAppSettings();
+        return;
+      }
+      LocationPermission p = await Geolocator.requestPermission();
+      _getCurrentLocation();
+    }
+    //TODO :Check GPS Service -> Ask to on
+    //TODO :Get current Location
+  }
+
+  Future<void> _listenCurrentLocation() async {
+    /*
+    TODO: TOTAL 3 STEPS
+    TODO : Check Permission -> Check Permission
+    TODO :Check GPS Service -> Ask to on
+    TODO :Get current Location
+     */
+
+    //TODO : Check Permission -> Check Permission
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      //permission granted
+
+      //TODO :Check GPS Service -> Ask to on
+      final bool isEnable = await Geolocator.isLocationServiceEnabled();
+      if (isEnable) {
+        //get location
+        //TODO :Get current Location
+        await Geolocator.getPositionStream(
+          locationSettings: LocationSettings(
+            accuracy: LocationAccuracy.best,
+            distanceFilter: 10,
+            timeLimit: Duration(seconds: 10),
+          ),
+        ).listen(
+          (pos) {
+            print(pos);
+          },
+        );
+        if (mounted) {
+          setState(() {});
+        }
+      } else {
+        //On gps service
+        Geolocator.openLocationSettings();
+      }
+    } else {
+      //denied
+      if (permission == LocationPermission.deniedForever) {
+        Geolocator.openAppSettings();
+        return;
+      }
+      LocationPermission p = await Geolocator.requestPermission();
+      _getCurrentLocation();
+    }
+    //TODO :Check GPS Service -> Ask to on
+    //TODO :Get current Location
+  }
+
+  Future<void> _locationPermissionHandler(VoidCallback startService) async {
+    /*
+    TODO: TOTAL 3 STEPS
+    TODO : Check Permission -> Check Permission
+    TODO :Check GPS Service -> Ask to on
+    TODO :Get current Location
+     */
+
+    //TODO : Check Permission -> Check Permission
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      //permission granted
+
+      //TODO :Check GPS Service -> Ask to on
+      final bool isEnable = await Geolocator.isLocationServiceEnabled();
+      if (isEnable) {
+        //Start Provided Service
+        startService();
+      } else {
+        //On gps service
+        Geolocator.openLocationSettings();
+      }
+    } else {
+      //denied
+      if (permission == LocationPermission.deniedForever) {
+        Geolocator.openAppSettings();
+        return;
+      }
+      LocationPermission p = await Geolocator.requestPermission();
+      _locationPermissionHandler(startService);
+    }
+    //TODO :Check GPS Service -> Ask to on
+    //TODO :Get current Location
   }
 }
