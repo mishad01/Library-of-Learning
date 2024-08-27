@@ -14,6 +14,7 @@ class _LocationScreenState extends State<LocationScreen> {
   Position? _currentPosition;
   LatLng _currentLatLng =
       const LatLng(22.35542888372639, 91.82072960419521); // Default position
+  Marker? _currentMarker;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,16 +35,19 @@ class _LocationScreenState extends State<LocationScreen> {
           _googleMapController = controller;
         },
         onTap: (LatLng latLng) {
-          print(latLng);
+          print('Checking Real time ${latLng}');
           _currentLatLng = latLng;
           _googleMapController
               .animateCamera(CameraUpdate.newLatLng(_currentLatLng));
+          //_updateMarkerPosition(_currentLatLng);
           setState(() {});
         },
+        markers: _currentMarker != null ? {_currentMarker!} : {},
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _getCurrentLocation();
+          _getRealTimeLocationUpdate();
         },
         child: Icon(Icons.location_history),
       ),
@@ -90,5 +94,56 @@ class _LocationScreenState extends State<LocationScreen> {
       LocationPermission p = await Geolocator.requestPermission();
       _getCurrentLocation();
     }
+  }
+
+  Future<void> _getRealTimeLocationUpdate() async {
+    /*
+  TODO: CHECK PERMISSION
+  TODO : CHECK GPS SERVICE
+  TODO: GET CURRENT LOCATION
+  */
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      final isEnable = await Geolocator.isLocationServiceEnabled();
+      if (isEnable) {
+        Geolocator.getPositionStream(
+            locationSettings: LocationSettings(
+          distanceFilter: 10,
+          timeLimit: Duration(seconds: 10),
+          accuracy: LocationAccuracy.best,
+        )).listen(
+          (Position position) {
+            print(position);
+            _currentLatLng = LatLng(position.latitude, position.longitude);
+            _googleMapController
+                .animateCamera(CameraUpdate.newLatLng(_currentLatLng));
+            _updateMarkerPosition(_currentLatLng);
+          },
+        );
+      } else {
+        Geolocator.openAppSettings();
+      }
+    } else {
+      if (permission == LocationPermission.deniedForever) {
+        Geolocator.openAppSettings();
+        return;
+      }
+      LocationPermission requestPermission =
+          await Geolocator.requestPermission();
+      if (requestPermission == LocationPermission.always ||
+          requestPermission == LocationPermission.whileInUse) {
+        _getRealTimeLocationUpdate();
+      }
+    }
+  }
+
+  void _updateMarkerPosition(LatLng newPosition) {
+    _currentMarker = Marker(
+      markerId: const MarkerId('currentLocation'),
+      position: newPosition,
+      infoWindow: const InfoWindow(title: 'Current Location'),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+    );
   }
 }
