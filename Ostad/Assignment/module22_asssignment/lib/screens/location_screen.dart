@@ -15,6 +15,15 @@ class _LocationScreenState extends State<LocationScreen> {
   LatLng _currentLatLng =
       const LatLng(22.35542888372639, 91.82072960419521); // Default position
   Marker? _currentMarker;
+  Polyline? _currentPolyLine;
+  List<LatLng> _polyLineCoordinates = [];
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+    _getRealTimeLocationUpdate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +117,7 @@ class _LocationScreenState extends State<LocationScreen> {
       final isEnable = await Geolocator.isLocationServiceEnabled();
       if (isEnable) {
         Geolocator.getPositionStream(
-            locationSettings: LocationSettings(
+            locationSettings: const LocationSettings(
           distanceFilter: 10,
           timeLimit: Duration(seconds: 10),
           accuracy: LocationAccuracy.best,
@@ -119,6 +128,8 @@ class _LocationScreenState extends State<LocationScreen> {
             _googleMapController
                 .animateCamera(CameraUpdate.newLatLng(_currentLatLng));
             _updateMarkerPosition(_currentLatLng);
+            _updatePolyLine(_currentLatLng);
+            setState(() {});
           },
         );
       } else {
@@ -142,8 +153,21 @@ class _LocationScreenState extends State<LocationScreen> {
     _currentMarker = Marker(
       markerId: const MarkerId('currentLocation'),
       position: newPosition,
-      infoWindow: const InfoWindow(title: 'Current Location'),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+      infoWindow: InfoWindow(
+          title: 'My Current Location',
+          snippet:
+              'Lat: ${newPosition.latitude}, Lng: ${newPosition.longitude}'),
+    );
+  }
+
+  void _updatePolyLine(LatLng newPosition) {
+    _polyLineCoordinates.add(newPosition);
+    _currentPolyLine = Polyline(
+      polylineId: const PolylineId('trackingPolyLine'),
+      color: Colors.greenAccent,
+      width: 5,
+      points: _polyLineCoordinates,
     );
   }
 }
