@@ -48,10 +48,14 @@ class _LocationScreenState extends State<LocationScreen> {
           _currentLatLng = latLng;
           _googleMapController
               .animateCamera(CameraUpdate.newLatLng(_currentLatLng));
-          //_updateMarkerPosition(_currentLatLng);
+          /*_updateMarkerPosition(_currentLatLng);
+          _updatePolyLine(
+              _currentLatLng);*/ // Add the tapped position to the polyline
+
           setState(() {});
         },
         markers: _currentMarker != null ? {_currentMarker!} : {},
+        polylines: _currentPolyLine != null ? {_currentPolyLine!} : {},
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -169,5 +173,6 @@ class _LocationScreenState extends State<LocationScreen> {
       width: 5,
       points: _polyLineCoordinates,
     );
+    setState(() {});
   }
 }
