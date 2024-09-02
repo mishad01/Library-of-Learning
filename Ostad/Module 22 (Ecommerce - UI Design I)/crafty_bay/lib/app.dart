@@ -1,20 +1,51 @@
-import 'package:crafty_bay/presentation/ui/screens/main_bottom_navbar_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CraftyBay extends StatelessWidget {
   const CraftyBay({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MainBottomNavbarScreen(),
+    return GetMaterialApp(
+      home: EmailVerificationScreen(),
       theme: ThemeData(
-        colorSchemeSeed: AppColors.themeColor,
-        scaffoldBackgroundColor: Colors.white,
-        progressIndicatorTheme:
-            const ProgressIndicatorThemeData(color: AppColors.themeColor),
-      ),
+          colorSchemeSeed: AppColors.themeColor,
+          scaffoldBackgroundColor: Colors.white,
+          progressIndicatorTheme:
+              const ProgressIndicatorThemeData(color: AppColors.themeColor),
+          textTheme: const TextTheme(
+            headlineLarge: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            border: _outlineInputBorder(),
+            enabledBorder: _outlineInputBorder(),
+            focusedBorder: _outlineInputBorder(),
+            errorBorder: _outlineInputBorder(Colors.red),
+            contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.themeColor,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              textStyle: TextStyle(fontSize: 16),
+              fixedSize: Size.fromWidth(double.maxFinite),
+            ),
+          )),
     );
+  }
+
+  OutlineInputBorder _outlineInputBorder([Color? color]) {
+    return OutlineInputBorder(
+        borderSide:
+            BorderSide(color: color ?? AppColors.themeColor, width: 1.4),
+        borderRadius: BorderRadius.circular(8));
   }
 }
