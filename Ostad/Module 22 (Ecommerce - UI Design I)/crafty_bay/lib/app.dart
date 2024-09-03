@@ -1,4 +1,4 @@
-import 'package:crafty_bay/presentation/ui/screens/auth/otp_verification_screens.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/complete_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,7 @@ class CraftyBay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: OtpVerificationScreens(),
+      home: CompleteVerificationScreen(),
       theme: ThemeData(
           colorSchemeSeed: AppColors.themeColor,
           scaffoldBackgroundColor: Colors.white,
@@ -27,6 +27,7 @@ class CraftyBay extends StatelessWidget {
             focusedBorder: _outlineInputBorder(),
             errorBorder: _outlineInputBorder(Colors.red),
             contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+            hintStyle: TextStyle(color: Colors.grey),
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
