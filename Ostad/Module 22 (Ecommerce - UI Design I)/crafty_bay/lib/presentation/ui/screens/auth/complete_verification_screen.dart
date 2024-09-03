@@ -11,7 +11,6 @@ class CompleteVerificationScreen extends StatefulWidget {
 
 class _CompleteVerificationScreenState
     extends State<CompleteVerificationScreen> {
-  final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _firstNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _mobileTEController = TextEditingController();

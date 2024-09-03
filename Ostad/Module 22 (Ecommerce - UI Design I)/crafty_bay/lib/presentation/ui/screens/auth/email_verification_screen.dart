@@ -1,5 +1,6 @@
 import 'package:crafty_bay/presentation/ui/screens/widgets/app_logo_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
@@ -44,7 +45,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.offNamed('/OtpScreen');
+                },
                 child: Text(
                   'Next',
                   style: Theme.of(context)
@@ -62,7 +65,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _emailTEController.dispose();
     super.dispose();
   }

@@ -1,6 +1,9 @@
+import 'package:crafty_bay/presentation/ui/controller/time_count_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/complete_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/splash_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpVerificationScreens extends StatefulWidget {
@@ -12,6 +15,8 @@ class OtpVerificationScreens extends StatefulWidget {
 
 class _OtpVerificationScreensState extends State<OtpVerificationScreens> {
   final TextEditingController _otpTEController = TextEditingController();
+  final TimeCountController _timeCountController =
+      Get.find<TimeCountController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,27 +62,40 @@ class _OtpVerificationScreensState extends State<OtpVerificationScreens> {
               controller: _otpTEController,
               appContext: context,
             ),
-            ElevatedButton(onPressed: () {}, child: Text('Next')),
+            ElevatedButton(onPressed: _onTapNextButton, child: Text('Next')),
             const SizedBox(height: 16),
-            RichText(
-              text: TextSpan(
-                text: 'This code will expire in ',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(color: Colors.grey),
-                children: [
-                  TextSpan(
-                      text: '120s',
-                      style: TextStyle(color: AppColors.themeColor))
-                ],
-              ),
-            ),
+            richText(context),
             TextButton(onPressed: () {}, child: Text('Resend Code'))
           ],
         ),
       ),
     ));
+  }
+
+  Widget richText(BuildContext context) {
+    return Obx(
+      () {
+        final remainingTime = _timeCountController.count;
+        return RichText(
+          text: TextSpan(
+            text: 'This code will expire in ',
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge
+                ?.copyWith(color: Colors.grey),
+            children: [
+              TextSpan(
+                  text: '${remainingTime}s',
+                  style: TextStyle(color: AppColors.themeColor))
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _onTapNextButton() {
+    Get.to(() => const CompleteVerificationScreen());
   }
 
   @override
