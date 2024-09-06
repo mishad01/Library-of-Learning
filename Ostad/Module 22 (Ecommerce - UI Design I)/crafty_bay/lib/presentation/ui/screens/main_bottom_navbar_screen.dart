@@ -4,7 +4,6 @@ import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/wish_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class MainBottomNavbarScreen extends StatefulWidget {
   const MainBottomNavbarScreen({super.key});
@@ -24,25 +23,6 @@ class _MainBottomNavbarScreenState extends State<MainBottomNavbarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: SvgPicture.asset('assets/images/logo_nav.svg'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.person_outline),
-          ),
-          const SizedBox(width: 10),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.phone_outlined),
-          ),
-          const SizedBox(width: 10),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_outlined),
-          ),
-        ],
-      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectIndex,
         onTap: (value) {

@@ -1,5 +1,6 @@
 import 'package:crafty_bay/presentation/ui/screens/widgets/app_logo_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CompleteVerificationScreen extends StatefulWidget {
   const CompleteVerificationScreen({super.key});
@@ -84,7 +85,9 @@ class _CompleteVerificationScreenState
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed('/mainBottomNavBar');
+                },
                 child: Text(
                   'Complete',
                   style: Theme.of(context)
