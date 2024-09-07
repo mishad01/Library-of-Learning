@@ -3,6 +3,7 @@ import 'package:crafty_bay/presentation/ui/screens/widgets/home_banner_slider.da
 import 'package:crafty_bay/presentation/ui/screens/widgets/search_text_field.dart';
 import 'package:crafty_bay/presentation/ui/screens/widgets/section_header.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
+import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -26,37 +27,40 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /*Container(
-                // margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: SearchTextField(
-                    textEditingController: TextEditingController()),
-              ),*/
+                    // margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: SearchTextField(
+                        textEditingController: TextEditingController()),
+                  ),*/
               /*TextField(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: 'Search',
-                  hintStyle: TextStyle(color: Colors.grey[400]),
-                  fillColor: Colors.grey.shade200,
-                  filled: true,
-                  border: InputBorder.none,
-                  enabledBorder:
-                      InputBorder.none, // Ensures no border when enabled
-                  focusedBorder:
-                      InputBorder.none, // Ensures no border when focused
-                  errorBorder: InputBorder
-                      .none, // Ensures no border when there's an error
-                  disabledBorder: InputBorder.none, // Ensu
-                ),
-              ),*/
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.search),
+                      hintText: 'Search',
+                      hintStyle: TextStyle(color: Colors.grey[400]),
+                      fillColor: Colors.grey.shade200,
+                      filled: true,
+                      border: InputBorder.none,
+                      enabledBorder:
+                          InputBorder.none, // Ensures no border when enabled
+                      focusedBorder:
+                          InputBorder.none, // Ensures no border when focused
+                      errorBorder: InputBorder
+                          .none, // Ensures no border when there's an error
+                      disabledBorder: InputBorder.none, // Ensu
+                    ),
+                  ),*/
               SearchTextField(textEditingController: TextEditingController()),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
               const HomeBannerSlider(),
-              const SizedBox(height: 10),
-              _buildAllCategoriesScreen()
+              const SizedBox(height: 5),
+              _buildAllCategoriesScreen(),
+              //const SizedBox(height: 10),
+              SectionHeader(title: 'Popular', onTap: () {}),
+              SizedBox(height: 126, child: _buildProductListView()),
             ],
           ),
         ),
@@ -70,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
         SectionHeader(title: 'All Categories', onTap: () {}),
         const SizedBox(height: 10),
         SizedBox(
-          height: 140,
+          height: 120,
           child: _buildAllCategorieslistView(),
         ),
       ],
@@ -101,6 +105,54 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         );
       },
+    );
+  }
+
+  Widget _buildProductListView() {
+    return SizedBox(
+      height: 160, // Adjust the height to fit your needs
+      child: ListView.separated(
+        separatorBuilder: (context, index) => const SizedBox(width: 12),
+        scrollDirection: Axis.horizontal,
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Container(
+            width: 120,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 120,
+                  height: 100,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.themeColor.withOpacity(0.1),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
+                    image: const DecorationImage(
+                      image: AssetImage(AssetsPath.shoeImage),
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Product Name',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 14),
+                ),
+                const SizedBox(height: 4),
+                const Row(
+                  children: [Text('1')],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 
