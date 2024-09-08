@@ -60,9 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 const HomeBannerSlider(),
                 const SizedBox(height: 16),
                 _buildAllCategoriesScreen(),
-                const SizedBox(height: 10),
                 SectionHeader(title: 'Popular', onTap: () {}),
-                SizedBox(height: 126, child: _buildProductListView()),
+                SizedBox(height: 150, child: _buildProductListView()),
               ],
             ),
           ),
@@ -116,33 +115,36 @@ class _HomeScreenState extends State<HomeScreen> {
       scrollDirection: Axis.horizontal,
       itemCount: 10,
       itemBuilder: (context, index) {
-        return SizedBox(
-          height: 300,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                width: 120,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: AppColors.themeColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(8),
-                      topLeft: Radius.circular(8)),
-                  image: const DecorationImage(
-                      image: AssetImage(AssetsPath.shoeImage),
-                      fit: BoxFit.scaleDown),
+        return Card(
+          color: Colors.white,
+          child: SizedBox(
+            height: 200,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  width: 120,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: AppColors.themeColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(8),
+                        topLeft: Radius.circular(8)),
+                    image: const DecorationImage(
+                        image: AssetImage(AssetsPath.shoeImage),
+                        fit: BoxFit.scaleDown),
+                  ),
                 ),
-              ),
-              const Text('Product Name',
-                  style: TextStyle(color: AppColors.themeColor)),
-              Row(
-                children: [
-                  const Text('120'),
-                ],
-              )
-            ],
+                const Text('Product Name',
+                    style: TextStyle(color: AppColors.themeColor)),
+                Row(
+                  children: [
+                    const Text('\$120'),
+                  ],
+                )
+              ],
+            ),
           ),
         );
       },
