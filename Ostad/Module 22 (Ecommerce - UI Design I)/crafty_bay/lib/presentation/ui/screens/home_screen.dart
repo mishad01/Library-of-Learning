@@ -1,9 +1,9 @@
-import 'package:crafty_bay/presentation/ui/screens/widgets/app_bar_icon.dart';
+import 'package:crafty_bay/presentation/ui/screens/widgets/home/app_bar_icon.dart';
+import 'package:crafty_bay/presentation/ui/screens/widgets/home/horizontal_category_listView.dart';
+import 'package:crafty_bay/presentation/ui/screens/widgets/home/horizontal_product_view_list.dart';
+import 'package:crafty_bay/presentation/ui/screens/widgets/home/search_text_field.dart';
 import 'package:crafty_bay/presentation/ui/screens/widgets/home_banner_slider.dart';
-import 'package:crafty_bay/presentation/ui/screens/widgets/search_text_field.dart';
 import 'package:crafty_bay/presentation/ui/screens/widgets/section_header.dart';
-import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
-import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -58,10 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 SearchTextField(textEditingController: TextEditingController()),
                 const SizedBox(height: 16),
                 const HomeBannerSlider(),
-                const SizedBox(height: 16),
                 _buildAllCategoriesScreen(),
-                SectionHeader(title: 'Popular', onTap: () {}),
-                SizedBox(height: 150, child: _buildProductListView()),
+                _buildPopularProductSection(),
+                _buildNewProductSection(),
+                _buildSpecialProductSection(),
+                const SizedBox(height: 30),
               ],
             ),
           ),
@@ -70,85 +71,40 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _buildPopularProductSection() {
+    return Column(
+      children: [
+        SectionHeader(title: 'Popular', onTap: () {}),
+        SizedBox(height: 178, child: HorizontalProductListView()),
+      ],
+    );
+  }
+
+  Widget _buildNewProductSection() {
+    return Column(
+      children: [
+        SectionHeader(title: 'Special', onTap: () {}),
+        SizedBox(height: 178, child: HorizontalProductListView()),
+      ],
+    );
+  }
+
+  Widget _buildSpecialProductSection() {
+    return Column(
+      children: [
+        SectionHeader(title: 'New', onTap: () {}),
+        SizedBox(height: 178, child: HorizontalProductListView()),
+      ],
+    );
+  }
+
   Widget _buildAllCategoriesScreen() {
     return Column(
       children: [
         SectionHeader(title: 'All Categories', onTap: () {}),
         const SizedBox(height: 10),
-        SizedBox(
-          height: 120,
-          child: _buildAllCategorieslistView(),
-        ),
+        SizedBox(height: 120, child: HorizontalCategoryListView()),
       ],
-    );
-  }
-
-  Widget _buildAllCategorieslistView() {
-    return ListView.separated(
-      separatorBuilder: (context, index) => SizedBox(width: 8),
-      scrollDirection: Axis.horizontal,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              //height: 130,
-              decoration: BoxDecoration(
-                color: AppColors.themeColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Icon(Icons.computer,
-                  size: 48, color: AppColors.themeColor),
-            ),
-            const SizedBox(height: 4),
-            const Text('Electronics',
-                style: TextStyle(color: AppColors.themeColor)),
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildProductListView() {
-    return ListView.separated(
-      scrollDirection: Axis.horizontal,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return Card(
-          color: Colors.white,
-          child: SizedBox(
-            height: 200,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  width: 120,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: AppColors.themeColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(8),
-                        topLeft: Radius.circular(8)),
-                    image: const DecorationImage(
-                        image: AssetImage(AssetsPath.shoeImage),
-                        fit: BoxFit.scaleDown),
-                  ),
-                ),
-                const Text('Product Name',
-                    style: TextStyle(color: AppColors.themeColor)),
-                Row(
-                  children: [
-                    const Text('\$120'),
-                  ],
-                )
-              ],
-            ),
-          ),
-        );
-      },
-      separatorBuilder: (context, index) => SizedBox(width: 10),
     );
   }
 

@@ -19,7 +19,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 180.0,
+            height: 160.0,
             onPageChanged: (index, reason) {
               _selectedIndex.value = index;
             },
