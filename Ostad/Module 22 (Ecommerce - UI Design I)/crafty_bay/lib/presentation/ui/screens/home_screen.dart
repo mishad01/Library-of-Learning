@@ -1,11 +1,7 @@
-import 'package:crafty_bay/presentation/ui/screens/widgets/home/app_bar_icon.dart';
-import 'package:crafty_bay/presentation/ui/screens/widgets/home/horizontal_category_listView.dart';
-import 'package:crafty_bay/presentation/ui/screens/widgets/home/horizontal_product_view_list.dart';
-import 'package:crafty_bay/presentation/ui/screens/widgets/home/search_text_field.dart';
-import 'package:crafty_bay/presentation/ui/screens/widgets/home_banner_slider.dart';
-import 'package:crafty_bay/presentation/ui/screens/widgets/section_header.dart';
+import 'package:crafty_bay/presentation/ui/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -75,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         SectionHeader(title: 'Popular', onTap: () {}),
-        SizedBox(height: 178, child: HorizontalProductListView()),
+        SizedBox(height: 171, child: HorizontalProductListView()),
       ],
     );
   }
@@ -93,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         SectionHeader(title: 'New', onTap: () {}),
-        SizedBox(height: 178, child: HorizontalProductListView()),
+        SizedBox(height: 171, child: HorizontalProductListView()),
       ],
     );
   }
@@ -101,9 +97,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildAllCategoriesScreen() {
     return Column(
       children: [
-        SectionHeader(title: 'All Categories', onTap: () {}),
+        SectionHeader(
+            title: 'All Categories',
+            onTap: () {
+              Get.toNamed('/allCategories');
+            }),
         const SizedBox(height: 10),
-        SizedBox(height: 120, child: HorizontalCategoryListView()),
+        SizedBox(height: 105, child: HorizontalCategoryListView()),
       ],
     );
   }
