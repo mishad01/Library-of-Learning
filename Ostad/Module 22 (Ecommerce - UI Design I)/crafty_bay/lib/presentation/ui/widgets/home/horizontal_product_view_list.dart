@@ -1,4 +1,4 @@
-import 'package:crafty_bay/presentation/ui/screens/widgets/product_card.dart';
+import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalProductListView extends StatelessWidget {

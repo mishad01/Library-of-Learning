@@ -1,4 +1,3 @@
-export '';
 export 'app_logo_widget.dart';
 export 'home/app_bar_icon.dart';
 export 'home/horizontal_category_listView.dart';
@@ -7,3 +6,4 @@ export 'home/search_text_field.dart';
 export 'home_banner_slider.dart';
 export 'product_card.dart';
 export 'section_header.dart';
+export 'widgets.dart';

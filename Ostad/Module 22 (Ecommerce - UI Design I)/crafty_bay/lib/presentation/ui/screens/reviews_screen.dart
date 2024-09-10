@@ -1,4 +1,4 @@
-import 'package:crafty_bay/presentation/ui/screens/widgets/cart_app_bar_widget.dart';
+import 'package:crafty_bay/presentation/ui/widgets/cart_app_bar_widget.dart';
 import 'package:flutter/material.dart';
 
 class ReviewsScreen extends StatefulWidget {

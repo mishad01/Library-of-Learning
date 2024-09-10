@@ -1,4 +1,4 @@
-import 'package:crafty_bay/presentation/ui/screens/widgets/app_logo_widget.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

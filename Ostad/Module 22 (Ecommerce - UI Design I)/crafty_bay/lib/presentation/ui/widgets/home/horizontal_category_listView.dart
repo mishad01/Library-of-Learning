@@ -1,4 +1,4 @@
-import 'package:crafty_bay/presentation/ui/screens/widgets/category_card.dart';
+import 'package:crafty_bay/presentation/ui/widgets/category_card.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalCategoryListView extends StatelessWidget {
