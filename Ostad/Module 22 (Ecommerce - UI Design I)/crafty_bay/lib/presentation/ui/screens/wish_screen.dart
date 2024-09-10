@@ -13,27 +13,34 @@ class WishScreen extends StatefulWidget {
 class _WishScreenState extends State<WishScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Wish List'),
-          leading: IconButton(
-              onPressed: () {
-                Get.find<BottomNavBarController>().backToHome();
-              },
-              icon: Icon(Icons.arrow_back_ios)),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
-            itemCount: 7,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 0.75,
-            ),
-            itemBuilder: (context, index) {
-              return ProductCard();
-            },
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        backToHome();
+      },
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text('Wish List'),
+            leading: IconButton(
+                onPressed: backToHome, icon: Icon(Icons.arrow_back_ios)),
           ),
-        ));
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              itemCount: 7,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 0.75,
+              ),
+              itemBuilder: (context, index) {
+                return ProductCard();
+              },
+            ),
+          )),
+    );
+  }
+
+  void backToHome() {
+    return Get.find<BottomNavBarController>().backToHome();
   }
 }
