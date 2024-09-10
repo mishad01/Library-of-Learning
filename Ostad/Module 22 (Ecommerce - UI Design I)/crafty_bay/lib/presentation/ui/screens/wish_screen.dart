@@ -15,7 +15,7 @@ class _WishScreenState extends State<WishScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Categories'),
+          title: Text('Wish List'),
           leading: IconButton(
               onPressed: () {
                 Get.find<BottomNavBarController>().backToHome();

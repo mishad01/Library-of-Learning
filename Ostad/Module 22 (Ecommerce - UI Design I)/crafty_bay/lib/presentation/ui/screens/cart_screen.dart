@@ -15,7 +15,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Categories'),
+          title: Text('Cart'),
           leading: IconButton(
               onPressed: () {
                 Get.find<BottomNavBarController>().backToHome();
