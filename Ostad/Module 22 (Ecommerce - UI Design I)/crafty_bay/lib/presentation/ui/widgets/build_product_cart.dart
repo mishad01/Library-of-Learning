@@ -2,32 +2,21 @@ import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 
-class TestScreen extends StatefulWidget {
-  const TestScreen({super.key});
+class BuildProductCart extends StatelessWidget {
+  const BuildProductCart({
+    super.key,
+  });
 
-  @override
-  State<TestScreen> createState() => _TestScreenState();
-}
-
-class _TestScreenState extends State<TestScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Test'),
-        ),
-        body: buildProductCard());
-  }
-
-  Widget buildProductCard() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return SizedBox(
+      height: 200,
       child: ListView.builder(
         itemCount: 5,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(6.0),
+            padding: const EdgeInsets.all(3.5),
             child: Column(
               children: [
                 Container(
@@ -41,8 +30,7 @@ class _TestScreenState extends State<TestScreen> {
                     ),
                   ),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.all(10.0), // Padding for the image
+                    padding: const EdgeInsets.all(7.0), // Padding for the image
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(

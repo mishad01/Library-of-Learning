@@ -3,7 +3,6 @@ import 'package:crafty_bay/presentation/ui/screens/auth/complete_verification_sc
 import 'package:crafty_bay/presentation/ui/screens/auth/otp_verification_screens.dart';
 import 'package:crafty_bay/presentation/ui/screens/category_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/main_bottom_navbar_screen.dart';
-import 'package:crafty_bay/presentation/ui/screens/test_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +19,7 @@ class CraftyBay extends StatelessWidget {
       initialBinding: ControllerBinder(),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const TestScreen()),
+        GetPage(name: '/', page: () => const MainBottomNavbarScreen()),
         GetPage(name: '/OtpScreen', page: () => const OtpVerificationScreens()),
         GetPage(
             name: '/compVrScreen', page: () => CompleteVerificationScreen()),

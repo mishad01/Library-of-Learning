@@ -1,4 +1,5 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
+import 'package:crafty_bay/presentation/ui/widgets/build_product_cart.dart';
 import 'package:crafty_bay/presentation/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         SectionHeader(title: 'Popular', onTap: () {}),
-        SizedBox(height: 171, child: HorizontalProductListView()),
+        BuildProductCart(),
       ],
     );
   }
@@ -81,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         SectionHeader(title: 'Special', onTap: () {}),
-        SizedBox(height: 178, child: HorizontalProductListView()),
+        BuildProductCart(),
       ],
     );
   }
@@ -90,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         SectionHeader(title: 'New', onTap: () {}),
-        SizedBox(height: 171, child: HorizontalProductListView()),
+        BuildProductCart(),
       ],
     );
   }
