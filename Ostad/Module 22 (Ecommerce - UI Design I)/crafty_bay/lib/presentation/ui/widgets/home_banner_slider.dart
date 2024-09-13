@@ -23,6 +23,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
             onPageChanged: (index, reason) {
               _selectedIndex.value = index;
             },
+            viewportFraction: 1,
           ),
           items: [1, 2, 3, 4, 5].map((i) {
             return Builder(

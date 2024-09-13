@@ -1,6 +1,6 @@
+import 'package:crafty_bay/presentation/ui/screens/product_details.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
-import 'package:crafty_bay/presentation/ui/widgets/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +13,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ProductDetails());
+        Get.to(() => ProductDetailsScreen());
       },
       child: Card(
         elevation: 3,
