@@ -26,32 +26,32 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /*Container(
-                      // margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: SearchTextField(
-                          textEditingController: TextEditingController()),
-                    ),*/
+                        // margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: SearchTextField(
+                            textEditingController: TextEditingController()),
+                      ),*/
                 /*TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: 'Search',
-                        hintStyle: TextStyle(color: Colors.grey[400]),
-                        fillColor: Colors.grey.shade200,
-                        filled: true,
-                        border: InputBorder.none,
-                        enabledBorder:
-                            InputBorder.none, // Ensures no border when enabled
-                        focusedBorder:
-                            InputBorder.none, // Ensures no border when focused
-                        errorBorder: InputBorder
-                            .none, // Ensures no border when there's an error
-                        disabledBorder: InputBorder.none, // Ensu
-                      ),
-                    ),*/
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.search),
+                          hintText: 'Search',
+                          hintStyle: TextStyle(color: Colors.grey[400]),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          border: InputBorder.none,
+                          enabledBorder:
+                              InputBorder.none, // Ensures no border when enabled
+                          focusedBorder:
+                              InputBorder.none, // Ensures no border when focused
+                          errorBorder: InputBorder
+                              .none, // Ensures no border when there's an error
+                          disabledBorder: InputBorder.none, // Ensu
+                        ),
+                      ),*/
                 const SizedBox(height: 16),
                 SearchTextField(textEditingController: TextEditingController()),
                 const SizedBox(height: 16),
