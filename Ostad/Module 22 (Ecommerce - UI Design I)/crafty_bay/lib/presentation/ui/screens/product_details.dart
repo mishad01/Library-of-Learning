@@ -1,5 +1,6 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/main_bottom_navbar_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/reviews_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/color_picker.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/product_image_slider.dart';
@@ -124,9 +125,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ],
         ),
         SizedBox(width: 10),
-        const Text('Reviews',
-            style: TextStyle(
-                color: AppColors.themeColor, fontWeight: FontWeight.w500)),
+        GestureDetector(
+          onTap: () {
+            Get.to(() => ReviewsScreen());
+          },
+          child: const Text('Reviews',
+              style: TextStyle(
+                  color: AppColors.themeColor, fontWeight: FontWeight.w500)),
+        ),
         SizedBox(width: 5),
         Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
