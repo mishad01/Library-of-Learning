@@ -11,23 +11,30 @@ class NetworkCaller {
   Future<NetworkResponse> _getRequest({required String url}) async {
     try {
       Uri uri = Uri.parse(url);
+      requestLog(url, {}, {}, '');
       logger.i(url);
       final Response response = await get(uri, headers: {
         'token': '',
       });
+
       if (response.statusCode == 200) {
+        responseLog(
+            url, response.statusCode, response.body, response.headers, true);
         final decodedBody = jsonDecode(response.body);
         return NetworkResponse(
             statusCode: response.statusCode,
             isSuccess: true,
             responseData: decodedBody);
       } else {
+        responseLog(
+            url, response.statusCode, response.body, response.headers, false);
         return NetworkResponse(
           statusCode: response.statusCode,
           isSuccess: false,
         );
       }
     } catch (e) {
+      responseLog(url, -1, null, {}, true, e);
       return NetworkResponse(
         statusCode: -1,
         isSuccess: false,
@@ -39,6 +46,7 @@ class NetworkCaller {
   Future<NetworkResponse> _postRequest(
       {required String url, Map<String, dynamic>? body}) async {
     try {
+      requestLog(url, {}, body ?? {}, '');
       Uri uri = Uri.parse(url);
       final Response response = await post(
         uri,
@@ -49,18 +57,23 @@ class NetworkCaller {
         body: jsonEncode(body),
       );
       if (response.statusCode == 200) {
+        responseLog(
+            url, response.statusCode, response.body, response.headers, true);
         final decodedBody = jsonDecode(response.body);
         return NetworkResponse(
             statusCode: response.statusCode,
             isSuccess: true,
             responseData: decodedBody);
       } else {
+        responseLog(
+            url, response.statusCode, response.body, response.headers, false);
         return NetworkResponse(
           statusCode: response.statusCode,
           isSuccess: false,
         );
       }
     } catch (e) {
+      responseLog(url, -1, null, {}, true, e);
       return NetworkResponse(
         statusCode: -1,
         isSuccess: false,
@@ -84,17 +97,15 @@ class NetworkCaller {
     ''');
   }
 
-  void responseLog(
-      String url,
-      String statusCode,
-      Map<String, dynamic> responseBody,
-      Map<String, dynamic> headers,
-      bool isSuccess) {
+  void responseLog(String url, int statusCode, dynamic responseBody,
+      Map<String, dynamic> headers, bool isSuccess,
+      [dynamic error]) {
     String message = '''
     Url : $url,
     Status Code : $statusCode,
     Response Body :$responseBody,
     Headers : $headers,
+    Error : $error,
     ''';
     if (isSuccess) {
       logger.i(message);

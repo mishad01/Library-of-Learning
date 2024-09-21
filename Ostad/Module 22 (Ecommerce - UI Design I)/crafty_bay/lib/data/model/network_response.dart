@@ -5,9 +5,9 @@ class NetworkResponse {
   String? errorMessage;
 
   NetworkResponse({
-    required this.statusCode,
     required this.isSuccess,
+    required this.statusCode,
     this.responseData,
-    this.errorMessage = 'Something Went Wrong',
+    this.errorMessage = 'Something went wrong',
   });
 }
