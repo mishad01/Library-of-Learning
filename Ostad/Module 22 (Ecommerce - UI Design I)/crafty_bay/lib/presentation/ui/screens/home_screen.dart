@@ -1,6 +1,8 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/category_list_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/new_product_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/popular_product_list_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/special_product_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/widgets/build_product_cart.dart';
 import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:crafty_bay/presentation/ui/widgets/widgets.dart';
@@ -95,9 +97,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         SectionHeader(title: 'Special', onTap: () {}),
-        BuildProductCart(
-          productList: [],
-        ),
+        GetBuilder<NewProductListController>(
+            builder: (newProductListController) {
+          return Visibility(
+            visible: !newProductListController.newProductInProgress,
+            replacement: CircularProgressIndicator(),
+            child: BuildProductCart(
+              productList: newProductListController.newProductList,
+            ),
+          );
+        }),
       ],
     );
   }
@@ -106,9 +115,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         SectionHeader(title: 'New', onTap: () {}),
-        BuildProductCart(
-          productList: [],
-        ),
+        GetBuilder<SpecialProductListController>(
+            builder: (specialProductListController) {
+          return Visibility(
+            visible: !specialProductListController.specialProductInProgress,
+            replacement: CircularProgressIndicator(),
+            child: BuildProductCart(
+              productList: specialProductListController.specialProductList,
+            ),
+          );
+        }),
       ],
     );
   }
