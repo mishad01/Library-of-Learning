@@ -75,5 +75,6 @@ class ProductListByRemarkController extends GetxController {
     update();
     return isSuccess;
   }
-  //Worst Api Call
+  //Worst Api Call ladder(If else)
+  //We should never do it, If a class crosses 40+ line then its basically a code smell
 }

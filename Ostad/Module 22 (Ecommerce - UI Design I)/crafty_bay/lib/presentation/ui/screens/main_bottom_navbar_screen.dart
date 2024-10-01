@@ -1,6 +1,9 @@
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/category_list_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/new_product_list_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/popular_product_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/slider_list_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/special_product_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/cart_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/category_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
@@ -30,8 +33,9 @@ class _MainBottomNavbarScreenState extends State<MainBottomNavbarScreen> {
     super.initState();
     Get.find<SliderListController>().getSliderList();
     Get.find<CategoryListController>().getCategoryList();
-    // Get.find<ProductListByRemarkController>().ge;
-    Get.find<CategoryListController>().getCategoryList();
+    Get.find<PopularProductListController>().getPopularProducts();
+    Get.find<SpecialProductListController>().getSpecialProducts();
+    Get.find<NewProductListController>().getNewProducts();
   }
 
   @override
