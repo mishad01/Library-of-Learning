@@ -1,4 +1,5 @@
 class Urls {
-  static const String _baseUrl = 'http://ecom-api.teamrabbil.com/api';
-  static const String dummtUrl = '$_baseUrl/login';
+  static const String _baseUrl = 'https://ecommerce-api.codesilicon.com/api';
+  static const String dummyUrl = '$_baseUrl/login';
+  static const String sliderList = '$_baseUrl/ListProductSlider';
 }

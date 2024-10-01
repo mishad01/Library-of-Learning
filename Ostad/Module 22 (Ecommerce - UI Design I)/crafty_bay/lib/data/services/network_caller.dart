@@ -8,7 +8,7 @@ class NetworkCaller {
   final Logger logger;
 
   NetworkCaller({required this.logger});
-  Future<NetworkResponse> _getRequest({required String url}) async {
+  Future<NetworkResponse> getRequest({required String url}) async {
     try {
       Uri uri = Uri.parse(url);
       requestLog(url, {}, {}, '');
@@ -34,7 +34,7 @@ class NetworkCaller {
         );
       }
     } catch (e) {
-      responseLog(url, -1, null, {}, true, e);
+      responseLog(url, -1, null, {}, false, e);
       return NetworkResponse(
         statusCode: -1,
         isSuccess: false,
@@ -43,7 +43,7 @@ class NetworkCaller {
     }
   }
 
-  Future<NetworkResponse> _postRequest(
+  Future<NetworkResponse> postRequest(
       {required String url, Map<String, dynamic>? body}) async {
     try {
       requestLog(url, {}, body ?? {}, '');
@@ -73,7 +73,7 @@ class NetworkCaller {
         );
       }
     } catch (e) {
-      responseLog(url, -1, null, {}, true, e);
+      responseLog(url, -1, null, {}, false, e);
       return NetworkResponse(
         statusCode: -1,
         isSuccess: false,
