@@ -75,4 +75,5 @@ class ProductListByRemarkController extends GetxController {
     update();
     return isSuccess;
   }
+  //Worst Api Call
 }
