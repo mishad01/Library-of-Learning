@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:crafty_bay/presentation/state_holders/slider_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
-import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
 import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,14 +43,17 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
                         margin: EdgeInsets.symmetric(horizontal: 2),
                         decoration: BoxDecoration(
                             color: AppColors.themeColor,
+                            image: DecorationImage(
+                                image: NetworkImage(slider.image ?? ""),
+                                fit: BoxFit.cover),
                             borderRadius: BorderRadius.circular(10)),
                         alignment: Alignment.center,
                         child: Row(
                           children: [
-                            SizedBox(
+                            /*SizedBox(
                               width: 180,
                               child: Image.asset(AssetsPath.shoeImage),
-                            ),
+                            ),*/
                             Expanded(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +64,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
                                           .textTheme
                                           .titleLarge
                                           ?.copyWith(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontWeight: FontWeight.w600)),
                                   const SizedBox(
                                     height: 16,
@@ -72,15 +74,19 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
                                     child: ElevatedButton(
                                       onPressed: () {},
                                       style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.white),
+                                          backgroundColor: Colors.white38),
                                       child: const Text('Buy Now',
                                           style: TextStyle(
-                                              color: AppColors.themeColor)),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold)),
                                     ),
                                   ),
                                 ],
                               ),
-                            )
+                            ),
+                            const SizedBox(
+                              width: 200,
+                            ),
                           ],
                         ));
                   },

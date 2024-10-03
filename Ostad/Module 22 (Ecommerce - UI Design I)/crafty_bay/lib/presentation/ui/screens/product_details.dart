@@ -10,7 +10,9 @@ import 'package:get/get.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({
+    super.key,
+  });
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -53,7 +55,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildNameandQuantitySection(),
+                buildNameAndQuantitySection(),
                 _buildRatingAndReviewSection(),
                 SizedBox(height: 8),
                 ColorPicker(
@@ -85,7 +87,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget buildNameandQuantitySection() {
+  Widget buildNameAndQuantitySection() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -119,7 +121,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           children: [
             Icon(Icons.star, color: Colors.amber),
             Text(
-              '4.8',
+              '{widget.product.star}',
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
           ],

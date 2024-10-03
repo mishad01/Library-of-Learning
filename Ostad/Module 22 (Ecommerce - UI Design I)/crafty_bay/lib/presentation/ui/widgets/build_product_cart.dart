@@ -24,7 +24,7 @@ class BuildProductCart extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return product_card2(
-              popularProduct: productList[index],
+              product: productList[index],
             );
           },
         ),

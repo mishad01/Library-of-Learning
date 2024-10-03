@@ -1,11 +1,10 @@
 import 'package:crafty_bay/data/model/product_model.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
-import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 
 class product_card2 extends StatelessWidget {
-  const product_card2({super.key, required this.popularProduct});
-  final ProductModel popularProduct;
+  const product_card2({super.key, required this.product});
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class product_card2 extends StatelessWidget {
             width: 160,
             height: 120,
             decoration: BoxDecoration(
-              color: AppColors.themeColor.withOpacity(0.2),
+              //color: AppColors.themeColor.withOpacity(0.2),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(7),
                 topRight: Radius.circular(7),
@@ -26,11 +25,11 @@ class product_card2 extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(7.0), // Padding for the image
               child: Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(AssetsPath.shoeImage),
+                    image: NetworkImage(product.image ?? ""),
                     fit: BoxFit
-                        .contain, // Adjusts the image size within the padding
+                        .cover, // Adjusts the image size within the padding
                   ),
                 ),
               ),
@@ -52,7 +51,7 @@ class product_card2 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    popularProduct.title ?? '',
+                    product.title ?? '',
                     maxLines: 1,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -62,7 +61,7 @@ class product_card2 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('${popularProduct.price}',
+                      Text('\$${product.price}',
                           style: TextStyle(
                               color: AppColors.themeColor,
                               fontWeight: FontWeight.w500)),
@@ -72,7 +71,7 @@ class product_card2 extends StatelessWidget {
                         children: [
                           Icon(Icons.star, color: Colors.amber),
                           Text(
-                            '${popularProduct.star}',
+                            '${product.star}',
                             style: TextStyle(fontWeight: FontWeight.w500),
                           ),
                         ],

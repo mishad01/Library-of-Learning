@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
             }),
         const SizedBox(height: 10),
         SizedBox(
-          height: 105,
+          height: 120,
           child: GetBuilder<CategoryListController>(
             builder: (categoryListController) {
               return Visibility(
