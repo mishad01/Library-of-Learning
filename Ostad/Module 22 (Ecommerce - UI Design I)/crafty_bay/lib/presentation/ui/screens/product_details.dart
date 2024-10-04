@@ -1,7 +1,10 @@
+import 'package:crafty_bay/data/model/product_details_model.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/main_bottom_navbar_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/reviews_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
+import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/color_picker.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/product_image_slider.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/size_picker.dart';
@@ -12,13 +15,22 @@ import 'package:item_count_number_button/item_count_number_button.dart';
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({
     super.key,
+    required this.productId,
   });
+  final int productId;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Get.find<ProductDetailsController>().getProductDetails(widget.productId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -33,30 +45,48 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               },
               icon: Icon(Icons.arrow_back_ios)),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: buildProductDetails(),
-            ),
-            buildPriceAndAddToCartSection(),
-          ],
-        ),
+        body: GetBuilder<ProductDetailsController>(
+            builder: (productDetailsController) {
+          if (productDetailsController.inProgress) {
+            return CenteredCircularProgressIndicator();
+          }
+          if (productDetailsController.errorMessage != null) {
+            return Center(child: Text(productDetailsController.errorMessage!));
+          }
+          return Column(
+            children: [
+              Expanded(
+                child:
+                    buildProductDetails(productDetailsController.productModel!),
+              ),
+              buildPriceAndAddToCartSection(
+                  productDetailsController.productModel!),
+            ],
+          );
+        }),
       ),
     );
   }
 
-  Widget buildProductDetails() {
+  Widget buildProductDetails(ProductDetailsModel product) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ProductImageSlider(),
+          ProductImageSlider(
+            sliderUrls: [
+              product.img1!,
+              product.img2!,
+              product.img3!,
+              product.img4!,
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildNameAndQuantitySection(),
-                _buildRatingAndReviewSection(),
+                buildNameAndQuantitySection(product),
+                _buildRatingAndReviewSection(product),
                 SizedBox(height: 8),
                 ColorPicker(
                   colors: const [
@@ -70,15 +100,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
                 SizedBox(height: 16),
                 SizePicker(
-                  sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                  sizes: product.size!.split(','),
                   onSelectedColor: (p0) {},
                 ),
                 SizedBox(height: 16),
                 Text('Description',
                     style: Theme.of(context).textTheme.titleMedium),
                 Text(
-                    textAlign: TextAlign.justify,
-                    'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator'),
+                  textAlign: TextAlign.justify,
+                  product.des!,
+                )
               ],
             ),
           ),
@@ -87,13 +118,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget buildNameAndQuantitySection() {
+  Widget buildNameAndQuantitySection(ProductDetailsModel productDetails) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
             child: Text(
-          'Nike Shope 2024 lates model - New Year special deal',
+          productDetails.product?.title ?? " ",
           style: Theme.of(context).textTheme.titleMedium,
         )),
         ItemCount(
@@ -111,7 +142,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget _buildRatingAndReviewSection() {
+  Widget _buildRatingAndReviewSection(ProductDetailsModel productDetailsModel) {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -121,7 +152,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           children: [
             Icon(Icons.star, color: Colors.amber),
             Text(
-              '{widget.product.star}',
+              '${productDetailsModel.product?.star ?? ""}',
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
           ],
@@ -151,7 +182,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Widget buildPriceAndAddToCartSection() {
+  Widget buildPriceAndAddToCartSection(
+      ProductDetailsModel productDetailsModel) {
     return Container(
       //height: 100,
       padding: EdgeInsets.all(16),
@@ -169,7 +201,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             children: [
               Text('Price'),
               Text(
-                '1000\$',
+                '\$${productDetailsModel.product?.price ?? " "}',
                 style: TextStyle(
                     color: AppColors.themeColor,
                     fontSize: 18,

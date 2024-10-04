@@ -1,3 +1,5 @@
+/*
+import 'package:crafty_bay/data/model/product_model.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
@@ -7,7 +9,9 @@ import 'package:get/get.dart';
 class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
+    required this.product,
   });
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Product Name',
+                    product.title ?? "",
                     maxLines: 1,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -53,7 +57,7 @@ class ProductCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('\$120',
+                      Text('\$${product.title}',
                           style: TextStyle(
                               color: AppColors.themeColor,
                               fontWeight: FontWeight.w500)),
@@ -63,7 +67,7 @@ class ProductCard extends StatelessWidget {
                         children: [
                           Icon(Icons.star, color: Colors.amber),
                           Text(
-                            '4.8',
+                            '${product.star ?? ""}',
                             style: TextStyle(fontWeight: FontWeight.w500),
                           ),
                         ],
@@ -92,3 +96,4 @@ class ProductCard extends StatelessWidget {
     //return BuildProductCart();
   }
 }
+*/

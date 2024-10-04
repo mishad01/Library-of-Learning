@@ -22,7 +22,7 @@ class _SizePickerState extends State<SizePicker> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Color', style: Theme.of(context).textTheme.titleMedium),
+        Text('Size', style: Theme.of(context).textTheme.titleMedium),
         SizedBox(height: 8),
         //One Way
         /*...widget.colors.map((e) {
@@ -38,15 +38,19 @@ class _SizePickerState extends State<SizePicker> {
                 setState(() {});
               },
               child: Container(
+                height: 30,
+                width: 50,
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 decoration: BoxDecoration(
                     border: Border.all(),
                     color: _selectedSize == e ? AppColors.themeColor : null),
-                child: Text(
-                  e,
-                  style: TextStyle(
-                      fontSize: 15,
-                      color: _selectedSize == e ? Colors.white : null),
+                child: Center(
+                  child: Text(
+                    e,
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: _selectedSize == e ? Colors.white : null),
+                  ),
                 ),
               ),
             );

@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
-import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 
 class ProductImageSlider extends StatefulWidget {
-  const ProductImageSlider({super.key});
+  const ProductImageSlider({super.key, required this.sliderUrls});
+
+  final List<String> sliderUrls;
 
   @override
   State<ProductImageSlider> createState() => _ProductImageSliderState();
@@ -24,7 +25,7 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
             },
             viewportFraction: 1,
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: widget.sliderUrls.map((imageUrls) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
@@ -33,7 +34,7 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
                   decoration: BoxDecoration(
                     color: Colors.grey.shade100,
                     image: DecorationImage(
-                        image: AssetImage(AssetsPath.shoeImage)),
+                        image: NetworkImage(imageUrls), fit: BoxFit.cover),
                   ),
                   alignment: Alignment.center,
                   /*child: Text(
@@ -56,7 +57,7 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < widget.sliderUrls.length; i++)
                       Container(
                         height: 12,
                         width: 12,

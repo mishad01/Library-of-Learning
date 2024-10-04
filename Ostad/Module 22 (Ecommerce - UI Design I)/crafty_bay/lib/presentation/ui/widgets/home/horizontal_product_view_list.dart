@@ -1,4 +1,3 @@
-import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalProductListView extends StatelessWidget {
@@ -12,7 +11,7 @@ class HorizontalProductListView extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: 10,
       itemBuilder: (context, index) {
-        return ProductCard();
+        //return ProductCard();
       },
       separatorBuilder: (context, index) => SizedBox(width: 4),
     );
