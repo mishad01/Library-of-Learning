@@ -7,8 +7,15 @@ class Urls {
   static const String popularCategory = '$_baseUrl/ListProductByRemark/popular';
   static String productByRemark(String remark) =>
       '$_baseUrl/ListProductByRemark/$remark';
+
   static String productByCategory(int id) =>
       '$_baseUrl/ListProductByCategory/$id';
+
   static String productDetailsbyId(int productId) =>
       '$_baseUrl/ProductDetailsById/$productId';
+
+  static String verifyEmail(String email) => '$_baseUrl/UserLogin/$email';
+
+  static String verifyOTP(String email, String otp) =>
+      '$_baseUrl/VerifyLogin/$email/$otp';
 }
