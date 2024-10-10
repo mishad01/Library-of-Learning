@@ -1,11 +1,12 @@
 import 'package:crafty_bay/data/model/product_details_model.dart';
+import 'package:crafty_bay/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/main_bottom_navbar_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/reviews_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
+import 'package:crafty_bay/presentation/ui/utils/snac_message.dart';
 import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/color_picker.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_details/product_image_slider.dart';
@@ -26,6 +27,9 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  String _selectedColor = '';
+  String _selectedSize = '';
+  int quantity = 1;
   @override
   void initState() {
     super.initState();
@@ -96,12 +100,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     Colors.blueAccent,
                     Colors.grey,
                   ],
-                  onSelectedColor: (color) {},
+                  onSelectedColor: (color) {
+                    _selectedColor = color.toString();
+                  },
                 ),
                 SizedBox(height: 16),
                 SizePicker(
                   sizes: product.size!.split(','),
-                  onSelectedColor: (p0) {},
+                  onSelectedColor: (p0) {
+                    _selectedSize = p0.toString();
+                  },
                 ),
                 SizedBox(height: 16),
                 Text('Description',
@@ -135,6 +143,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           color: AppColors.themeColor,
           onChanged: (value) {
             // Handle counter value changes
+            quantity = value.toInt();
             print('Selected value: $value');
           },
         ),
@@ -211,25 +220,45 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
           SizedBox(
             width: 140,
-            child: ElevatedButton(
-              onPressed: _onTapValueCard,
-              child: Text('Add to Cart'),
-            ),
-          ),
+            child:
+                GetBuilder<AddToCartController>(builder: (addToCartController) {
+              return Visibility(
+                visible: !addToCartController.inProgress,
+                replacement: const CenteredCircularProgressIndicator(),
+                child: ElevatedButton(
+                  onPressed: _onTapAddToCart,
+                  child: const Text('Add To Cart'),
+                ),
+              );
+            }),
+          )
         ],
       ),
     );
   }
-}
 
-void _onTapValueCard() async {
-  bool isLoggedIn = await Get.find<AuthController>().isLoggedInUser();
-  if (isLoggedIn) {
-  } else {
-    Get.to(() => EmailVerificationScreen());
+  Future<void> _onTapAddToCart() async {
+    bool isLoggedInUser = Get.find<AuthController>().isLoggedInUser();
+    if (isLoggedInUser) {
+      AuthController.accessToken;
+      final result = await Get.find<AddToCartController>().addToCart(
+        widget.productId,
+        _selectedColor,
+        _selectedSize,
+        quantity,
+      );
+      if (result) {
+        if (mounted) {
+          showSnackBarMessage(context, 'Added to cart');
+        }
+      } else {
+        if (mounted) {
+          showSnackBarMessage(
+              context, Get.find<AddToCartController>().errorMessage!, true);
+        }
+      }
+    } else {
+      Get.to(() => const EmailVerificationScreen());
+    }
   }
-}
-
-void backToHome() {
-  return Get.find<BottomNavBarController>().backToHome();
 }

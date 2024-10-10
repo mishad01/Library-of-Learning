@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:crafty_bay/data/model/network_response.dart';
+import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 
@@ -16,7 +17,7 @@ class NetworkCaller {
       requestLog(url, {}, {}, '');
       logger.i(url);
       final Response response = await get(uri, headers: {
-        'token': '$token',
+        'token': '${token ?? AuthController.accessToken}',
       });
 
       if (response.statusCode == 200) {
@@ -53,7 +54,7 @@ class NetworkCaller {
       final Response response = await post(
         uri,
         headers: {
-          'token': '',
+          'token': '${AuthController.accessToken}',
           'content-type': 'application/json',
         },
         body: jsonEncode(body),
