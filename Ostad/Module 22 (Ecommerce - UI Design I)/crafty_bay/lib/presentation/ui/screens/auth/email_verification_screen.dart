@@ -92,7 +92,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     bool result = await _emailVerificationController
         .verifyEmail(_emailTEController.text.trim());
     if (result) {
-      Get.to(() => OtpVerificationScreens(
+      Get.to(() => OtpVerificationScreen(
             email: _emailTEController.text,
           ));
     } else {

@@ -19,7 +19,7 @@ class ProductDetailsController extends GetxController {
     _inProgress = true;
     update();
     final NetworkResponse response = await Get.find<NetworkCaller>()
-        .getRequest(url: Urls.productDetailsbyId(productId));
+        .getRequest(url: Urls.productDetailsByID(productId));
 
     if (response.isSuccess) {
       _productModel =

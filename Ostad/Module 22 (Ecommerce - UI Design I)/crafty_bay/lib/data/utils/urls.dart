@@ -1,21 +1,23 @@
 class Urls {
   static const String _baseUrl = 'https://ecommerce-api.codesilicon.com/api';
+
   static const String dummyUrl = '$_baseUrl/login';
-  static const String sliderList = '$_baseUrl/ListProductSlider';
-  static const String categoryList = '$_baseUrl/CategoryList';
-  static const String specialCategory = '$_baseUrl/ListProductByRemark/special';
-  static const String popularCategory = '$_baseUrl/ListProductByRemark/popular';
-  static String productByRemark(String remark) =>
+  static const String sliderListUrl = '$_baseUrl/ListProductSlider';
+  static const String categoryListUrl = '$_baseUrl/CategoryList';
+  static const String readProfile = '$_baseUrl/ReadProfile';
+  static const String addToCart = '$_baseUrl/CreateCartList';
+
+  static String productListByRemark(String remark) =>
       '$_baseUrl/ListProductByRemark/$remark';
 
-  static String productByCategory(int id) =>
-      '$_baseUrl/ListProductByCategory/$id';
+  static String productListByCategory(int categoryId) =>
+      '$_baseUrl/ListProductByCategory/$categoryId';
 
-  static String productDetailsbyId(int productId) =>
+  static String productDetailsByID(int productId) =>
       '$_baseUrl/ProductDetailsById/$productId';
 
   static String verifyEmail(String email) => '$_baseUrl/UserLogin/$email';
 
-  static String verifyOTP(String email, String otp) =>
+  static String verifyOtp(String email, String otp) =>
       '$_baseUrl/VerifyLogin/$email/$otp';
 }

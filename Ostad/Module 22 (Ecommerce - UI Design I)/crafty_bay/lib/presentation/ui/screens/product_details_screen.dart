@@ -28,12 +28,10 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Get.find<ProductDetailsController>().getProductDetails(widget.productId);
   }
 
-  @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,

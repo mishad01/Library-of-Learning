@@ -29,13 +29,14 @@ class _MainBottomNavbarScreenState extends State<MainBottomNavbarScreen> {
     WishScreen()
   ];
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Get.find<SliderListController>().getSliderList();
-    Get.find<CategoryListController>().getCategoryList();
-    Get.find<PopularProductListController>().getPopularProducts();
-    Get.find<SpecialProductListController>().getSpecialProducts();
-    Get.find<NewProductListController>().getNewProducts();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<SliderListController>().getSliderList();
+      Get.find<CategoryListController>().getCategoryList();
+      Get.find<NewProductListController>().getNewProducts();
+      Get.find<PopularProductListController>().getPopularProductList();
+      Get.find<SpecialProductListController>().getSpecialProducts();
+    });
   }
 
   @override

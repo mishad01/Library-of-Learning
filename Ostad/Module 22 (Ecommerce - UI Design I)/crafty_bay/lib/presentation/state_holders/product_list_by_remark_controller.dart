@@ -41,7 +41,7 @@ class ProductListByRemarkController extends GetxController {
     }
     update();
     final NetworkResponse response = await Get.find<NetworkCaller>()
-        .getRequest(url: Urls.productByRemark(remark));
+        .getRequest(url: Urls.productListByRemark(remark));
 
     if (response.isSuccess) {
       if (remark == 'popular') {

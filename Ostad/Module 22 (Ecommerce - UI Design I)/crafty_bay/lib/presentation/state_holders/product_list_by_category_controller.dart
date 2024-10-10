@@ -23,7 +23,7 @@ class ProductListByCategoryController extends GetxController {
     _inProgress = true;
     update();
     final NetworkResponse response = await Get.find<NetworkCaller>().getRequest(
-      url: Urls.productByCategory(categoryId),
+      url: Urls.productListByCategory(categoryId),
     );
 
     if (response.isSuccess) {

@@ -82,10 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
         GetBuilder<PopularProductListController>(
             builder: (popularProductListController) {
           return Visibility(
-            visible: !popularProductListController.popularProductInProgress,
+            visible: !popularProductListController.inProgress,
             replacement: CenteredCircularProgressIndicator(),
             child: BuildProductCart(
-              productList: popularProductListController.popularProductList,
+              productList: popularProductListController.productList,
             ),
           );
         }),

@@ -20,7 +20,7 @@ class CategoryListController extends GetxController {
     _inProgress = true;
     update();
     NetworkResponse response =
-        await Get.find<NetworkCaller>().getRequest(url: Urls.categoryList);
+        await Get.find<NetworkCaller>().getRequest(url: Urls.categoryListUrl);
     if (response.isSuccess) {
       isSuccess = true;
       _errorMessage = null;

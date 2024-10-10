@@ -8,6 +8,7 @@ import 'package:crafty_bay/presentation/state_holders/otp_verification_controlle
 import 'package:crafty_bay/presentation/state_holders/popular_product_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/product_list_by_category_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/read_profile_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/slider_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/special_product_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/controller/time_count_controller.dart';
@@ -30,5 +31,6 @@ class ControllerBinder extends Bindings {
     Get.put(AuthController());
     Get.lazyPut(() => EmailVerificationController());
     Get.lazyPut(() => OtpVerificationController());
+    Get.lazyPut(() => ReadProfileController());
   }
 }
