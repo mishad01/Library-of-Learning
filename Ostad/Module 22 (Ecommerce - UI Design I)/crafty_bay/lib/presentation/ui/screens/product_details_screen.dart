@@ -27,8 +27,17 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  String _selectedColor = '';
-  String _selectedSize = '';
+  List<Color> colors = [
+    Colors.black,
+    AppColors.themeColor,
+    Colors.brown,
+    Colors.blueAccent,
+    Colors.grey
+  ];
+
+  String _selectedColor = 'aaa';
+
+  String _selectedSize = '12';
   int quantity = 1;
   @override
   void initState() {
@@ -93,13 +102,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 _buildRatingAndReviewSection(product),
                 SizedBox(height: 8),
                 ColorPicker(
-                  colors: const [
-                    Colors.black,
-                    AppColors.themeColor,
-                    Colors.brown,
-                    Colors.blueAccent,
-                    Colors.grey,
-                  ],
+                  colors: colors,
                   onSelectedColor: (color) {
                     _selectedColor = color.toString();
                   },
@@ -136,7 +139,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           style: Theme.of(context).textTheme.titleMedium,
         )),
         ItemCount(
-          initialValue: 1,
+          initialValue: quantity,
           minValue: 0,
           maxValue: 10,
           decimalPlaces: 0,
@@ -144,7 +147,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           onChanged: (value) {
             // Handle counter value changes
             quantity = value.toInt();
-            print('Selected value: $value');
+            setState(() {});
           },
         ),
       ],
