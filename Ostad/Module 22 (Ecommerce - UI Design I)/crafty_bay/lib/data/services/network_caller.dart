@@ -16,8 +16,10 @@ class NetworkCaller {
     required this.authController,
   });
 
-  Future<NetworkResponse> getRequest(
-      {required String url, String? token}) async {
+  Future<NetworkResponse> getRequest({
+    required String url,
+    String? token,
+  }) async {
     try {
       Uri uri = Uri.parse(url);
       requestLog(url, {}, {}, '');
@@ -53,14 +55,16 @@ class NetworkCaller {
   }
 
   Future<NetworkResponse> postRequest(
-      {required String url, Map<String, dynamic>? body}) async {
+      {required String url,
+      required String? token,
+      Map<String, dynamic>? body}) async {
     try {
       requestLog(url, {}, body ?? {}, '');
       Uri uri = Uri.parse(url);
       final Response response = await post(
         uri,
         headers: {
-          'token': '${AuthController.accessToken}',
+          'token': token ?? '${AuthController.accessToken}',
           'content-type': 'application/json',
         },
         body: jsonEncode(body),

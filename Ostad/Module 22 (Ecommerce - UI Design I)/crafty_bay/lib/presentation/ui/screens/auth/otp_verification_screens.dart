@@ -1,3 +1,4 @@
+import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/otp_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/read_profile_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/complete_verification_screen.dart';
@@ -20,6 +21,7 @@ class OtpVerificationScreen extends StatefulWidget {
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+  @override
   final TextEditingController _otpTEController = TextEditingController();
   final OtpVerificationController _otpVerificationController =
       Get.find<OtpVerificationController>();
@@ -115,9 +117,13 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
           .getProfileDetails(_otpVerificationController.accessToken);
       if (readProfileResult) {
         if (_readProfileController.isProfileCompleted) {
+          AuthController.accessToken = _otpVerificationController.accessToken;
           Get.offAll(() => const MainBottomNavbarScreen());
         } else {
-          Get.to(() => const CompleteVerificationScreen());
+          Get.to(() => CompleteVerificationScreen(
+                token: _otpVerificationController.accessToken,
+              ));
+          showSnackBarMessage(context, _otpVerificationController.accessToken);
         }
       } else {
         if (mounted) {
