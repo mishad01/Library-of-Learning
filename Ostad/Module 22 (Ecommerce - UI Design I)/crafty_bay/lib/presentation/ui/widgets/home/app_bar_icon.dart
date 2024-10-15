@@ -14,7 +14,7 @@ class AppBarIcon extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: Colors.grey.shade200,
       child: IconButton(
-        onPressed: () {},
+        onPressed: onTap,
         icon: Icon(iconData),
       ),
     );

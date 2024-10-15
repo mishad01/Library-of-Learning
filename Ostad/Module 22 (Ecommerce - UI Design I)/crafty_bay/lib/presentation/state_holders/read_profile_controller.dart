@@ -29,7 +29,7 @@ class ReadProfileController extends GetxController {
     if (response.isSuccess) {
       if (response.responseData['data'] != null) {
         _isProfileCompleted = true;
-        await Get.find<AuthController>().saveAccessToken(token);
+        await AuthController.saveAccessToken(token);
       }
       isSuccess = true;
       _errorMessage = null;

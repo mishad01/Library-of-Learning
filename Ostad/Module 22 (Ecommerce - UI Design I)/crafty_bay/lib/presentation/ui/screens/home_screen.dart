@@ -1,8 +1,10 @@
+import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/category_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/new_product_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/popular_product_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/special_product_list_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/build_product_cart.dart';
 import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:crafty_bay/presentation/ui/widgets/widgets.dart';
@@ -18,7 +20,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late AuthController authController;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    authController = AuthController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,12 +179,14 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: () {},
         ),
         const SizedBox(width: 10),
-        Padding(
-          padding: const EdgeInsets.only(right: 10),
-          child: AppBarIcon(
-            iconData: Icons.notifications_outlined,
-            onTap: () {},
-          ),
+        AppBarIcon(
+          iconData: Icons.logout,
+          onTap: () async {
+            print('Logout button pressed');
+            // Call the clearUserData method to clear shared preferences and navigate
+            await authController.clearUserData();
+            Get.offAll(() => EmailVerificationScreen());
+          },
         ),
       ],
     );

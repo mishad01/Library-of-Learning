@@ -46,7 +46,6 @@ class _CompleteVerificationScreenState
                 'Complete Profile',
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
-              Text(widget.token ?? "null"),
               const SizedBox(height: 8),
               Text(
                 'Get Started with us with your details',
@@ -183,6 +182,7 @@ class _CompleteVerificationScreenState
     if (result == true) {
       Get.snackbar('Success', 'Profile Created successfully!');
       Get.off(() => EmailVerificationScreen());
+      await AuthController.saveAccessToken(widget.token);
     } else {
       Get.snackbar(
           'Error',
