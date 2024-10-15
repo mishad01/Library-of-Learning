@@ -18,7 +18,7 @@ class Urls {
       '$_baseUrl/ProductDetailsById/$productId';
 
   static String reviewList(int productId) =>
-      '$_baseUrl/ProductDetailsById/$productId';
+      '$_baseUrl/ListReviewByProduct/$productId';
 
   static String verifyEmail(String email) => '$_baseUrl/UserLogin/$email';
 

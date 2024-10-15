@@ -15,6 +15,15 @@ class ReviewListModel {
       });
     }
   }
+
+  /*Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['msg'] = this.msg;
+    if (this.reviewData != null) {
+      data['data'] = this.reviewData!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }*/
 }
 
 class Profile {

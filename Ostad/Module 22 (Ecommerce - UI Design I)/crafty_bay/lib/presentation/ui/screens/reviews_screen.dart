@@ -16,7 +16,6 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
   @override
   void initState() {
     super.initState();
-    // Fetch the reviews and let the GetBuilder update the UI when data is available
     Get.find<ReviewProfileController>().getReview(widget.productId);
   }
 
@@ -28,12 +27,10 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
         padding: const EdgeInsets.all(16.0),
         child: GetBuilder<ReviewProfileController>(
           builder: (reviewProfileController) {
-            // Show loading spinner while reviews are being fetched
             if (reviewProfileController.inProgress) {
               return const Center(child: CircularProgressIndicator());
             }
 
-            // Show error message if any
             if (reviewProfileController.errorMessage != null) {
               return Center(
                 child: Text(
@@ -43,12 +40,10 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
               );
             }
 
-            // Show message if no reviews are available
             if (reviewProfileController.reviewList.isEmpty) {
               return const Center(child: Text('No reviews available.'));
             }
 
-            // Display the list of reviews
             return ListView.builder(
               itemCount: reviewProfileController.reviewList.length,
               itemBuilder: (context, index) {
