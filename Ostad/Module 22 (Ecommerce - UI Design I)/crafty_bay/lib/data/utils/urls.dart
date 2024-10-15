@@ -17,6 +17,9 @@ class Urls {
   static String productDetailsByID(int productId) =>
       '$_baseUrl/ProductDetailsById/$productId';
 
+  static String reviewList(int productId) =>
+      '$_baseUrl/ProductDetailsById/$productId';
+
   static String verifyEmail(String email) => '$_baseUrl/UserLogin/$email';
 
   static String verifyOtp(String email, String otp) =>

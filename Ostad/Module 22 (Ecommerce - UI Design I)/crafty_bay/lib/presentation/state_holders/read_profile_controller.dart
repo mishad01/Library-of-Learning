@@ -6,11 +6,9 @@ import 'package:get/get.dart';
 
 class ReadProfileController extends GetxController {
   bool _inProgress = false;
-
-  bool _isProfileCompleted = false;
-
   bool get inProgress => _inProgress;
 
+  bool _isProfileCompleted = false;
   bool get isProfileCompleted => _isProfileCompleted;
 
   String? _errorMessage;

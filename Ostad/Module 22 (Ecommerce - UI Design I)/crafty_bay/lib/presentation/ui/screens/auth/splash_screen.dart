@@ -1,5 +1,4 @@
 import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
-import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/main_bottom_navbar_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _moveToNextScreen() async {
     bool isUserLoggedIn = await AuthController.checkAuthState();
     await Future.delayed(const Duration(seconds: 2));
-    Get.off(
-      () => isUserLoggedIn
-          ? const MainBottomNavbarScreen()
-          : const EmailVerificationScreen(),
-    );
+    Get.off(() => isUserLoggedIn
+        ? const MainBottomNavbarScreen()
+        : const MainBottomNavbarScreen());
   }
 
   @override

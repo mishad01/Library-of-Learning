@@ -172,7 +172,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         SizedBox(width: 10),
         GestureDetector(
           onTap: () {
-            Get.to(() => ReviewsScreen());
+            Get.to(() =>
+                ReviewsScreen(productId: productDetailsModel.productId ?? 1));
           },
           child: const Text('Reviews',
               style: TextStyle(
