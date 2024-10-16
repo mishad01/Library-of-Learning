@@ -12,7 +12,7 @@ class BuildProductCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 150,
       child: ListView.builder(
         itemCount: productList.length,
         scrollDirection: Axis.horizontal,

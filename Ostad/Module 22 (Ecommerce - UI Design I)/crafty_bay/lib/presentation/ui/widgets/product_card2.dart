@@ -21,8 +21,8 @@ class product_card2 extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                width: 160,
-                height: 120,
+                width: 120,
+                height: 90,
                 decoration: BoxDecoration(
                   //color: AppColors.themeColor.withOpacity(0.2),
                   borderRadius: const BorderRadius.only(
@@ -44,8 +44,8 @@ class product_card2 extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 160,
-                height: 60,
+                width: 120,
+                // height: 20,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -53,55 +53,54 @@ class product_card2 extends StatelessWidget {
                     bottomRight: Radius.circular(5),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        product.title ?? '',
-                        maxLines: 1,
-                        style: TextStyle(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      product.title ?? '',
+                      maxLines: 1,
+                      style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: Colors.black54,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text('\$${product.price}',
+                          fontSize: 12),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text('\$${product.price}',
+                            style: TextStyle(
+                                color: AppColors.themeColor,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12)),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Icon(Icons.star, color: Colors.amber),
+                            Text(
+                              '${product.star}',
                               style: TextStyle(
-                                  color: AppColors.themeColor,
-                                  fontWeight: FontWeight.w500)),
-                          SizedBox(width: 5),
-                          Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              Icon(Icons.star, color: Colors.amber),
-                              Text(
-                                '${product.star}',
-                                style: TextStyle(fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            color: AppColors.themeColor,
-                            child: Padding(
-                              padding: const EdgeInsets.all(1.0),
-                              child: Icon(
-                                Icons.favorite_outline_rounded,
-                                color: Colors.white,
-                              ),
+                                  fontWeight: FontWeight.w500, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          color: AppColors.themeColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(1.0),
+                            child: Icon(
+                              Icons.favorite_outline_rounded,
+                              color: Colors.white,
+                              size: 17,
                             ),
                           ),
-                        ],
-                      )
-                    ],
-                  ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -67,9 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           disabledBorder: InputBorder.none, // Ensu
                         ),
                       ),*/
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
                 SearchTextField(textEditingController: TextEditingController()),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
                 const HomeBannerSlider(),
                 _buildAllCategoriesScreen(),
                 _buildPopularProductSection(),
