@@ -29,6 +29,7 @@ class _HomeBannerSliderState extends State<HomeBannerSlider> {
           children: [
             CarouselSlider(
               options: CarouselOptions(
+                autoPlay: true,
                 height: 160.0,
                 viewportFraction: 1,
                 onPageChanged: (index, reason) {

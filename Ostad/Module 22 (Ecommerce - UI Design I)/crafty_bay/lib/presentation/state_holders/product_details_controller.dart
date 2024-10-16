@@ -2,6 +2,7 @@ import 'package:crafty_bay/data/model/network_response.dart';
 import 'package:crafty_bay/data/model/product_details_model.dart';
 import 'package:crafty_bay/data/services/network_caller.dart';
 import 'package:crafty_bay/data/utils/urls.dart';
+import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsController extends GetxController {
@@ -18,8 +19,9 @@ class ProductDetailsController extends GetxController {
     bool isSuccess = false;
     _inProgress = true;
     update();
-    final NetworkResponse response = await Get.find<NetworkCaller>()
-        .getRequest(url: Urls.productDetailsByID(productId));
+    final NetworkResponse response = await Get.find<NetworkCaller>().getRequest(
+        url: Urls.productDetailsByID(productId),
+        token: AuthController.accessToken);
 
     if (response.isSuccess) {
       _productModel =

@@ -58,8 +58,9 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
 
   Widget reviewCard(ReviewModel review) {
     return Card(
+      color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      elevation: 2,
+      elevation: 1.5,
       child: ListTile(
         contentPadding: const EdgeInsets.all(16.0),
         leading: CircleAvatar(
