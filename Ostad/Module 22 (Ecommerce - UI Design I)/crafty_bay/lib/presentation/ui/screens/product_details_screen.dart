@@ -105,14 +105,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ColorPicker(
                   colors: colors,
                   onSelectedColor: (color) {
-                    _selectedColor = color.toString();
+                    setState(() {
+                      _selectedColor = color.toString();
+                    });
                   },
                 ),
                 SizedBox(height: 16),
                 SizePicker(
                   sizes: product.size!.split(','),
                   onSelectedColor: (p0) {
-                    _selectedSize = p0.toString();
+                    setState(() {
+                      _selectedSize = p0.toString();
+                    });
                   },
                 ),
                 SizedBox(height: 16),
@@ -147,8 +151,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           color: AppColors.themeColor,
           onChanged: (value) {
             // Handle counter value changes
-            quantity = value.toInt();
-            setState(() {});
+            setState(
+              () {
+                quantity = value.toInt();
+              },
+            );
           },
         ),
       ],

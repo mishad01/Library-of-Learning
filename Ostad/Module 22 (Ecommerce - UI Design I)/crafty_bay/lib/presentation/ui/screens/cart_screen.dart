@@ -29,29 +29,34 @@ class _CartScreenState extends State<CartScreen> {
         title: Text('Cart'),
         leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child:
-                GetBuilder<CartListController>(builder: (cartListController) {
-              return Visibility(
-                visible: !cartListController.inProgress,
-                replacement: CenteredCircularProgressIndicator(),
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 8,
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Get.find<CartListController>().getNewProducts();
+        },
+        child: Column(
+          children: [
+            Expanded(
+              child:
+                  GetBuilder<CartListController>(builder: (cartListController) {
+                return Visibility(
+                  visible: !cartListController.inProgress,
+                  replacement: CenteredCircularProgressIndicator(),
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 8,
+                    ),
+                    itemCount: cartListController.cartList.length,
+                    itemBuilder: (context, index) {
+                      return CartItemWidget(
+                          cartModel: cartListController.cartList[index]);
+                    },
                   ),
-                  itemCount: cartListController.cartList.length,
-                  itemBuilder: (context, index) {
-                    return CartItemWidget(
-                        cartModel: cartListController.cartList[index]);
-                  },
-                ),
-              );
-            }),
-          ),
-          buildPriceAndAddToCartSection(),
-        ],
+                );
+              }),
+            ),
+            buildPriceAndAddToCartSection(),
+          ],
+        ),
       ),
     );
   }

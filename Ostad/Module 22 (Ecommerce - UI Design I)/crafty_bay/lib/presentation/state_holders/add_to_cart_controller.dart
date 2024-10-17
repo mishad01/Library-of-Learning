@@ -1,13 +1,16 @@
 import 'package:crafty_bay/data/model/network_response.dart';
 import 'package:crafty_bay/data/services/network_caller.dart';
 import 'package:crafty_bay/data/utils/urls.dart';
+import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:get/get.dart';
 
 class AddToCartController extends GetxController {
   bool _inProgress = false;
-  bool get inProgress => _inProgress;
 
   String? _errorMessage;
+
+  bool get inProgress => _inProgress;
+
   String? get errorMessage => _errorMessage;
 
   Future<bool> addToCart(
@@ -21,15 +24,14 @@ class AddToCartController extends GetxController {
     update();
     final NetworkResponse response =
         await Get.find<NetworkCaller>().postRequest(
-      url: Urls.addToCart,
-      body: {
-        "product_id": productId,
-        "color": color,
-        "size": size,
-        "qty": quantity,
-      },
-      token: '',
-    );
+            url: Urls.addToCart,
+            body: {
+              "product_id": productId,
+              "color": color,
+              "size": size,
+              "qty": quantity,
+            },
+            token: AuthController.accessToken);
     if (response.isSuccess && response.responseData['msg'] == 'success') {
       _errorMessage = null;
       isSuccess = true;

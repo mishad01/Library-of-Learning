@@ -22,7 +22,7 @@ class NetworkCaller {
   }) async {
     try {
       Uri uri = Uri.parse(url);
-      requestLog(url, {}, {}, '');
+      requestLog(url, {}, {}, AuthController.accessToken.toString());
       logger.i(url);
       final Response response = await get(uri, headers: {
         'token': '${token ?? AuthController.accessToken}',
@@ -59,7 +59,7 @@ class NetworkCaller {
       required String? token,
       Map<String, dynamic>? body}) async {
     try {
-      requestLog(url, {}, body ?? {}, '');
+      requestLog(url, {}, body ?? {}, AuthController.accessToken.toString());
       Uri uri = Uri.parse(url);
       final Response response = await post(
         uri,
@@ -98,12 +98,8 @@ class NetworkCaller {
     }
   }
 
-  void requestLog(
-    String url,
-    Map<String, dynamic> params,
-    Map<String, dynamic> body,
-    String tokens,
-  ) {
+  void requestLog(String url, Map<String, dynamic> params,
+      Map<String, dynamic> body, String tokens) {
     logger.i('''
     Url : $url,
     Params : $params,
