@@ -8,9 +8,13 @@ class Urls {
   static const String addToCart = '$_baseUrl/CreateCartList';
   static const String createProfile = '$_baseUrl/CreateProfile';
   static const String productWishList = '$_baseUrl/ProductWishList';
+  static const String createCartList = '$_baseUrl/CreateCartList';
+  static const String cartList = '$_baseUrl/CartList';
 
   static String createWishList(String productId) =>
       '$_baseUrl/CreateWishList/$productId';
+  static String deleteCartList(String productId) =>
+      '$_baseUrl/DeleteCartList/$productId';
 
   static String productListByRemark(String remark) =>
       '$_baseUrl/ListProductByRemark/$remark';

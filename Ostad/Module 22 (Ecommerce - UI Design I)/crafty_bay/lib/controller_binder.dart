@@ -2,7 +2,9 @@ import 'package:crafty_bay/data/services/network_caller.dart';
 import 'package:crafty_bay/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/cart_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/category_list_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/create_cart_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/create_profile_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/email_verification_controller.dart';
@@ -48,5 +50,7 @@ class ControllerBinder extends Bindings {
     Get.put(ReviewProfileController());
     Get.put(WishListController());
     Get.put(CreateWishListController());
+    Get.put(CreateCartListController());
+    Get.put(CartListController());
   }
 }

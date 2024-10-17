@@ -1,6 +1,9 @@
+import 'package:crafty_bay/presentation/state_holders/cart_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/widgets/cart/cart_item_widget.dart';
+import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -12,6 +15,13 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   late TextTheme textTheme = Theme.of(context).textTheme;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Get.find<CartListController>().getNewProducts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
@@ -22,15 +32,23 @@ class _CartScreenState extends State<CartScreen> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(
-                height: 8,
-              ),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return CartItemWidget();
-              },
-            ),
+            child:
+                GetBuilder<CartListController>(builder: (cartListController) {
+              return Visibility(
+                visible: !cartListController.inProgress,
+                replacement: CenteredCircularProgressIndicator(),
+                child: ListView.separated(
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 8,
+                  ),
+                  itemCount: cartListController.cartList.length,
+                  itemBuilder: (context, index) {
+                    return CartItemWidget(
+                        cartModel: cartListController.cartList[index]);
+                  },
+                ),
+              );
+            }),
           ),
           buildPriceAndAddToCartSection(),
         ],

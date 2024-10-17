@@ -1,18 +1,20 @@
+import 'package:crafty_bay/data/model/cart_model.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
-import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 
 class CartItemWidget extends StatelessWidget {
   const CartItemWidget({
     super.key,
+    required this.cartModel,
   });
+  final CartModel cartModel;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Card(
-      elevation: 1,
+      elevation: 2,
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       color: Colors.white,
       child: Row(
@@ -39,12 +41,14 @@ class CartItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Title of product', style: textTheme.titleLarge),
+              Text(cartModel.product?.title ?? 'No title',
+                  style: textTheme.titleLarge),
               Wrap(
                 spacing: 8,
                 children: [
-                  Text('Color : Red,', style: textTheme.bodyLarge),
-                  Text('Color : XL', style: textTheme.bodyLarge)
+                  Text('Color : ${cartModel.color}',
+                      style: textTheme.bodyLarge),
+                  Text('Color : ${cartModel.size}', style: textTheme.bodyLarge)
                 ],
               )
             ],
@@ -60,7 +64,7 @@ class CartItemWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '\$100',
+          cartModel.price.toString(),
           style: TextStyle(
               color: AppColors.themeColor,
               fontSize: 18,
@@ -81,8 +85,8 @@ class CartItemWidget extends StatelessWidget {
   Widget _buildProductImage() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Image.asset(
-        AssetsPath.shoeImage,
+      child: Image.network(
+        cartModel.product?.image ?? " ",
         height: 100,
         width: 80,
         fit: BoxFit.scaleDown,
