@@ -1,6 +1,7 @@
 import 'package:crafty_bay/data/model/product_details_model.dart';
 import 'package:crafty_bay/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/product_details_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/main_bottom_navbar_screen.dart';
@@ -169,7 +170,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
           ],
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         GestureDetector(
           onTap: () {
             Get.to(() =>
@@ -179,15 +180,28 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               style: TextStyle(
                   color: AppColors.themeColor, fontWeight: FontWeight.w500)),
         ),
-        SizedBox(width: 5),
-        Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          color: AppColors.themeColor,
-          child: Padding(
-            padding: const EdgeInsets.all(1.0),
-            child: Icon(
-              Icons.favorite_outline_rounded,
-              color: Colors.white,
+        const SizedBox(width: 5),
+        InkWell(
+          onTap: () async {
+            bool added = await Get.find<CreateWishListController>()
+                .createWishList(productDetailsModel.productId.toString());
+            if (added) {
+              showSnackBarMessage(context, "Added to wish List");
+            } else {
+              showSnackBarMessage(context, "You have to Login");
+              Get.to(() => const EmailVerificationScreen());
+            }
+          },
+          child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            color: AppColors.themeColor,
+            child: const Padding(
+              padding: const EdgeInsets.all(1.5),
+              child: Icon(
+                Icons.favorite_outline_rounded,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -199,7 +213,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ProductDetailsModel productDetailsModel) {
     return Container(
       //height: 100,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           color: AppColors.themeColor.withOpacity(0.1),
           borderRadius: const BorderRadius.only(
@@ -215,7 +229,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Text('Price'),
               Text(
                 '\$${productDetailsModel.product?.price ?? " "}',
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColors.themeColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w600),

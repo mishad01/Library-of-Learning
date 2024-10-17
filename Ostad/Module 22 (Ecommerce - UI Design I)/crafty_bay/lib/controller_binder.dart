@@ -4,6 +4,7 @@ import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/category_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/create_profile_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/new_product_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/otp_verification_controller.dart';
@@ -14,8 +15,8 @@ import 'package:crafty_bay/presentation/state_holders/read_profile_controller.da
 import 'package:crafty_bay/presentation/state_holders/review_profile_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/slider_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/special_product_list_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/time_count_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/wish_list_controller.dart';
-import 'package:crafty_bay/presentation/ui/controller/time_count_controller.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
@@ -46,5 +47,6 @@ class ControllerBinder extends Bindings {
     Get.put(CreateProfileController());
     Get.put(ReviewProfileController());
     Get.put(WishListController());
+    Get.put(CreateWishListController());
   }
 }

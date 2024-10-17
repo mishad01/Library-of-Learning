@@ -9,6 +9,9 @@ class Urls {
   static const String createProfile = '$_baseUrl/CreateProfile';
   static const String productWishList = '$_baseUrl/ProductWishList';
 
+  static String createWishList(String productId) =>
+      '$_baseUrl/CreateWishList/$productId';
+
   static String productListByRemark(String remark) =>
       '$_baseUrl/ListProductByRemark/$remark';
 

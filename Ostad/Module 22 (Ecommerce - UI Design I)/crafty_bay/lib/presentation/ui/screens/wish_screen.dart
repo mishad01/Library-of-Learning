@@ -49,7 +49,7 @@ class _WishScreenState extends State<WishScreen> {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: 10,
-                  childAspectRatio: 0.75,
+                  childAspectRatio: 0.83,
                 ),
                 itemBuilder: (context, index) {
                   WishListModel wishListModel =
@@ -59,8 +59,10 @@ class _WishScreenState extends State<WishScreen> {
 
                   // Check if the product is null
                   if (product != null) {
-                    return product_card2(
-                      product: product,
+                    return Container(
+                      child: product_card2(
+                        product: product,
+                      ),
                     );
                   } else {
                     // Optionally handle the null case (e.g., display a placeholder)

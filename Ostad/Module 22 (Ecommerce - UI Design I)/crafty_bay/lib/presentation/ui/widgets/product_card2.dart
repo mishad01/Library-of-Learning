@@ -24,7 +24,7 @@ class product_card2 extends StatelessWidget {
                 width: 120,
                 height: 90,
                 decoration: BoxDecoration(
-                  //color: AppColors.themeColor.withOpacity(0.2),
+                  color: Colors.white,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(7),
                     topRight: Radius.circular(7),
