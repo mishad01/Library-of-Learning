@@ -1,14 +1,30 @@
 import 'package:crafty_bay/data/model/cart_model.dart';
+import 'package:crafty_bay/presentation/state_holders/delete_cart_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
+import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 
-class CartItemWidget extends StatelessWidget {
+class CartItemWidget extends StatefulWidget {
   const CartItemWidget({
     super.key,
     required this.cartModel,
   });
   final CartModel cartModel;
+
+  @override
+  State<CartItemWidget> createState() => _CartItemWidgetState();
+}
+
+class _CartItemWidgetState extends State<CartItemWidget> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Get.find<DeleteCartController>()
+        .deleteCart(widget.cartModel.productId.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +57,39 @@ class CartItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(cartModel.product?.title ?? 'No title',
-                  style: textTheme.titleLarge),
+              Text(
+                widget.cartModel.product?.title ?? 'No title',
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.labelLarge!.copyWith(color: Colors.black54),
+              ),
               Wrap(
                 spacing: 8,
                 children: [
-                  Text('Color : ${cartModel.color}',
+                  Text('Color : ${widget.cartModel.color}',
                       style: textTheme.bodyLarge),
-                  Text('Color : ${cartModel.size}', style: textTheme.bodyLarge)
+                  Text('Color : ${widget.cartModel.size}',
+                      style: textTheme.bodyLarge)
                 ],
               )
             ],
           ),
         ),
-        IconButton(onPressed: () {}, icon: Icon(Icons.delete))
+        GetBuilder<DeleteCartController>(builder: (deleteCartController) {
+          return Visibility(
+            visible: !deleteCartController.inProgress,
+            replacement: CenteredCircularProgressIndicator(),
+            child: IconButton(
+              onPressed: () {
+                deleteCartController
+                    .deleteCart(widget.cartModel.productId.toString());
+              },
+              icon: Icon(
+                Icons.delete,
+                color: Colors.red,
+              ),
+            ),
+          );
+        })
       ],
     );
   }
@@ -64,7 +99,7 @@ class CartItemWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          cartModel.price.toString(),
+          widget.cartModel.price.toString(),
           style: TextStyle(
               color: AppColors.themeColor,
               fontSize: 18,
@@ -85,11 +120,20 @@ class CartItemWidget extends StatelessWidget {
   Widget _buildProductImage() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Image.network(
-        cartModel.product?.image ?? " ",
-        height: 100,
-        width: 80,
-        fit: BoxFit.scaleDown,
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                widget.cartModel.product?.image ?? " ",
+              ),
+              fit: BoxFit.cover),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+          ),
+        ),
+        height: 90,
+        width: 90,
       ),
     );
   }

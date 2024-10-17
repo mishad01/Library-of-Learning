@@ -1,4 +1,5 @@
 import 'package:crafty_bay/presentation/state_holders/cart_list_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/delete_cart_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/widgets/cart/cart_item_widget.dart';
 import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
@@ -19,6 +20,7 @@ class _CartScreenState extends State<CartScreen> {
     // TODO: implement initState
     super.initState();
     Get.find<CartListController>().getNewProducts();
+    Get.find<DeleteCartController>();
   }
 
   @override
@@ -41,16 +43,24 @@ class _CartScreenState extends State<CartScreen> {
                 return Visibility(
                   visible: !cartListController.inProgress,
                   replacement: CenteredCircularProgressIndicator(),
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 8,
-                    ),
-                    itemCount: cartListController.cartList.length,
-                    itemBuilder: (context, index) {
-                      return CartItemWidget(
-                          cartModel: cartListController.cartList[index]);
-                    },
-                  ),
+                  child: cartListController.cartList.isEmpty
+                      ? Center(
+                          child: Text(
+                            'NOTHING ADDED TO CART YET',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.normal),
+                          ),
+                        )
+                      : ListView.separated(
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 8,
+                          ),
+                          itemCount: cartListController.cartList.length,
+                          itemBuilder: (context, index) {
+                            return CartItemWidget(
+                                cartModel: cartListController.cartList[index]);
+                          },
+                        ),
                 );
               }),
             ),
