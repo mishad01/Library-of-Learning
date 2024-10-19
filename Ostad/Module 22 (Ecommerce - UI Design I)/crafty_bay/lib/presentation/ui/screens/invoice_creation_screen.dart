@@ -1,7 +1,12 @@
+import 'package:crafty_bay/presentation/state_holders/invoice_creation_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/utils/assets_path.dart';
+import 'package:crafty_bay/presentation/ui/widgets/card_payment.dart';
+import 'package:crafty_bay/presentation/ui/widgets/internet_banking_payment.dart';
+import 'package:crafty_bay/presentation/ui/widgets/mobile_banking_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class InvoiceCreationScreen extends StatefulWidget {
   const InvoiceCreationScreen({super.key});
@@ -11,6 +16,15 @@ class InvoiceCreationScreen extends StatefulWidget {
 }
 
 class _InvoiceCreationScreenState extends State<InvoiceCreationScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    InvoiceCreationController invoiceCreationController =
+        Get.find<InvoiceCreationController>();
+    invoiceCreationController.getPaymentMethod();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,9 +73,9 @@ class _InvoiceCreationScreenState extends State<InvoiceCreationScreen> {
               ),
               Expanded(
                 child: TabBarView(children: [
-                  Center(child: Text("Card Payment Section")),
-                  Center(child: Text("Mobile Banking Payment Section")),
-                  Center(child: Text("Net Banking Payment Section")),
+                  CardPayment(),
+                  MobileBankingPayment(),
+                  InternetBankingPayment(),
                 ]),
               )
             ],

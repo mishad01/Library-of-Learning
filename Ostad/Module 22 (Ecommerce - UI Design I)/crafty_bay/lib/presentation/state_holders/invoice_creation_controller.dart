@@ -38,13 +38,13 @@ class InvoiceCreationController extends GetxController {
           Using first retrieves that first Data object, which includes the paymentMethod list.
           So invoiceCreate.data!.first.paymentMethod accesses the paymentMethod list within the first Data object.*/
           switch (payment.type) {
-            case 'card':
+            case 'othercards':
               _cardPaymentMethod.add(payment);
               break;
-            case 'Mobile':
+            case 'mobilebanking':
               _mobilePaymentMethod.add(payment);
               break;
-            case 'Internet':
+            case 'internetbanking':
               _internetPaymentMethod.add(payment);
               break;
             default:

@@ -9,6 +9,7 @@ import 'package:crafty_bay/presentation/state_holders/create_profile_controller.
 import 'package:crafty_bay/presentation/state_holders/create_wish_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/delete_cart_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/email_verification_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/invoice_creation_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/new_product_list_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/otp_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/popular_product_list_controller.dart';
@@ -54,5 +55,6 @@ class ControllerBinder extends Bindings {
     Get.put(CreateCartListController());
     Get.put(CartListController());
     Get.put(DeleteCartController());
+    Get.put(InvoiceCreationController());
   }
 }
