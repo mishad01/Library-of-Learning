@@ -31,7 +31,7 @@ class DeleteCartController extends GetxController {
       isSuccess = true;
       _errorMessage = null;
 
-      // Refresh the cart list after successful deletion
+      // successful deletion
       Get.find<CartListController>().getNewProducts();
     } else {
       _errorMessage = response.errorMessage;
