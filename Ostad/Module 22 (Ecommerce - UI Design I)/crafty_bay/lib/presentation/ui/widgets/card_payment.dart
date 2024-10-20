@@ -44,8 +44,13 @@ class CardPayment extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.network(
-                        paymentMethod.logo ?? "") // Show payment method name
+                    Transform.scale(
+                      scale: 1.1,
+                      child: Image.network(
+                        paymentMethod.logo ?? "",
+                        fit: BoxFit.contain,
+                      ),
+                    ) // Show payment method name
                     // You can display other details or icons here if needed
                   ],
                 ),

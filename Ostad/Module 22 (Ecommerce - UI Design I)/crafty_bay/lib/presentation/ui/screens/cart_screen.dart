@@ -15,9 +15,11 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   late TextTheme textTheme = Theme.of(context).textTheme;
+
+  int _totalPrice = 0; // Corrected to store total price at the class level
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Get.find<CartListController>().getNewProducts();
   }
@@ -57,7 +59,14 @@ class _CartScreenState extends State<CartScreen> {
                           itemCount: cartListController.cartList.length,
                           itemBuilder: (context, index) {
                             return CartItemWidget(
-                                cartModel: cartListController.cartList[index]);
+                              cartModel: cartListController.cartList[index],
+                              onValueChanged: (totalPrice) {
+                                setState(() {
+                                  _totalPrice =
+                                      totalPrice; // Update total price
+                                });
+                              },
+                            );
                           },
                         ),
                 );
@@ -70,9 +79,10 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
+  // Removed the old totalPrice method, and now just tracking _totalPrice
+
   Widget buildPriceAndAddToCartSection() {
     return Container(
-      //height: 100,
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
           color: AppColors.themeColor.withOpacity(0.1),
@@ -88,7 +98,7 @@ class _CartScreenState extends State<CartScreen> {
             children: [
               Text('Total Price'),
               Text(
-                '1000\$',
+                '\$$_totalPrice', // Corrected string interpolation for total price
                 style: TextStyle(
                     color: AppColors.themeColor,
                     fontSize: 18,

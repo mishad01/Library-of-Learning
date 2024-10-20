@@ -10,14 +10,25 @@ class CartItemWidget extends StatefulWidget {
   const CartItemWidget({
     super.key,
     required this.cartModel,
+    required this.onValueChanged,
   });
   final CartModel cartModel;
+  final Function(int totalPrice) onValueChanged;
 
   @override
   State<CartItemWidget> createState() => _CartItemWidgetState();
 }
 
 class _CartItemWidgetState extends State<CartItemWidget> {
+  int quantity = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    quantity = int.parse(widget.cartModel.qty ?? "0");
+  }
+
+  int totalPrice = 0;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -32,7 +43,6 @@ class _CartItemWidgetState extends State<CartItemWidget> {
             child: Column(
               children: [
                 _buildProductDetailsAndDetails(textTheme),
-                SizedBox(height: 10),
                 _buildPriceAndCounter(),
               ],
             ),
@@ -59,10 +69,11 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 children: [
                   Text('Color : ${widget.cartModel.color}',
                       style: textTheme.bodyLarge),
-                  Text('Color : ${widget.cartModel.size}',
-                      style: textTheme.bodyLarge)
+                  Text('Size : ${widget.cartModel.size}',
+                      style: textTheme.bodyLarge),
                 ],
-              )
+              ),
+              Text('Item: ${widget.cartModel.qty}', style: textTheme.bodyLarge)
             ],
           ),
         ),
@@ -74,7 +85,6 @@ class _CartItemWidgetState extends State<CartItemWidget> {
               onPressed: () {
                 deleteCartController
                     .deleteCart(widget.cartModel.productId.toString());
-                setState(() {});
               },
               icon: Icon(
                 Icons.delete,
@@ -99,12 +109,22 @@ class _CartItemWidgetState extends State<CartItemWidget> {
               fontWeight: FontWeight.w600),
         ),
         ItemCount(
-          initialValue: 1,
+          initialValue: quantity,
           minValue: 1,
           maxValue: 20,
-          onChanged: (value) {},
           decimalPlaces: 0,
           color: AppColors.themeColor,
+          onChanged: (value) {
+            setState(() {
+              quantity = value.toInt();
+              totalPrice = int.parse(widget.cartModel.price ?? "0") *
+                  quantity; // Correct calculation
+              int xz = int.parse(widget.cartModel.price ?? "0");
+              print(".......................$quantity");
+              print(".........................$xz");
+            });
+            widget.onValueChanged(totalPrice);
+          },
         )
       ],
     );

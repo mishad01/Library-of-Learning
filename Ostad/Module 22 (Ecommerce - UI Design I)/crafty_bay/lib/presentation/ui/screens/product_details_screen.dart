@@ -39,7 +39,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   String _selectedColor = 'aaa';
 
   String _selectedSize = '12';
-  int quantity = 1;
+  int quantity = 0;
+  int totalPrice = 0;
   @override
   void initState() {
     super.initState();
@@ -154,6 +155,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             setState(
               () {
                 quantity = value.toInt();
+                totalPrice =
+                    int.parse(productDetails.product?.price ?? "0") * quantity;
               },
             );
           },
@@ -235,7 +238,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             children: [
               Text('Price'),
               Text(
-                '\$${productDetailsModel.product?.price ?? " "}',
+                totalPrice.toString(),
                 style: const TextStyle(
                     color: AppColors.themeColor,
                     fontSize: 18,
