@@ -19,14 +19,6 @@ class CartItemWidget extends StatefulWidget {
 
 class _CartItemWidgetState extends State<CartItemWidget> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Get.find<DeleteCartController>()
-        .deleteCart(widget.cartModel.productId.toString());
-  }
-
-  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Card(
@@ -82,6 +74,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
               onPressed: () {
                 deleteCartController
                     .deleteCart(widget.cartModel.productId.toString());
+                setState(() {});
               },
               icon: Icon(
                 Icons.delete,

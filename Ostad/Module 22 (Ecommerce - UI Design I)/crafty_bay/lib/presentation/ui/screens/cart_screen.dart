@@ -1,5 +1,4 @@
 import 'package:crafty_bay/presentation/state_holders/cart_list_controller.dart';
-import 'package:crafty_bay/presentation/state_holders/delete_cart_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/invoice_creation_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/widgets/cart/cart_item_widget.dart';
@@ -21,7 +20,6 @@ class _CartScreenState extends State<CartScreen> {
     // TODO: implement initState
     super.initState();
     Get.find<CartListController>().getNewProducts();
-    Get.find<DeleteCartController>();
   }
 
   @override
