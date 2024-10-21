@@ -1,4 +1,5 @@
 import 'package:crafty_bay/presentation/state_holders/invoice_creation_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/webview_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,17 +40,23 @@ class InternetBankingPayment extends StatelessWidget {
               // Show actual content from the PaymentMethod
               final paymentMethod =
                   invoiceCreationController.internetPaymentMethod[index];
-              return Container(
-                alignment: Alignment.center,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Transform.scale(
-                      scale: 1.1,
-                      child: Image.network(paymentMethod.logo ?? ""),
-                    ) // Show payment method name
-                    // You can display other details or icons here if needed
-                  ],
+              return InkWell(
+                onTap: () {
+                  Get.to(() => WebViewScreen(
+                      link: paymentMethod.redirectGatewayURL.toString()));
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Transform.scale(
+                        scale: 1.1,
+                        child: Image.network(paymentMethod.logo ?? ""),
+                      ) // Show payment method name
+                      // You can display other details or icons here if needed
+                    ],
+                  ),
                 ),
               );
             },
