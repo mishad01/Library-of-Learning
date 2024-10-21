@@ -16,8 +16,6 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   late TextTheme textTheme = Theme.of(context).textTheme;
 
-  int _totalPrice = 0; // Corrected to store total price at the class level
-
   @override
   void initState() {
     super.initState();
@@ -36,52 +34,50 @@ class _CartScreenState extends State<CartScreen> {
         onRefresh: () {
           return Get.find<CartListController>().getNewProducts();
         },
-        child: Column(
-          children: [
-            Expanded(
-              child:
-                  GetBuilder<CartListController>(builder: (cartListController) {
-                return Visibility(
-                  visible: !cartListController.inProgress,
-                  replacement: CenteredCircularProgressIndicator(),
-                  child: cartListController.cartList.isEmpty
-                      ? Center(
-                          child: Text(
-                            'NOTHING ADDED TO CART YET',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.normal),
+        child: GetBuilder<CartListController>(
+          builder: (cartListController) {
+            return Column(
+              children: [
+                Expanded(
+                  child: Visibility(
+                    visible: !cartListController.inProgress,
+                    replacement: CenteredCircularProgressIndicator(),
+                    child: cartListController.cartList.isEmpty
+                        ? Center(
+                            child: Text(
+                              'NOTHING ADDED TO CART YET',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.normal),
+                            ),
+                          )
+                        : ListView.separated(
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(
+                              height: 8,
+                            ),
+                            itemCount: cartListController.cartList.length,
+                            itemBuilder: (context, index) {
+                              return CartItemWidget(
+                                cartModel: cartListController.cartList[index],
+                                onValueChanged: (totalPrice) {
+                                  // Update total price logic if needed
+                                  setState(() {});
+                                },
+                              );
+                            },
                           ),
-                        )
-                      : ListView.separated(
-                          separatorBuilder: (context, index) => const SizedBox(
-                            height: 8,
-                          ),
-                          itemCount: cartListController.cartList.length,
-                          itemBuilder: (context, index) {
-                            return CartItemWidget(
-                              cartModel: cartListController.cartList[index],
-                              onValueChanged: (totalPrice) {
-                                setState(() {
-                                  _totalPrice =
-                                      totalPrice; // Update total price
-                                });
-                              },
-                            );
-                          },
-                        ),
-                );
-              }),
-            ),
-            buildPriceAndAddToCartSection(),
-          ],
+                  ),
+                ),
+                buildPriceAndAddToCartSection(cartListController.totalPrice),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 
-  // Removed the old totalPrice method, and now just tracking _totalPrice
-
-  Widget buildPriceAndAddToCartSection() {
+  Widget buildPriceAndAddToCartSection(int val) {
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -98,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
             children: [
               Text('Total Price'),
               Text(
-                '\$$_totalPrice', // Corrected string interpolation for total price
+                '\$$val', // Display the total price from CartListController
                 style: TextStyle(
                     color: AppColors.themeColor,
                     fontSize: 18,
