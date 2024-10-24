@@ -11,6 +11,7 @@ class Urls {
   static const String createCartList = '$_baseUrl/CreateCartList';
   static const String cartList = '$_baseUrl/CartList';
   static const String invoiceCreate = '$_baseUrl/InvoiceCreate';
+  static const String createProductReview = '$_baseUrl/CreateProductReview';
 
   static String createWishList(String productId) =>
       '$_baseUrl/CreateWishList/$productId';
