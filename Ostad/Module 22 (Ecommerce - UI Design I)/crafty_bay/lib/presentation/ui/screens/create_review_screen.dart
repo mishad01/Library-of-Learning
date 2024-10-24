@@ -16,6 +16,7 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
   TextEditingController _nameTEController = TextEditingController();
   TextEditingController _ratingEController = TextEditingController();
   TextEditingController _descriptionTEController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,31 +27,57 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
           children: [
             const SizedBox(height: 20),
             TextFormField(
-              decoration: InputDecoration(hintText: 'First Name'),
+              controller: _nameTEController,
+              decoration: InputDecoration(hintText: 'Name'),
             ),
             const SizedBox(height: 10),
             TextFormField(
-              decoration: InputDecoration(hintText: 'Last Name'),
+              controller: _ratingEController,
+              keyboardType: TextInputType
+                  .number, // Ensure the keyboard allows number input
+              decoration: InputDecoration(hintText: 'Rating Out of 5'),
             ),
             const SizedBox(height: 10),
             TextFormField(
+              controller: _descriptionTEController,
               maxLines: 8,
-              decoration: InputDecoration(hintText: 'Write Review'),
+              decoration:
+                  InputDecoration(hintText: 'Description'), // Corrected typo
             ),
             const SizedBox(height: 10),
             GetBuilder<CreateProductReviewController>(
                 builder: (createProductReviewController) {
               return Visibility(
-                  visible: (!createProductReviewController.inProgress),
-                  replacement: CenteredCircularProgressIndicator(),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        createProductReviewController.addReview(
-                            _descriptionTEController.toString(),
-                            widget.productId,
-                            _ratingEController.toString());
-                      },
-                      child: Text('Submit')));
+                visible: !createProductReviewController.inProgress,
+                replacement: CenteredCircularProgressIndicator(),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    String description = _descriptionTEController.text;
+                    int rating = int.tryParse(_ratingEController.text) ??
+                        0; // Ensure rating is an integer
+
+                    if (rating < 1 || rating > 5) {
+                      // Handle invalid rating input
+                      Get.snackbar('Invalid Rating',
+                          'Please provide a rating between 1 and 5');
+                      return;
+                    }
+
+                    bool success = await createProductReviewController
+                        .addReview(description, widget.productId, rating);
+
+                    if (success) {
+                      Get.back();
+                    } else {
+                      Get.snackbar(
+                          'Error',
+                          createProductReviewController.errorMessage ??
+                              'Failed to submit review');
+                    }
+                  },
+                  child: Text('Submit'),
+                ),
+              );
             }),
           ],
         ),
@@ -60,7 +87,6 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _nameTEController.dispose();
     _ratingEController.dispose();
     _descriptionTEController.dispose();

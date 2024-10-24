@@ -11,8 +11,8 @@ class CreateProductReviewController extends GetxController {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
-  Future<bool> addReview(
-      String description, int product_id, String rating) async {
+  Future<bool> addReview(String description, int product_id, int rating) async {
+    // Change rating to int
     bool isSuccess = false;
     _inProgress = true;
     _errorMessage = null;
@@ -21,13 +21,15 @@ class CreateProductReviewController extends GetxController {
     Map<String, dynamic> addReview = {
       "description": description,
       "product_id": product_id,
-      "rating": rating
+      "rating": rating, // Ensure this is sent as an int
     };
+
     NetworkResponse response = await Get.find<NetworkCaller>().postRequest(
       url: Urls.createProductReview,
       token: AuthController.accessToken,
       body: addReview,
     );
+
     if (response.isSuccess && response.responseData['msg'] == 'success') {
       _errorMessage = null;
       isSuccess = true;
