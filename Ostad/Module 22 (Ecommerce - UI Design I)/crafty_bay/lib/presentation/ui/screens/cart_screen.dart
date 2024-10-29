@@ -1,4 +1,6 @@
+import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/cart_list_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/invoice_creation_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
 import 'package:crafty_bay/presentation/ui/widgets/cart/cart_item_widget.dart';
@@ -103,12 +105,18 @@ class _CartScreenState extends State<CartScreen> {
             ],
           ),
           SizedBox(
-              width: 140,
-              child: ElevatedButton(
-                  onPressed: () {
-                    Get.to(() => InvoiceCreationScreen());
-                  },
-                  child: Text('Check Out'))),
+            width: 140,
+            child: ElevatedButton(
+              onPressed: () {
+                if (AuthController.accessToken == null) {
+                  Get.to(() => EmailVerificationScreen());
+                } else {
+                  Get.to(() => InvoiceCreationScreen());
+                }
+              },
+              child: Text('Check Out'),
+            ),
+          ),
         ],
       ),
     );

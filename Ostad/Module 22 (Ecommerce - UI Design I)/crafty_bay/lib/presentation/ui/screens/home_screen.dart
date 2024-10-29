@@ -179,15 +179,16 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: () {},
         ),
         const SizedBox(width: 10),
-        AppBarIcon(
-          iconData: Icons.logout,
-          onTap: () async {
-            print('Logout button pressed');
-            // Call the clearUserData method to clear shared preferences and navigate
-            await authController.clearUserData();
-            Get.offAll(() => EmailVerificationScreen());
-          },
-        ),
+        if (AuthController.accessToken != null)
+          AppBarIcon(
+            iconData: Icons.logout,
+            onTap: () async {
+              print('Logout button pressed');
+
+              await authController.clearUserData();
+              Get.offAll(() => EmailVerificationScreen());
+            },
+          ),
       ],
     );
   }
