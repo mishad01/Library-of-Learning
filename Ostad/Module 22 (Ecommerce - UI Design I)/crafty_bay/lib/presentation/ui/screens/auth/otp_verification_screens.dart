@@ -1,6 +1,7 @@
 import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/otp_verification_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/read_profile_controller.dart';
+import 'package:crafty_bay/presentation/state_holders/time_count_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/complete_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/main_bottom_navbar_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/app_color.dart';
@@ -27,6 +28,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       Get.find<OtpVerificationController>();
   final ReadProfileController _readProfileController =
       Get.find<ReadProfileController>();
+  final timeCountController = Get.find<TimeCountController>();
+  void initState() {
+    super.initState();
+    timeCountController.startTimeCountDown(startValue: 120);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,19 +92,21 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 );
               }),
               const SizedBox(height: 16),
-              RichText(
-                text: TextSpan(
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge
-                      ?.copyWith(color: Colors.grey),
-                  text: 'This code will expire in ',
-                  children: const [
-                    TextSpan(
-                      text: '120s',
-                      style: TextStyle(color: AppColors.themeColor),
-                    ),
-                  ],
+              Obx(
+                () => RichText(
+                  text: TextSpan(
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge
+                        ?.copyWith(color: Colors.grey),
+                    text: 'This code will expire in ',
+                    children: [
+                      TextSpan(
+                        text: '${timeCountController.count}s',
+                        style: const TextStyle(color: Colors.blue),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               TextButton(onPressed: () {}, child: const Text('Resend Code')),
@@ -123,7 +131,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
           Get.to(() => CompleteVerificationScreen(
                 token: _otpVerificationController.accessToken,
               ));
-          showSnackBarMessage(context, _otpVerificationController.accessToken);
+          //showSnackBarMessage(context, _otpVerificationController.accessToken);
         }
       } else {
         if (mounted) {

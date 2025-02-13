@@ -58,5 +58,6 @@ class ControllerBinder extends Bindings {
     Get.put(DeleteCartController());
     Get.put(InvoiceCreationController());
     Get.put(CreateProductReviewController());
+    Get.put(TimeCountController());
   }
 }

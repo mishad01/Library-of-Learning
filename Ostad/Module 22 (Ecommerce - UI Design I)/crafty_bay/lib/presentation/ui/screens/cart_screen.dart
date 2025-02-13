@@ -46,11 +46,14 @@ class _CartScreenState extends State<CartScreen> {
                     replacement: CenteredCircularProgressIndicator(),
                     child: cartListController.cartList.isEmpty
                         ? Center(
-                            child: Text(
-                              'NOTHING ADDED TO CART YET',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.normal),
-                            ),
+                            child: AuthController.accessToken == null
+                                ? Text("Not Logged In")
+                                : Text(
+                                    'NOTHING ADDED TO CART YET',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.normal),
+                                  ),
                           )
                         : ListView.separated(
                             separatorBuilder: (context, index) =>

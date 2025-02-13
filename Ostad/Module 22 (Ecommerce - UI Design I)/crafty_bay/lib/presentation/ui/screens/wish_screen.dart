@@ -1,5 +1,6 @@
 import 'package:crafty_bay/data/model/product_model.dart';
 import 'package:crafty_bay/data/model/wish_list_model.dart';
+import 'package:crafty_bay/presentation/state_holders/auth_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/bottom_nav_bar_controller.dart';
 import 'package:crafty_bay/presentation/state_holders/wish_list_controller.dart';
 import 'package:crafty_bay/presentation/ui/widgets/centered_circular_progress_indicator.dart';
@@ -41,38 +42,48 @@ class _WishScreenState extends State<WishScreen> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GetBuilder<WishListController>(builder: (wishListController) {
-            return Visibility(
-              visible: !wishListController.inProgress,
-              replacement: CenteredCircularProgressIndicator(),
-              child: GridView.builder(
-                itemCount: wishListController.productWishList.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 0.83,
-                ),
-                itemBuilder: (context, index) {
-                  WishListModel wishListModel =
-                      wishListController.productWishList[index];
-                  ProductModel? product =
-                      wishListModel.product; // Extract the product
-
-                  // Check if the product is null
-                  if (product != null) {
-                    return Container(
-                      child: product_card2(
-                        product: product,
+            return AuthController.accessToken == null
+                ? Center(
+                    child: AuthController.accessToken == null
+                        ? Text("Not Logged In")
+                        : Text(
+                            'NOTHING ADDED TO CART YET',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.normal),
+                          ),
+                  )
+                : Visibility(
+                    visible: !wishListController.inProgress,
+                    replacement: CenteredCircularProgressIndicator(),
+                    child: GridView.builder(
+                      itemCount: wishListController.productWishList.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10,
+                        childAspectRatio: 0.83,
                       ),
-                    );
-                  } else {
-                    // Optionally handle the null case (e.g., display a placeholder)
-                    return Container(
-                      child: Text('Product information is unavailable'),
-                    );
-                  }
-                },
-              ),
-            );
+                      itemBuilder: (context, index) {
+                        WishListModel wishListModel =
+                            wishListController.productWishList[index];
+                        ProductModel? product =
+                            wishListModel.product; // Extract the product
+
+                        // Check if the product is null
+                        if (product != null) {
+                          return Container(
+                            child: product_card2(
+                              product: product,
+                            ),
+                          );
+                        } else {
+                          // Optionally handle the null case (e.g., display a placeholder)
+                          return Container(
+                            child: Text('Product information is unavailable'),
+                          );
+                        }
+                      },
+                    ),
+                  );
           }),
         ),
       ),
