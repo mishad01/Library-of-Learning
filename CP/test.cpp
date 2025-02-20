@@ -8,6 +8,7 @@ public:
                 count++;
             }
         }
+        cout<<"Check Git";
         return count;
     }
 };
