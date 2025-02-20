@@ -4,7 +4,7 @@ public:
         int count=0;
         int test ;
         for(int i = low;i<=high;i++){
-            if(i%3!=0){
+            if(i%2!=0){
                 count++;
             }
         }
