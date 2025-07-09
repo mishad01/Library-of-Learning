@@ -1,58 +1,48 @@
 void main() {
-  print('--- Nullable and Non-nullable Types ---');
-  
-  // Non-nullable integer (must be initialized)
+  // Nullable and Non-nullable Types
   int fixedAge = 25;
-  print("Non-nullable age: $fixedAge");
+  print(fixedAge);
 
-  // Nullable integer (can be null)
   int? age;
-  print("Initial nullable age: $age"); // Output: null
-
+  print(age); // null
   age = 20;
-  print("Updated nullable age: $age"); // Output: 20
+  print(age); // 20
 
-  print('\n--- Null Assertion Operator (!) ---');
-
+  // Null Assertion Operator (!)
   String? name = "Sakif";
-  print("Name with !: ${name!}"); // Safe here
+  print(name!); // Safe
 
   name = null;
-  // Uncommenting the line below will throw an error
-  // print(name!); //
-  print('\n--- Null Coalescing Operator (??) ---');
+  // print(name!); // This would crash
 
+  // Null Coalescing Operator (??)
   String? city;
-  print("City or default: ${city ?? "Unknown"}"); // Output: Unknown
+  print(city ?? "Unknown");
 
   city = "Dhaka";
-  print("City after assigning: ${city ?? "Unknown"}"); // Output: Dhaka
+  print(city ?? "Unknown");
 
-  print('\n--- Null-Aware Assignment Operator (??=) ---');
-
+  // Null-Aware Assignment (??=)
   String? country;
-  country ??= "Bangladesh"; // Assign only if null
-  print("Country after ??= : $country");
+  country ??= "Bangladesh";
+  print(country);
 
-  country ??= "Canada"; // This won’t overwrite because it’s not null now
-  print("Country after second ??= : $country");
+  country ??= "Canada"; // No change
+  print(country);
 
-  print('\n--- Null-Aware Access Operator (?.) ---');
-
+  // Null-Aware Access Operator (?.)
   String? user = null;
-  print("User length: ${user?.length}"); // Output: null, no crash
+  print(user?.length); // null
 
   user = "Mishad";
-  print("User length: ${user?.length}"); // Output: 6
+  print(user?.length); // 6
 
-  print('\n--- Combining Null Checks with try-catch ---');
-
+  // Null Checks with try-catch
   String? riskyName;
 
   try {
-    // Forcefully accessing nullable value with ! (throws error if null)
-    print("Uppercase: ${riskyName!.toUpperCase()}");
+    print(riskyName!.toUpperCase()); // This will throw
   } catch (e) {
-    print("Caught error: $e");
+    print("Error: $e");
   }
 }
