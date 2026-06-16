@@ -4,6 +4,7 @@ import { Alert,
    Button, Image, Pressable, StyleSheet, Text, Touchable, TouchableOpacity, View, ScrollView,Platform,ActivityIndicator} from 'react-native';
 import { SafeAreaView ,SafeAreaProvider} from 'react-native-safe-area-context';
 import FlexScreen from './FlexScreen';
+import UseStateScreen from './UseStateScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -63,6 +64,10 @@ function HomeScreen({ navigation }: { navigation: any }) {
       navigation.navigate('FlexScreen')
      }></Button>
 
+     <Button title="useState Hook" onPress={() =>
+      navigation.navigate('UseStateScreen')
+     }></Button>
+
     <View style={styles.box2}>
       <View style={styles.childbox2}></View>
     </View>
@@ -79,6 +84,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="FlexScreen" component={FlexScreen} />
+        <Stack.Screen name="UseStateScreen" component={UseStateScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

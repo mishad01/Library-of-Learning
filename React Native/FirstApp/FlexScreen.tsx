@@ -1,6 +1,11 @@
-import { View,StyleSheet, Text } from "react-native";
+import { View,StyleSheet, Text, Dimensions } from "react-native";
 
 export default function FlexScreen() {
+
+  console.log('FlexScreen rendered');
+  const PHONE_HEIGHT = Dimensions.get('screen').height;
+  const PHONE_WIDTH = Dimensions.get('screen').width;
+
     return (
         <View style = {{flex:1,flexDirection: "row",
           backgroundColor: 'powderblue',
