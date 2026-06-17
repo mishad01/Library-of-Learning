@@ -12,7 +12,9 @@
     "react": "19.2.3",
     "react-native": "0.85.3",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "4.25.2"
+    "react-native-screens": "4.25.2",
+    "react-redux": "^9.3.0",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
