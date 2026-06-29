@@ -57,3 +57,81 @@ let userInfo4 : (x: string, y: number)=> any;
 };
 
 console.log(userInfo4("sakif ", 25));  // prints "sakif25"
+
+
+// ─── Regular function declaration ────────────────────────────────────────────
+function add(a: number, b: number): number {
+    return a + b;
+}
+console.log(add(5, 3)); // 8
+
+
+// ─── Optional parameters ( ? ) ───────────────────────────────────────────────
+// age is optional — caller can skip it
+function displayUser(name: string, age?: number): void {
+    if (age !== undefined) {
+        console.log(`${name}, age: ${age}`);
+    } else {
+        console.log(`${name}, age: not provided`);
+    }
+}
+displayUser("Sakif", 25); // Sakif, age: 25
+displayUser("Mishad");    // Mishad, age: not provided
+
+
+// ─── Default parameters ──────────────────────────────────────────────────────
+// if caller doesn't pass greeting, it defaults to "Hello"
+function greet(name: string, greeting: string = "Hello"): string {
+    return `${greeting}, ${name}`;
+}
+console.log(greet("Sakif"));          // Hello, Sakif
+console.log(greet("Sakif", "Hi"));    // Hi, Sakif
+
+
+// ─── Rest parameters ─────────────────────────────────────────────────────────
+// accepts any number of arguments as an array
+function sum(...nums: number[]): number {
+    return nums.reduce((acc, n) => acc + n, 0);
+}
+console.log(sum(1, 2, 3));       // 6
+console.log(sum(10, 20, 30, 40)); // 100
+
+
+// ─── Function overloading ─────────────────────────────────────────────────────
+// same function name, different parameter types
+// the last signature is the actual implementation
+function format(value: string): string;
+function format(value: number): string;
+function format(value: any): string {
+    return String(value);
+}
+console.log(format(123));     // "123"
+console.log(format("hello")); // "hello"
+
+
+// ─── Higher-order functions ───────────────────────────────────────────────────
+// a function that takes another function as a parameter
+function applyOperation(a: number, b: number, operation: (x: number, y: number) => number): number {
+    return operation(a, b);
+}
+
+const multiply = (x: number, y: number): number => x * y;
+
+console.log(applyOperation(5, 3, add));       // 8  — uses add function
+console.log(applyOperation(5, 3, multiply));  // 15 — uses multiply function
+
+
+// ─── never return type ────────────────────────────────────────────────────────
+// for functions that never return — they always throw or run forever
+function throwError(msg: string): never {
+    throw new Error(msg);
+}
+
+function getUser(id: number): string {
+    if (id <= 0) {
+        throwError("Invalid ID"); // TypeScript knows: execution stops here
+    }
+    return "Sakif"; // TypeScript knows this is only reached if id > 0
+}
+console.log(getUser(1));  // "Sakif"
+// getUser(-1);           // throws Error: Invalid ID

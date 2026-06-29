@@ -52,6 +52,33 @@ const s = new Student('Sakif', 10, 'STU001');
 console.log(s.userName);    // ✅ 'Sakif'  (inherited from User)
 console.log(s.studentId);   // ✅ 'STU001' (Student's own property)
 
+// ─── static members — belong to the class itself, not instances ─────────────
+class MathHelper {
+    static PI = 3.14;
+
+    static square(n: number): number {
+        return n * n;
+    }
+}
+
+console.log(MathHelper.PI);         // 3.14 — no need to instantiate
+console.log(MathHelper.square(5));  // 25
+
+// static counter — tracks how many instances were created
+class Counter {
+    static count = 0;
+
+    constructor() {
+        Counter.count++;
+    }
+}
+
+new Counter();
+new Counter();
+new Counter();
+console.log(Counter.count); // 3
+
+
 // ─── Original usage ─────────────────────────────────────────────────────────
 const longWayUser = new UserLongWay('Sakif', 10);
 longWayUser.display();

@@ -12,3 +12,15 @@ const colors = ["red", "green", "blue"];
 for (let i = 0; i < colors.length; i++) {
   console.log(i, colors[i]); // 0 red, 1 green, 2 blue
 }
+
+// break — stops the loop entirely
+for (let i = 0; i < 5; i++) {
+    if (i === 3) break;
+    console.log(i); // 0, 1, 2 — stops before 3
+}
+
+// continue — skips the current iteration and moves to the next
+for (let i = 0; i < 5; i++) {
+    if (i === 2) continue;
+    console.log(i); // 0, 1, 3, 4 — skips 2
+}

@@ -164,3 +164,37 @@ class Calculator{
 const calc = new Calculator();
 console.log(calc.add(5,3));
 console.log(calc.add("Hello"," World"));
+
+
+// ─── instanceof — check which class an object belongs to at runtime ──────────
+class Animal2 {
+    name: string;
+    constructor(name: string) { this.name = name; }
+}
+
+class Dog2 extends Animal2 {
+    bark() { console.log("Woof"); }
+}
+
+class Cat2 extends Animal2 {
+    meow() { console.log("Meow"); }
+}
+
+const pet: Animal2 = new Dog2("Buddy");
+
+if (pet instanceof Dog2) {
+    pet.bark(); // ✅ TypeScript now knows it's a Dog2, so bark() is accessible
+} else if (pet instanceof Cat2) {
+    pet.meow();
+}
+
+// instanceof with array of mixed types
+const animals: Animal2[] = [new Dog2("Rex"), new Cat2("Whiskers"), new Dog2("Max")];
+
+for (const animal of animals) {
+    if (animal instanceof Dog2) {
+        animal.bark();
+    } else if (animal instanceof Cat2) {
+        animal.meow();
+    }
+}

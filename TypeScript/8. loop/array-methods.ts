@@ -20,3 +20,23 @@ console.log(evens); // [2]
 // ⚠️ forEach cannot break/continue, and returns undefined.
 //    Need to stop early?      → use a normal for / for...of loop
 //    Need a new array back?   → use map (not forEach)
+
+// reduce — ACCUMULATE all items into a single value
+const total = nums.reduce((acc, n) => acc + n, 0);
+console.log(total); // 6
+
+// find — returns the FIRST item that passes the test (or undefined)
+const firstOver1 = nums.find(n => n > 1);
+console.log(firstOver1); // 2
+
+// findIndex — returns the INDEX of the first item that passes (or -1)
+const firstOver1Index = nums.findIndex(n => n > 1);
+console.log(firstOver1Index); // 1
+
+// some — returns true if AT LEAST ONE item passes the test
+const hasEven = nums.some(n => n % 2 === 0);
+console.log(hasEven); // true
+
+// every — returns true if ALL items pass the test
+const allPositive = nums.every(n => n > 0);
+console.log(allPositive); // true
