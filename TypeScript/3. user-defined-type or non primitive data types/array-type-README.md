@@ -241,6 +241,24 @@ const sum = nums.reduce((acc, n) => acc + n, 0); // inferred: number
 
 ---
 
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                          | Use this                  | Example                                       |
+| ----------------------------------------------------------------------- | ------------------------- | --------------------------------------------- |
+| A list of items, all the same type                                      | `T[]`                     | `const users: string[] = []`                  |
+| Need to nest multiple generics (e.g. promise of array)                  | `Array<T>`                | `Promise<Array<User>>`                        |
+| API can return EITHER a list of users OR a list of errors (not mixed)   | `T[] \| U[]`              | `let result: User[] \| Error[]`              |
+| A single list where each item can be a string or number                 | `(T \| U)[]`              | `const mixed: (string \| number)[]`           |
+| Immutable config / constants that must not be modified                  | `readonly T[]`            | `const STATUSES: readonly string[] = [...]`   |
+| Function parameter you don't want the function to mutate                | `readonly T[]`            | `function sum(nums: readonly number[]) {...}` |
+| A grid / matrix / table of values                                       | `T[][]`                   | `const board: number[][] = [[0,1],[1,0]]`     |
+| Transforming each element into a new value                              | `.map()`                  | `nums.map(n => n * 2)`                        |
+| Keeping only items that match a condition                               | `.filter()`               | `nums.filter(n => n > 0)`                     |
+| Collapsing an array into one value (sum, max, group)                    | `.reduce()`               | `nums.reduce((a,b) => a + b, 0)`              |
+| Map of key → value (string keys to numbers, for example)                | `Map<K, V>` (generic)     | `new Map<string, number>()`                   |
+
+---
+
 ## How to run
 
 ```bash

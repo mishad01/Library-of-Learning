@@ -113,3 +113,21 @@ console.log(Counter.count); // 3
 - `private` = only this class, `protected` = this class + children, `public` = everywhere
 - Always call `super()` first in a subclass constructor
 - `static` = belongs to the class, not instances — no need to instantiate
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Modeling a real-world entity with data + behavior (User, Product)    | Class                     | `class User { ... }`                     |
+| Reducing boilerplate when constructor only assigns fields            | Shorthand constructor     | `constructor(public name: string) {}`   |
+| Field readable from anywhere outside the class                       | `public`                  | `public name: string`                    |
+| Sensitive field — only methods inside the class touch it             | `private`                 | `private password: string`               |
+| Field that subclasses need but outsiders don't                       | `protected`               | `protected age: number`                  |
+| Subclass needs to extend/customize a parent class                    | `extends` + `super()`     | `class Student extends User`             |
+| Constants / utility functions that don't need an instance            | `static`                  | `static PI = 3.14`                       |
+| Counting how many instances were created                             | `static` counter          | `static count = 0`                       |
+| Factory methods (`User.fromJson(...)`)                               | `static` method           | `static fromJson(json) { ... }`          |
+| Just storing data with no behavior → prefer `type` / `interface`     | `type` or `interface`     | `type User = { name: string }`           |
+| Need read-only fields                                                | `readonly` modifier       | `readonly id: number`                    |

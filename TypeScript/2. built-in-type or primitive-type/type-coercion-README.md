@@ -70,3 +70,18 @@ if (value == null) {
 But even then, being explicit with `=== null || === undefined` is clearer.
 
 TypeScript's `strict` mode and most linters will warn you if you use `==`.
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                   | Use this              | Example                              |
+| ---------------------------------------------------------------- | --------------------- | ------------------------------------ |
+| Comparing two values of the same type (numbers, strings, etc.)   | `===`                 | `if (age === 18)`                    |
+| Comparing two values you want to be NOT equal                    | `!==`                 | `if (status !== "done")`             |
+| Checking if a value is `null` OR `undefined` in one shot         | `== null`             | `if (value == null)` (rare exception)|
+| Checking only for `null`                                         | `=== null`            | `if (user === null)`                 |
+| Checking only for `undefined`                                    | `=== undefined`       | `if (data === undefined)`            |
+| Comparing user input from a form (string) with a number          | Convert first, then `===` | `Number(input) === 5`            |
+| Default rule for ALL comparisons in TypeScript/JS                | Always `===` / `!==`  | `a === b`                            |
+| Working in C, C++, Java, Dart                                    | `==` is fine          | (their types are strict)             |

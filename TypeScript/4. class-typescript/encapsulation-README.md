@@ -132,3 +132,20 @@ set name(v: string) { this._name = v; }   // public setter
 - `private` = hide data, expose via getter/setter
 - `get`/`set` keywords = cleaner than manual methods, looks like property access
 - Always validate in setters — that's the main benefit of encapsulation
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Field that should never change after construction (ID, timestamp)    | `readonly`                | `readonly userId: number`                |
+| Hide a sensitive field (password, token)                             | `private`                 | `private password: string`               |
+| Field used by subclasses but not outsiders                           | `protected`               | `protected age: number`                  |
+| Validate a value before setting (no negative ages, no empty names)   | `set` accessor            | `set age(v) { if (v < 0) throw ... }`    |
+| Computed property (e.g. `fullName` from `firstName + lastName`)      | `get` accessor            | `get fullName() { return ... }`          |
+| Expose a private field as a read-only property                       | `get` only (no setter)    | `get id() { return this._id }`           |
+| Logging / tracking every read or write to a field                    | `get` / `set`             | log inside getter/setter                 |
+| Replace `getName()` / `setName()` Java-style methods                 | `get` / `set` keywords    | `person.name` instead of `person.getName()` |
+| Backing field naming when using `get`/`set`                          | `_camelCase`              | `private _name: string`                  |
+| Field that can be set anywhere — no need to encapsulate              | `public`                  | `public title: string`                   |

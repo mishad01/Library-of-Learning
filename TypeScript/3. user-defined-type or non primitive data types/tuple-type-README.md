@@ -174,6 +174,23 @@ Rule of thumb: use an **array** for "many of the same thing", and a **tuple** fo
 
 ---
 
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                | Example                                  |
+| -------------------------------------------------------------------- | ----------------------- | ---------------------------------------- |
+| React `useState` return value `[value, setter]`                      | Tuple                   | `const [n, setN] = useState(0)`          |
+| Returning a `[data, error]` pair from a function                     | Tuple                   | `function fetchUser(): [User?, Error?]`  |
+| Geometric coordinates (x, y) or (lat, lng)                           | Readonly tuple          | `readonly [number, number]`              |
+| Key-value pair when iterating `Object.entries()`                     | Tuple `[string, V]`     | `for (const [k, v] of entries) {}`       |
+| Fixed CSV row with known column order                                | Named tuple             | `[id: number, name: string, age: number]`|
+| Last element is optional (e.g. middle name)                          | Optional tuple element  | `[string, string, string?]`              |
+| Need many elements all same type → use array, not tuple              | `T[]`                   | `string[]`                               |
+| Don't want anyone to push or modify the tuple                        | `readonly` tuple        | `readonly [number, number]`              |
+| You want to give meaningful labels to each position                  | Named tuple             | `[name: string, age: number]`            |
+| Unpacking tuple contents into clean variable names                   | Destructuring           | `const [id, name] = tuple`               |
+
+---
+
 ## How to run
 
 ```bash

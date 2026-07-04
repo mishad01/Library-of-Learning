@@ -245,6 +245,23 @@ Rule of thumb:
 
 ---
 
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this              | Example                                  |
+| -------------------------------------------------------------------- | --------------------- | ---------------------------------------- |
+| HTTP status codes / error codes / known numeric values               | Numeric enum          | `enum Code { Ok = 200, NotFound = 404 }` |
+| User roles (Admin, Editor, Viewer) for readability in logs           | String enum           | `enum Role { Admin = "ADMIN" }`          |
+| Iterating through all valid options at runtime                       | Numeric enum          | `Object.values(Days)`                    |
+| Need to convert a number back to its label                           | Numeric enum (reverse mapping) | `Days[1]  // "Monday"`           |
+| Just need type safety, no runtime cost                               | Literal union         | `type Method = "GET" \| "POST"`          |
+| Settings flag / direction / state in a game                          | `const enum`          | `const enum Dir { Up, Down }`            |
+| Allowing only certain function arguments                             | Enum OR literal union | `function go(d: Direction) {}`           |
+| Writing a React state machine ("idle", "loading", "success", "error")| Literal union         | `type Status = "idle" \| "loading"`      |
+| Sharing constants between frontend and backend                       | String enum           | (values stay stable & readable)          |
+| Bit flags / bitwise operations                                       | Numeric enum          | `enum Perm { Read = 1, Write = 2 }`      |
+
+---
+
 ## How to run
 
 ```bash

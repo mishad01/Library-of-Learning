@@ -164,3 +164,23 @@ function getUser(id: number): string {
 | Overloading | Multiple signatures | Same name, different types |
 | Higher-order | Takes a function as param | Callbacks, functional patterns |
 | `never` | `: never` | Always throws or infinite loop |
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Reusable top-level helper (utility)                                  | `function` declaration    | `function add(a,b) { return a + b }`     |
+| Short callback inside `map`, `filter`, event handler                 | Arrow function            | `nums.map(n => n * 2)`                   |
+| Behavior attached to a class instance                                | Method                    | `class User { display() {} }`            |
+| Caller may or may not provide a value (e.g. middle name)             | Optional `?` param        | `function user(name, middle?)`           |
+| Provide a fallback when value isn't given                            | Default param             | `function greet(name, msg = "Hi")`       |
+| Accept variable number of arguments (Math.max-style)                 | Rest param `...`          | `function sum(...nums: number[])`        |
+| Same function name, multiple type signatures                         | Overloading               | `format(value: string); format(value: number);` |
+| Function that takes / returns another function                       | Higher-order function     | `(cb: (n:number) => boolean) => ...`     |
+| Function that always throws / never completes                        | `never` return type       | `function fail(): never { throw ... }`   |
+| No return value at all (just side effects)                           | `void` return type        | `function log(): void`                   |
+| Need lexical `this` (e.g. inside class methods passed as callbacks)  | Arrow function            | `setTimeout(() => this.do(), 1000)`      |
+| Component or hook in React (uses caller's `this`)                    | Function declaration / arrow | `function Component() { ... }`       |
+| Strongly-typed callback parameter                                    | Function type annotation  | `cb: (n: number) => void`                |

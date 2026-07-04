@@ -279,6 +279,25 @@ function getArea(shape: Shape) {
 
 ---
 
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                          | Use this        | Example                                  |
+| ----------------------------------------------------------------------- | --------------- | ---------------------------------------- |
+| Whole numbers, decimals, prices, ages                                   | `number`        | `let age: number = 25`                   |
+| Names, messages, labels, any text                                       | `string`        | `let name: string = "Sakif"`             |
+| Yes/no, on/off, true/false flags                                        | `boolean`       | `let active: boolean = true`             |
+| A value you intentionally set to "empty"                                | `null`          | `let user: User \| null = null`          |
+| A variable declared but not yet assigned                                | `undefined`     | `let val: number \| undefined`           |
+| Unique object key that must never clash                                 | `symbol`        | `const id = Symbol("id")`                |
+| Numbers larger than `Number.MAX_SAFE_INTEGER` (2^53)                    | `bigint`        | `let huge: bigint = 9999999999999999n`   |
+| Function that doesn't return anything (e.g. `console.log` wrapper)      | `void`          | `function log(): void`                   |
+| Function that always throws or runs forever                             | `never`         | `function fail(): never { throw ... }`   |
+| Data from an API where you don't know the shape yet                     | `unknown`       | `const data: unknown = await res.json()` |
+| Quickly migrating JS to TS, no time to type properly                    | `any` (last resort) | `let legacy: any = oldCode()`        |
+| Exhaustive switch — making sure all union cases are handled             | `never` check   | `const _: never = shape`                 |
+
+---
+
 ## Running the examples
 
 From this folder, compile and run [`index.ts`](./index.ts):

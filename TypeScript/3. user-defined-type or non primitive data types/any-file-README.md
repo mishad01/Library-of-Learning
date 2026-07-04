@@ -76,3 +76,17 @@ let name: string = input; // TS allows this — no error
 | Use when | Migrating JS, no other option | External/dynamic data |
 
 **Bottom line:** `any` exists as an escape hatch. Use it as a last resort, not a default. Prefer `unknown` when you genuinely don't know the type.
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                          | Use this        | Example                                  |
+| ----------------------------------------------------------------------- | --------------- | ---------------------------------------- |
+| You are migrating a large JS codebase to TS and just want it to compile | `any` (temp)    | `let user: any = legacyFn();`            |
+| Using a 3rd-party library with no type definitions                      | `any` (last resort) | `const lib: any = require("old-lib");` |
+| You receive JSON from an API and don't know its shape yet               | `unknown`       | `const data: unknown = await res.json();`|
+| Reading values from user input / form fields                            | `unknown`       | Then narrow with `typeof`                |
+| You truly do not care about the type (logging / debugging only)         | `any`           | `function log(val: any) { ... }`         |
+| You want safety but type is dynamic                                     | `unknown`       | `function parse(input: unknown) { ... }` |
+| You know the exact type — never reach for `any`                         | Specific type   | `let count: number = 5;`                 |

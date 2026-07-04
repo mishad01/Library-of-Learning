@@ -161,3 +161,20 @@ export function add(a: number, b: number) {  // public
 | `import foo from "./file"` | Default import |
 | `import * as Foo from "./file"` | Namespace import |
 | `export { foo } from "./file"` | Re-export (barrel) |
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Sharing a util function with many files                              | Named export              | `export function add() {}`               |
+| One main thing per file (a React component, a class)                 | Default export            | `export default class Button {}`         |
+| Sharing types/interfaces between files                               | `export type`             | `export type User = { ... }`             |
+| Importing from a file with a name conflict                           | Import alias              | `import { age as userAge } from ...`     |
+| Want everything from a file under one namespace                      | Namespace import          | `import * as Math from "./math"`         |
+| Many small files but want one clean import path                      | Barrel (`index.ts`)       | `export { Foo } from "./foo"`            |
+| Helper that should stay private to the file                          | Don't export              | (just declare it normally)               |
+| Avoiding name clashes when two files have the same export name       | Import alias              | `import { User as Admin } from ...`      |
+| You only need a type and not the runtime value                       | `import type { ... }`     | `import type { User } from "./types"`    |
+| Re-exporting third party stuff to wrap it                            | Re-export                 | `export { default as Btn } from "lib"`   |

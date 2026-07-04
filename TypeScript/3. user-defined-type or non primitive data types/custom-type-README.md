@@ -197,6 +197,23 @@ let dog: Dog = { name: "Bruno", breed: "Labrador" };
 
 ---
 
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Reusing the same object shape in multiple files / functions          | `type` alias              | `type User = { id: number; name: string }` |
+| API request method that can only be GET / POST / PUT / DELETE        | String literal union      | `type Method = "GET" \| "POST"`          |
+| Form field that may or may not be filled                             | Optional property `?`     | `email?: string`                         |
+| ID / primary key that must never be changed once set                 | `readonly`                | `readonly id: number`                    |
+| A user that is both an `Admin` and an `Employee`                     | Intersection `&`          | `type X = Admin & Employee`              |
+| A value that is either a `Success` or `Error` response               | Union `\|`                | `type Res = Success \| Error`            |
+| Adding extra fields to an existing type without rewriting it         | Intersection extension    | `type Dog = Animal & { breed: string }`  |
+| Quickly naming a complex function signature                          | `type` alias for function | `type Cb = (x: number) => void`          |
+| Tuple with a meaningful name                                         | `type` alias for tuple    | `type Point = [number, number]`          |
+| You need declaration merging or class implements                     | Use `interface` instead   | (see folder `7. interface`)              |
+
+---
+
 ## How to run
 
 ```bash

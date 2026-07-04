@@ -193,6 +193,23 @@ Note: `object[]` has the same limitation as section 6 — you cannot read proper
 
 ---
 
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                  | Use this                       | Example                                       |
+| --------------------------------------------------------------- | ------------------------------ | --------------------------------------------- |
+| Quick local variable, you trust the shape                       | Type inference                 | `const u = { id: 1, name: "Sakif" }`          |
+| One-off object shape (used in one place only)                   | Inline annotation              | `let u: { id: number; name: string }`         |
+| Shape used in 2+ files / functions                              | Named `type` alias             | `type User = { ... }` then `let u: User`      |
+| Field that may be missing (e.g. user profile picture)           | Optional property `?`          | `avatar?: string`                             |
+| Field that must never be re-assigned (database `id`)            | `readonly`                     | `readonly id: number`                         |
+| Deep nested structure (user.address.city)                       | Nested object type             | `{ address: { city: string } }`               |
+| Storing a list of users / products                              | `T[]` of typed object          | `let users: User[]`                           |
+| You truly don't care what's inside (rare!)                      | `Record<string, unknown>`      | `let cfg: Record<string, unknown>`            |
+| Avoid this — generic `object` has no shape                      | ❌ `object`                    | (always prefer a real shape)                  |
+| Dynamic keys (dictionary / hashmap of values)                   | `Record<K, V>`                 | `Record<string, number>`                      |
+
+---
+
 ## How to run
 
 ```bash

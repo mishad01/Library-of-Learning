@@ -70,3 +70,19 @@ Example: `Shape` is abstract, but `Circle` and `Square` each draw differently.
 - `abstract method` = no body, subclasses must implement it
 - TypeScript will throw an error if a subclass doesn't implement all abstract methods
 - Great for enforcing a consistent interface across related classes
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Common base behavior + forcing subclasses to implement specifics     | `abstract class`          | `abstract class Shape { abstract area() }`|
+| You want shared state + abstract methods together                    | `abstract class`          | (interfaces can't have state)            |
+| Pure contract, no implementation, no state                           | `interface` instead       | `interface Drawable { draw(): void }`    |
+| Prevent direct instantiation of a base class                         | `abstract class`          | `new Shape()  // ❌ error`               |
+| `Shape` -> `Circle` / `Square` style hierarchy with shared fields    | `abstract class`          | `abstract class Shape { color: string }` |
+| Payment processor with `processPayment()` abstract per provider      | `abstract class`          | `abstract class Payment { abstract process() }`|
+| Game character base with `attack()` to be defined by each subclass   | `abstract class`          | `abstract class Character { abstract attack() }`|
+| You only need a function signature contract (no fields)              | `interface` / `type`      | `type Drawable = { draw(): void }`       |
+| Multiple inheritance needed                                          | `interface` (classes implement multiple) | `class A implements I1, I2` |

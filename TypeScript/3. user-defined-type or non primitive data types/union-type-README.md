@@ -120,3 +120,21 @@ The `in` operator checks if a property exists on the object. TypeScript uses thi
 - Literal types = only exact values allowed — great for catching bugs at compile time
 - With object unions, TypeScript forces you to **narrow** before accessing properties
 - `typeof` narrows primitives, `in` narrows objects
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Variable that can hold an ID as either a number or string            | Basic union               | `let id: number \| string`               |
+| Function param that accepts either a string or a number              | Union param               | `function fn(x: string \| number)`       |
+| Function may return a value or `null` when not found                 | Union with `null`         | `function find(): User \| null`          |
+| Restricting a value to fixed strings ("light" / "dark")              | String literal union      | `type Theme = "light" \| "dark"`         |
+| HTTP status codes, fixed numbers only                                | Numeric literal union     | `type Status = 200 \| 404 \| 500`        |
+| Component prop that should only accept "primary" or "secondary"      | Literal union             | `variant: "primary" \| "secondary"`      |
+| API response is either a success or error shape                      | Union of object types     | `Success \| Error`                       |
+| Checking which shape a union object actually is                      | `in` operator narrowing   | `if ("breed" in pet) { ... }`            |
+| Narrowing a primitive union before using it                          | `typeof` narrowing        | `if (typeof x === "string") {}`          |
+| Adding a discriminator field for safer narrowing                     | Discriminated union       | `type T = { kind: "a" } \| { kind: "b" }`|
+| You want BOTH types' fields combined (not either/or)                 | Intersection `&`          | `Admin & Employee`                       |

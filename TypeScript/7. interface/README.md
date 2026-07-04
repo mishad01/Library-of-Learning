@@ -148,3 +148,24 @@ interface IUser { age: number; } // ✅ merges — IUser now has both id and age
 | Class implements | `class Foo implements IFoo` |
 | Extend interface | `interface IBar extends IFoo` |
 | Extend multiple | `interface IBaz extends IFoo, IBar` |
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Reusable object shape used in many files                             | `interface`               | `interface User { id: number; name: string }` |
+| Class must implement specific methods (contract)                     | `implements`              | `class Db implements IRepository`        |
+| Strongly type React component props                                  | `interface Props`         | `interface Props { title: string }`      |
+| Strongly type API response object                                    | `interface`               | `interface ApiResponse { data: User[] }` |
+| ID field that must never be reassigned                               | `readonly`                | `readonly id: number`                    |
+| Field that may or may not be present                                 | Optional `?`              | `email?: string`                         |
+| One interface builds on another (Dog is-a Animal)                    | `extends`                 | `interface Dog extends Animal`           |
+| Combining several contracts (employee is address + contact)          | Multi-extends             | `extends IAddress, IContact`             |
+| Library/3rd party type that other devs can add fields to             | Declaration merging       | re-declare same interface name           |
+| Function type / callback signature                                   | `interface` with method   | `interface Cb { (n: number): void }`     |
+| Union, primitive alias, or utility type                              | `type` (NOT interface)    | `type ID = string \| number`             |
+| Tuple type                                                           | `type` (NOT interface)    | `type Point = [number, number]`          |
+| Express shape AND need declaration merging or implements             | Choose `interface`        | (more powerful for OO patterns)          |
+| You want lots of mapped/conditional types                            | Choose `type`             | (interfaces can't do these)              |

@@ -126,3 +126,19 @@ console.log(p.name); // "Sakif" — no () needed, runs the getter
 | Runtime polymorphism | Method overriding (`extends`) | Different behavior per subclass |
 | Compile-time polymorphism | Method overloading | Same method, different param types |
 | `instanceof` | Type narrowing at runtime | Access subclass-specific methods safely |
+
+---
+
+## When to use this? — Scenario Guide
+
+| Scenario / What you want to do                                       | Use this                  | Example                                  |
+| -------------------------------------------------------------------- | ------------------------- | ---------------------------------------- |
+| Many subclasses, each does the same action differently               | Method overriding         | `Dog.makeSound()` vs `Cat.makeSound()`   |
+| Looping over mixed subclass list and calling shared method           | Runtime polymorphism      | `for (const s of shapes) s.draw();`      |
+| Same method name, different parameter types/counts                   | Method overloading        | `add(a:number,b:number)` / `add(a:string,b:string)` |
+| Check if an object is a specific subclass at runtime                 | `instanceof`              | `if (pet instanceof Dog)`                |
+| Provide read-only computed property style access                     | `get` accessor            | `get fullName(): string`                 |
+| Allow controlled writes to a private field                           | `set` accessor            | `set name(value: string)`                |
+| Plugin/strategy pattern (different processors, same interface)       | Polymorphism via interface | `interface Processor { run() }`         |
+| Renderable UI components (Button, Input) all have `.render()`        | Method overriding         | each subclass implements `render()`      |
+| Game: bullets, enemies, items all `update()` each frame              | Method overriding         | loop through entities, call `.update()`  |
