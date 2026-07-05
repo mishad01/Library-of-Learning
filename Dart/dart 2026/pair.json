@@ -1,0 +1,64 @@
+{
+  "inventory": [
+    {
+      "id": 1,
+      "name": "Wireless Keyboard",
+      "quantity": 42,
+      "price": 49.99
+    },
+    {
+      "id": 2,
+      "name": "USB-C Hub",
+      "quantity": 15,
+      "price": 34.50
+    },
+    {
+      "id": 3,
+      "name": "Monitor Stand",
+      "quantity": 0,
+      "price": 29.99
+    },
+    {
+      "id": 4,
+      "name": "Mechanical Mouse",
+      "quantity": "twenty",
+      "price": 59.99
+    },
+    {
+      "id": 5,
+      "name": "Webcam HD",
+      "quantity": 8,
+      "price": 89.95
+    },
+    {
+      "id": 6,
+      "name": "Laptop Stand",
+      "quantity": 12,
+      "price": -15.00
+    },
+    {
+      "id": 7,
+      "name": "HDMI Cable",
+      "quantity": 100,
+      "price": 12.99
+    },
+    {
+      "id": 8,
+      "name": null,
+      "quantity": 5,
+      "price": 19.99
+    },
+    {
+      "id": 9,
+      "name": "Desk Lamp",
+      "quantity": 3,
+      "price": 44.00
+    },
+    {
+      "id": 10,
+      "name": "Noise Cancelling Headphones",
+      "quantity": 7,
+      "price": 149.99
+    }
+  ]
+}
